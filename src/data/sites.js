@@ -154,7 +154,7 @@ const DOC_CENTER_CONFIG = {
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "Not yet released.",
         href: "https://liqinglian01.github.io/rdk_x_doc1/en/RDK",
-        tags: ["User Manual"],
+        // tags: ["User Manual"],
       },
     },
     {
@@ -204,9 +204,9 @@ const DOC_CENTER_CONFIG = {
       },
       en: {
         title: "TogetheROS.Bot User Manual",
-        description: "This document serves as the core development guide for the RDK robotics platform, providing developers with comprehensive guidance on the entire process of robotic application development based on the TogetheROS.Bot operating system. It covers various aspects including system installation, feature experience, algorithm repository (Boxs), application examples (Apps), and in-depth functional development, helping ecosystem developers efficiently and conveniently build competitive intelligent robotic products.",
+        description: "This document serves as the core development guide for the RDK robot platform, providing developers with comprehensive guidance for robot application development based on the TogetheROS.Bot operating system. It helps ecosystem developers efficiently and conveniently create competitive intelligent robot products.",
         href: "https://liqinglian01.github.io/tros_doc/en/tros",
-        tags: ["Multi-platform"],
+        // tags: ["Multi-platform"],
       },
     },
     {
@@ -219,7 +219,7 @@ const DOC_CENTER_CONFIG = {
       },
       en: {
         title: "Model Zoo X Series User Manual",
-        description: "This document serves as a specialized guide for the algorithm development module of the RDK Kit, providing developers with case studies and interface instructions for algorithm application development. The content covers multiple aspects, including Python/C++ multilingual programming examples, algorithm repository resources, and model repository practices.",
+        description: "This document serves as a specialized guide for the algorithm development module of the RDK suite, providing developers with case studies and interface descriptions for algorithm application development.",
         href: "https://liqinglian01.github.io/model_zoo_doc/en/model_zoo_intro/",
       },
     },

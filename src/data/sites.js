@@ -143,7 +143,7 @@ const DOC_CENTER_CONFIG = {
     {
       id: "product-rdk-manual",
       categoryId: "products",
-      href: "https://liqinglian01.github.io/rdk_x_doc1/RDK",
+      href: "https://liqinglian01.github.io/rdk_x_doc/RDK",
       zh: {
         title: "RDK X 系列用户手册",
         description: "RDK 套件是基于 D-Robotics 智能芯片打造的机器人开发者套件，本文档为 RDK 套件 X 系列的用户手册，为开发者提供关于RDK X3、RDK X3 Module、RDK X5 、RDK X5 Module 等产品的使用说明和开发指导。",
@@ -153,7 +153,7 @@ const DOC_CENTER_CONFIG = {
         title: "RDK X3/X5 User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "Not yet released.",
-        href: "https://liqinglian01.github.io/rdk_x_doc1/en/RDK",
+        href: "https://liqinglian01.github.io/rdk_x_doc/en/RDK",
         // tags: ["User Manual"],
       },
     },

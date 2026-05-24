@@ -1,244 +1,177 @@
 .card {
-
-  --card-accent: var(--ifm-color-primary);
-
+  --card-accent: var(--ifm-color-primary, #ff5125);
   position: relative;
-
   display: flex;
-
   flex-direction: column;
-
-  gap: 0.6rem;
-
-  padding: 1.25rem 1.25rem 1rem;
-
-  border: 1px solid var(--ifm-color-emphasis-200);
-
-  border-radius: 12px;
-
-  background: var(--ifm-color-emphasis-100);
-
-  /* 立体：外阴影分层 + 顶缘微高光（inset） */
+  gap: 0.65rem;
+  padding: 1.35rem 1.35rem 1.15rem;
+  border: 1px solid #e7e5e4;
+  border-radius: 14px;
+  background: #ffffff;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    0 1px 2px rgba(15, 23, 42, 0.05),
-    0 4px 14px rgba(15, 23, 42, 0.07),
-    0 0 0 1px rgba(15, 23, 42, 0.03);
-
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 3px rgba(28, 25, 23, 0.06),
+    0 8px 24px rgba(28, 25, 23, 0.08);
   color: inherit;
-
   text-decoration: none;
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   overflow: hidden;
-
-  min-height: 140px;
-
+  min-height: 148px;
 }
 
 :global(html[data-theme="dark"]) .card {
+  background: #1c1917;
+  border-color: #44403c;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.35),
-    0 6px 18px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 12px 32px rgba(0, 0, 0, 0.28);
 }
-
-
 
 .card::before {
-
   content: "";
-
   position: absolute;
-
   left: 0;
-
   top: 0;
-
   bottom: 0;
-
-  width: 7px;
-
-  border-radius: 12px 0 0 12px;
-
+  width: 5px;
+  border-radius: 14px 0 0 14px;
   background: var(--card-accent);
-
-  opacity: 0.85;
-
+  box-shadow: 2px 0 12px rgba(255, 81, 37, 0.18);
 }
 
-
-
 .card:hover {
-
-  transform: translateY(-2px);
-
-  border-color: var(--card-accent);
-
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--card-accent) 28%, #d6d3d1);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    0 2px 4px rgba(15, 23, 42, 0.06),
-    0 10px 28px rgba(15, 23, 42, 0.12),
-    0 0 0 1px color-mix(in srgb, var(--card-accent) 22%, rgba(15, 23, 42, 0.06));
-
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 4px 10px rgba(28, 25, 23, 0.07),
+    0 16px 40px rgba(28, 25, 23, 0.1),
+    0 0 0 1px rgba(255, 81, 37, 0.08);
   text-decoration: none;
-
   color: inherit;
-
 }
 
 :global(html[data-theme="dark"]) .card:hover {
+  border-color: color-mix(in srgb, var(--card-accent) 35%, #57534e);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 2px 6px rgba(0, 0, 0, 0.45),
-    0 12px 32px rgba(0, 0, 0, 0.45),
-    0 0 0 1px color-mix(in srgb, var(--card-accent) 35%, rgba(255, 255, 255, 0.08));
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.42),
+    0 16px 40px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 81, 37, 0.12);
 }
-
-
 
 .cardHeader {
-
   display: flex;
-
   align-items: flex-start;
-
   justify-content: space-between;
-
   gap: 0.75rem;
-
+  position: relative;
+  z-index: 1;
 }
-
-
 
 .title {
-
   margin: 0;
-
-  font-size: 1.05rem;
-
+  font-size: 1.08rem;
   font-weight: 700;
-
-  line-height: 1.3;
-
+  line-height: 1.35;
+  color: #1c1917;
+  letter-spacing: -0.01em;
 }
 
-
+:global(html[data-theme="dark"]) .title {
+  color: #fafaf9;
+}
 
 .externalIcon {
-
   margin-left: 0.35rem;
-
   font-size: 0.85em;
-
-  opacity: 0.6;
-
+  opacity: 0.55;
+  color: var(--card-accent);
 }
-
-
 
 .tags {
-
   display: flex;
-
   flex-wrap: wrap;
-
-  gap: 0.25rem;
-
+  gap: 0.3rem;
   flex-shrink: 0;
-
 }
-
-
 
 .tag {
-
-  font-size: 0.7rem;
-
+  font-size: 0.68rem;
   line-height: 1;
-
-  padding: 3px 8px;
-
+  padding: 4px 9px;
   border-radius: 999px;
-
-  background: var(--ifm-color-emphasis-100);
-
-  color: var(--ifm-color-emphasis-700);
-
+  background: #fff5f0;
+  color: #57534e;
   white-space: nowrap;
-
+  font-weight: 600;
 }
 
-
+:global(html[data-theme="dark"]) .tag {
+  background: rgba(255, 81, 37, 0.1);
+  color: #d6d3d1;
+}
 
 .tag_version {
-
-  background: color-mix(in srgb, var(--card-accent) 12%, transparent);
-
-  color: var(--card-accent);
-
+  background: rgba(255, 81, 37, 0.1);
+  color: #e0441a;
   font-weight: 700;
-
 }
 
-
+:global(html[data-theme="dark"]) .tag_version {
+  background: rgba(255, 81, 37, 0.16);
+  color: #ff8566;
+}
 
 .tag_count {
-
-  background: var(--ifm-color-emphasis-200);
-
-  color: var(--ifm-color-emphasis-800);
-
+  background: rgba(255, 81, 37, 0.08);
+  color: #c93a16;
 }
 
-
+:global(html[data-theme="dark"]) .tag_count {
+  background: rgba(255, 81, 37, 0.14);
+  color: #ffb347;
+}
 
 .description {
-
   margin: 0;
-
   font-size: 0.9rem;
-
-  line-height: 1.55;
-
-  color: var(--ifm-color-emphasis-700);
-
+  line-height: 1.6;
+  color: #57534e;
   flex: 1;
-
+  position: relative;
+  z-index: 1;
 }
 
-
+:global(html[data-theme="dark"]) .description {
+  color: #a8a29e;
+}
 
 .cardFooter {
-
   display: flex;
-
   justify-content: flex-end;
-
 }
-
-
 
 .cta {
-
   font-size: 0.85rem;
-
   font-weight: 600;
-
   color: var(--card-accent);
-
 }
 
-/* 暂未上架：可点击唤起提示，不跳转外链 */
 .cardPending {
   cursor: pointer;
+  opacity: 0.88;
+}
+
+.cardPending:hover {
+  opacity: 1;
 }
 
 .cardPending:focus-visible {
   outline: 2px solid var(--card-accent);
   outline-offset: 3px;
 }
-
-

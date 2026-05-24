@@ -67,13 +67,13 @@ export default function SiteCard({
       </div>
       <p className={styles.description}>{description}</p>
       <div className={styles.cardFooter}>
-        <span className={styles.cta}>
+        {/* <span className={styles.cta}>
           {pendingRelease
             ? isEnglish
               ? "Coming soon →"
               : "敬请期待 →"
             : `${isExternal ? (isEnglish ? "Visit external link" : "访问外链") : isEnglish ? "Open documentation" : "进入文档"} →`}
-        </span>
+        </span> */}
       </div>
     </>
   );

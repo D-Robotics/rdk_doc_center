@@ -1,30 +1,79 @@
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #ff5125;
+  --ifm-color-primary-dark: #e0441a;
+  --ifm-color-primary-darker: #c93a16;
+  --ifm-color-primary-darkest: #a02f12;
+  --ifm-color-primary-light: #ff6b45;
+  --ifm-color-primary-lighter: #ff8566;
+  --ifm-color-primary-lightest: #ffa088;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --portal-page-bg: #fff8f2;
+  --portal-accent: #ff5125;
+  --portal-accent-soft: #fff5f0;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.92);
+  --ifm-navbar-shadow: 0 1px 0 rgba(255, 81, 37, 0.08);
+  --ifm-footer-background-color: #1c1917;
 }
 
 [data-theme="dark"] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #ff6b45;
+  --ifm-color-primary-dark: #ff5125;
+  --ifm-color-primary-darker: #e0441a;
+  --ifm-color-primary-darkest: #c93a16;
+  --ifm-color-primary-light: #ff8566;
+  --ifm-color-primary-lighter: #ffa088;
+  --ifm-color-primary-lightest: #ffb8a3;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --portal-page-bg: #141210;
+  --portal-accent-soft: rgba(255, 81, 37, 0.12);
+  --ifm-navbar-background-color: rgba(20, 18, 16, 0.92);
+  --ifm-footer-background-color: #0c0a09;
 }
 
 /* 首页容器在暗色模式下保留渐变对比度，但 main 区域保持主题背景 */
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC",
-    "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 导航栏：品牌色点缀 */
+.navbar {
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--portal-accent) 10%, transparent);
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--portal-accent);
+}
+
+.navbar__link--active {
+  font-weight: 600;
+}
+
+/* 首页页脚与内容区衔接 */
+.footer {
+  border-top: 3px solid var(--portal-accent);
+}
+
+.footer__title {
+  color: #ff8566;
+}
+
+.footer__link-item a:hover {
+  color: #ff8566;
 }
 
 /* 首页 Hero 内层 + 卡片主区域：加宽内容栏（全局类，避免被 Infima/Docusaurus 合并样式覆盖） */
@@ -204,7 +253,7 @@ body.plugin-id-os-rdk-s600        .navbar-version-dropdown--os-rdk-s600 {
 
 .doc-scope-menu__trigger:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 0 0 3px rgba(46, 133, 85, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 81, 37, 0.12);
 }
 
 .doc-scope-menu__value {

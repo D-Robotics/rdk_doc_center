@@ -196,7 +196,7 @@ const DOC_CENTER_CONFIG = {
     {
       id: "tros",
       categoryId: "robot-app",
-      href: "https://liqinglian01.github.io/tros_x_doc/tros",
+      href: "https://liqinglian01.github.io/tros_doc/tros",
       zh: {
         title: "TogetheROS.Bot 用户手册",
         description: "本文档作为 RDK 机器人平台的核心开发指南，为开发者提供基于 TogetheROS.Bot 操作系统的机器人应用开发全流程指导，助力生态开发者高效、便捷地打造具有竞争力的智能机器人产品。",
@@ -205,14 +205,14 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "TogetheROS.Bot User Manual",
         description: "This document serves as the core development guide for the RDK robotics platform, providing developers with comprehensive guidance on the entire process of robotic application development based on the TogetheROS.Bot operating system. It covers various aspects including system installation, feature experience, algorithm repository (Boxs), application examples (Apps), and in-depth functional development, helping ecosystem developers efficiently and conveniently build competitive intelligent robotic products.",
-        href: "https://liqinglian01.github.io/tros_x_doc/en/tros",
+        href: "https://liqinglian01.github.io/tros_doc/en/tros",
         tags: ["Multi-platform"],
       },
     },
     {
       id: "model-zoo-hub",
       categoryId: "model-zoo",
-      href: "https://liqinglian01.github.io/model_zoo_x_doc/model_zoo_intro",
+      href: "https://liqinglian01.github.io/model_zoo_doc/model_zoo_intro",
       zh: {
         title: "Model Zoo X 系列用户手册",
         description: "本文档作为 RDK 套件算法开发模块的专题指南，为开发者提供关于算法应用开发的案例与接口说明。",
@@ -220,7 +220,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Model Zoo X Series User Manual",
         description: "This document serves as a specialized guide for the algorithm development module of the RDK Kit, providing developers with case studies and interface instructions for algorithm application development. The content covers multiple aspects, including Python/C++ multilingual programming examples, algorithm repository resources, and model repository practices.",
-        href: "https://liqinglian01.github.io/model_zoo_x_doc/en/model_zoo_intro/",
+        href: "https://liqinglian01.github.io/model_zoo_doc/en/model_zoo_intro/",
       },
     },
     {

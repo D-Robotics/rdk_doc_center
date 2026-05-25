@@ -5,7 +5,7 @@
  * - 新增/删除分类：修改 DOC_CENTER_CONFIG.categories
  * - 新增/删除文档入口：修改 DOC_CENTER_CONFIG.entries
  * - 首页、分组锚点、卡片数据均由该配置自动派生
- * - pendingRelease: true 时点击卡片仅提示「文档待上架」，不跳转（RDK 用户手册 / TROS / Model Zoo / Magicbox / RDK Studio 等正常外链）
+ * - pendingRelease: true 时点击卡片仅提示「文档正在准备中，暂未上架。感谢您的关注与耐心等待！」，不跳转
  */
 const DOC_CENTER_CONFIG = {
   categories: [
@@ -152,7 +152,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "RDK X3/X5 User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
-        description: "Not yet released.",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
         href: "https://liqinglian01.github.io/rdk_x_doc/en/RDK",
         // tags: ["User Manual"],
       },
@@ -183,14 +183,14 @@ const DOC_CENTER_CONFIG = {
         title: "RDK X5 SDK 用户手册",
         // description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
         // tags: ["系统软件"],
-        description: "暂未发布",
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
       },
       en: {
         title: "RDK X5 SDK User Manual",
         description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on various aspects including development environment setup, solution evaluation, software feature development, etc. The content covers development board usage, hardware design, system customization, application development, algorithm toolchain, and more.",
         href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
         // tags: ["System Software"],
-        description: "Not yet released",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
       },
     },
     {
@@ -231,13 +231,13 @@ const DOC_CENTER_CONFIG = {
       zh: {
         title: "应用开发示例用户手册",
         // description: "本文档作为 RDK 应用示例集合，为开发者提供多个应用开发实践方向。",
-        description: "暂未发布",
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
 
       },
       en: {
         title: "Application Development Examples User Manual",
         // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
-        description: "Not yet released.",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
         href: "https://developer.d-robotics.cc/samples_doc/en/intro",
       },
     },
@@ -262,11 +262,11 @@ const DOC_CENTER_CONFIG = {
       href: "https://developer.d-robotics.cc/accessories_doc/intro",
       zh: {
         title: "生态配件用户手册",
-        description: "暂未发布",
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
       },
       en: {
         title: "Accessories User Manual",
-        description: "Not yet released.",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
         href: "https://developer.d-robotics.cc/accessories_doc/en/intro",
       },
     },
@@ -291,11 +291,11 @@ const DOC_CENTER_CONFIG = {
       href: "https://developer.d-robotics.cc/xburn_doc/intro",
       zh: {
         title: "Xburn 用户手册",
-        description: "暂未发布",
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
       },
       en: {
         title: "Xburn User Manual",
-        description: "Not yet released.",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
         href: "https://developer.d-robotics.cc/xburn_doc/en/intro",
       },
     },

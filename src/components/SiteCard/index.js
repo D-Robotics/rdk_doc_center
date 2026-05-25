@@ -1,7 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.css";
+
+const PENDING_NOTICE = {
+  zh: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+  en: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
+};
+
+const PENDING_CONFIRM = {
+  zh: "确定",
+  en: "OK",
+};
+
+function PendingReleaseDialog({ open, message, confirmLabel, onClose }) {
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className={styles.pendingOverlay}
+      role="presentation"
+      onClick={onClose}
+    >
+      <div
+        className={styles.pendingDialog}
+        role="alertdialog"
+        aria-modal="true"
+        aria-describedby="pending-release-message"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <p id="pending-release-message" className={styles.pendingMessage}>
+          {message}
+        </p>
+        <div className={styles.pendingActions}>
+          <button
+            type="button"
+            className={styles.pendingConfirm}
+            autoFocus
+            onClick={onClose}
+          >
+            {confirmLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function SiteCard({
   title,
@@ -15,6 +72,7 @@ export default function SiteCard({
 }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
+  const [noticeOpen, setNoticeOpen] = useState(false);
   const isExternal = external || /^https?:\/\//.test(href);
   const linkProps = isExternal
     ? { href, target: "_blank", rel: "noopener noreferrer" }
@@ -34,12 +92,15 @@ export default function SiteCard({
     ...((tags ?? []).map((t) => ({ text: t, kind: "plain" }))),
   ];
 
-  const pendingNotice = isEnglish
-    ? "This documentation is not yet available online. Stay tuned."
-    : "该文档暂未上架，敬请期待。";
+  const pendingNotice = isEnglish ? PENDING_NOTICE.en : PENDING_NOTICE.zh;
+  const pendingConfirm = isEnglish ? PENDING_CONFIRM.en : PENDING_CONFIRM.zh;
 
   const showPendingNotice = () => {
-    window.alert(pendingNotice);
+    setNoticeOpen(true);
+  };
+
+  const closePendingNotice = () => {
+    setNoticeOpen(false);
   };
 
   const cardAccentStyle = accent ? { "--card-accent": accent } : undefined;
@@ -80,22 +141,30 @@ export default function SiteCard({
 
   if (pendingRelease) {
     return (
-      <div
-        role="button"
-        tabIndex={0}
-        className={`${styles.card} ${styles.cardPending}`}
-        style={cardAccentStyle}
-        onClick={showPendingNotice}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            showPendingNotice();
-          }
-        }}
-        aria-label={isEnglish ? `${title}, ${pendingNotice}` : `${title}，${pendingNotice}`}
-      >
-        {content}
-      </div>
+      <>
+        <div
+          role="button"
+          tabIndex={0}
+          className={`${styles.card} ${styles.cardPending}`}
+          style={cardAccentStyle}
+          onClick={showPendingNotice}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              showPendingNotice();
+            }
+          }}
+          aria-label={isEnglish ? `${title}, ${pendingNotice}` : `${title}，${pendingNotice}`}
+        >
+          {content}
+        </div>
+        <PendingReleaseDialog
+          open={noticeOpen}
+          message={pendingNotice}
+          confirmLabel={pendingConfirm}
+          onClose={closePendingNotice}
+        />
+      </>
     );
   }
 

@@ -175,3 +175,83 @@
   outline: 2px solid var(--card-accent);
   outline-offset: 3px;
 }
+
+.pendingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 12, 10, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.pendingDialog {
+  width: min(100%, 420px);
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  box-shadow:
+    0 12px 40px rgba(28, 25, 23, 0.18),
+    0 0 0 1px rgba(255, 81, 37, 0.08);
+}
+
+.pendingMessage {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #1c1917;
+}
+
+.pendingActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.35rem;
+}
+
+.pendingConfirm {
+  min-width: 5.5rem;
+  padding: 0.55rem 1.15rem;
+  border: none;
+  border-radius: 9999px;
+  background: #ff5125;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pendingConfirm:hover {
+  background: #e0441a;
+  box-shadow: 0 4px 14px rgba(255, 81, 37, 0.28);
+}
+
+.pendingConfirm:focus-visible {
+  outline: 2px solid #ff5125;
+  outline-offset: 2px;
+}
+
+:global(html[data-theme="dark"]) .pendingDialog {
+  background: #1c1917;
+  border-color: #44403c;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 81, 37, 0.12);
+}
+
+:global(html[data-theme="dark"]) .pendingMessage {
+  color: #fafaf9;
+}
+
+:global(html[data-theme="dark"]) .pendingConfirm {
+  background: #ff8566;
+  color: #1c1917;
+}
+
+:global(html[data-theme="dark"]) .pendingConfirm:hover {
+  background: #ff6b45;
+}

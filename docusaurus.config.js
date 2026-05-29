@@ -10,11 +10,11 @@ import { themes as prismThemes } from "prism-react-renderer";
 const config = {
   title: "RDK 文档中心",
   favicon: "img/logo.png",
-  url: "https://liqinglian01.github.io",
+  url: "https://developer.d-robotics.cc",
   // 必须与仓库名一致：GitHub Pages 项目站点路径为 /<repo>/
-  baseUrl: "/rdk_doc_manager/",
-  organizationName: "liqinglian01",
-  projectName: "rdk_doc_manager",
+  baseUrl: "/rdk_doc_center/",
+  organizationName: "D-Robotics",
+  projectName: "rdk_doc_center",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   headTags: [
@@ -50,14 +50,14 @@ const config = {
       src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
       async: true,
     },
-    {
-      src: "/rdk_doc_manage1/js/dify-config.js",
-    },
-    {
-      src: "https://rdk.d-robotics.cc/embed.min.js",
-      id: "MltLQTHPb5EeP7uz",
-      defer: true,
-    },
+    // {
+    //   src: "/rdk_doc_manager/js/dify-config.js",
+    // },
+    // {
+    //   src: "https://rdk.d-robotics.cc/embed.min.js",
+    //   id: "MltLQTHPb5EeP7uz",
+    //   defer: true,
+    // },
   ],
 
   i18n: {

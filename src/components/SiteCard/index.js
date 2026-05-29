@@ -65,6 +65,7 @@ export default function SiteCard({
   description,
   href,
   tags,
+  groupLabel,
   external,
   accent,
   versions,
@@ -108,14 +109,17 @@ export default function SiteCard({
   const content = (
     <>
       <div className={styles.cardHeader}>
-        <h3 className={styles.title}>
-          {title}
-          {isExternal && !pendingRelease ? (
-            <span className={styles.externalIcon} aria-hidden>
-              ↗
-            </span>
-          ) : null}
-        </h3>
+        <div className={styles.titleWrap}>
+          <h3 className={styles.title}>
+            {title}
+            {isExternal && !pendingRelease ? (
+              <span className={styles.externalIcon} aria-hidden>
+                ↗
+              </span>
+            ) : null}
+          </h3>
+          {groupLabel ? <span className={styles.groupLabel}>{groupLabel}</span> : null}
+        </div>
         {allTags.length ? (
           <div className={styles.tags}>
             {allTags.map((t, i) => (

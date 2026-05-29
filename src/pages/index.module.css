@@ -252,6 +252,42 @@
   gap: 3.75rem;
 }
 
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: -0.5rem;
+}
+
+.searchResultsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.searchResultsTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.searchResultsCount {
+  font-size: 0.88rem;
+  color: #78716c;
+}
+
+.searchResultsEmpty {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border: 1px dashed rgba(255, 81, 37, 0.32);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  color: #57534e;
+}
+
 .section {
   scroll-margin-top: 5rem;
   animation: sectionFadeIn 0.55s ease both;
@@ -433,6 +469,20 @@
   background: rgba(255, 81, 37, 0.14);
   border-color: rgba(255, 140, 60, 0.42);
   color: #ffc266;
+}
+
+:global(html[data-theme="dark"]) .searchResultsTitle {
+  color: #fafaf9;
+}
+
+:global(html[data-theme="dark"]) .searchResultsCount {
+  color: #a8a29e;
+}
+
+:global(html[data-theme="dark"]) .searchResultsEmpty {
+  color: #d6d3d1;
+  border-color: rgba(255, 107, 69, 0.42);
+  background: rgba(255, 107, 69, 0.08);
 }
 
 :global(html[data-theme="dark"]) .sectionTitle {

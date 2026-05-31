@@ -42,3 +42,7 @@ jobs:
           --region cn-beijing \
           --update \
           --retry-times=3
+      - name: Show OSS Report
+        if: failure()
+        run: |
+          cat ossutil_output/*.report

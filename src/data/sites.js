@@ -143,7 +143,7 @@ const DOC_CENTER_CONFIG = {
     {
       id: "product-rdk-manual",
       categoryId: "products",
-      href: "https://liqinglian01.github.io/rdk_x_doc/RDK",
+      href: "https://developer.d-robotics.cc/rdk_x_doc/RDK",
       zh: {
         title: "RDK X 系列用户手册",
         description: "RDK 套件是基于 D-Robotics 智能芯片打造的机器人开发者套件，本文档为 RDK 套件 X 系列的用户手册，为开发者提供关于RDK X3、RDK X3 Module、RDK X5 、RDK X5 Module 等产品的使用说明和开发指导。",
@@ -153,14 +153,14 @@ const DOC_CENTER_CONFIG = {
         title: "RDK X3/X5 User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://liqinglian01.github.io/rdk_x_doc/en/RDK",
+        href: "https://developer.d-robotics.cc/rdk_x_doc/en/RDK",
         // tags: ["User Manual"],
       },
     },
     {
       id: "product-rdk-manual",
       categoryId: "products",
-      href: "https://liqinglian01.github.io/rdk_s_doc/RDK",
+      href: "https://developer.d-robotics.cc/rdk_s_doc/RDK",
       zh: {
         title: "RDK S 系列用户手册",
         description: "RDK 套件是基于 D-Robotics 智能芯片打造的机器人开发者套件，本文档为 RDK 套件 S 系列的用户手册，为开发者提供关于 RDK S100、RDK S100P、RDK S600 等产品的使用说明和开发指导。",
@@ -170,7 +170,7 @@ const DOC_CENTER_CONFIG = {
         title: "RDK S Series User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100, RDK S100P, and RDK S600.",
-        href: "https://liqinglian01.github.io/rdk_s_doc/en/RDK",
+        href: "https://developer.d-robotics.cc/rdk_s_doc/en/RDK",
         tags: ["User Manual"],
       },
     },
@@ -196,7 +196,7 @@ const DOC_CENTER_CONFIG = {
     {
       id: "tros",
       categoryId: "robot-app",
-      href: "https://liqinglian01.github.io/tros_doc/tros",
+      href: "https://developer.d-robotics.cc/tros_doc/tros",
       zh: {
         title: "TogetheROS.Bot 用户手册",
         description: "本文档作为 RDK 机器人平台的核心开发指南，为开发者提供基于 TogetheROS.Bot 操作系统的机器人应用开发全流程指导，助力生态开发者高效、便捷地打造具有竞争力的智能机器人产品。",
@@ -205,14 +205,14 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "TogetheROS.Bot User Manual",
         description: "This document serves as the core development guide for the RDK robot platform, providing developers with comprehensive guidance for robot application development based on the TogetheROS.Bot operating system. It helps ecosystem developers efficiently and conveniently create competitive intelligent robot products.",
-        href: "https://liqinglian01.github.io/tros_doc/en/tros",
+        href: "https://developer.d-robotics.cc/tros_doc/en/tros",
         // tags: ["Multi-platform"],
       },
     },
     {
       id: "model-zoo-hub",
       categoryId: "model-zoo",
-      href: "https://liqinglian01.github.io/model_zoo_doc/model_zoo_intro",
+      href: "https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro",
       zh: {
         title: "Model Zoo X 系列用户手册",
         description: "本文档作为 RDK 套件算法开发模块的专题指南，为开发者提供关于算法应用开发的案例与接口说明。",
@@ -220,7 +220,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Model Zoo X Series User Manual",
         description: "This document serves as a specialized guide for the algorithm development module of the RDK suite, providing developers with case studies and interface descriptions for algorithm application development.",
-        href: "https://liqinglian01.github.io/model_zoo_doc/en/model_zoo_intro/",
+        href: "https://developer.d-robotics.cc/model_zoo_doc/en/model_zoo_intro/",
       },
     },
     {

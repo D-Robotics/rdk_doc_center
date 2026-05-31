@@ -36,7 +36,7 @@ function Hero({ searchQuery, onSearchChange }) {
         <h1 className={styles.heroTitle}>
           D-Robotics{" "}
           <span className={styles.heroTitleAccent}>
-            {isEnglish ? "Documentation Center" : "文档中心"}
+            {isEnglish ? "Resource Center" : "资料中心"}
           </span>
         </h1>
         <p className={styles.heroSubtitle}>
@@ -59,7 +59,7 @@ function Hero({ searchQuery, onSearchChange }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {isEnglish ? "Legacy Docs" : "历史版本资料"}
+            {isEnglish ? "Legacy Docs" : "旧版资料"}
           </a>
         </div>
         <label className={styles.heroSearch}>

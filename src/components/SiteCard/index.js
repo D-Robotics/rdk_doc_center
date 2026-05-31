@@ -145,7 +145,7 @@ export default function SiteCard({
 
   if (pendingRelease) {
     return (
-      <>
+      <div className={styles.cardWrap}>
         <div
           role="button"
           tabIndex={0}
@@ -168,7 +168,7 @@ export default function SiteCard({
           confirmLabel={pendingConfirm}
           onClose={closePendingNotice}
         />
-      </>
+      </div>
     );
   }
 

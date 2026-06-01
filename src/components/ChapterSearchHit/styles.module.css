@@ -1,0 +1,88 @@
+.hit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.06);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hit:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 81, 37, 0.35);
+  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.hitHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.manualBadge {
+  display: inline-flex;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 81, 37, 0.1);
+  color: #c93a16;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.parent {
+  font-size: 0.78rem;
+  color: #78716c;
+}
+
+.chapterTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1c1917;
+  line-height: 1.35;
+}
+
+.summary {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #57534e;
+}
+
+.cta {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ff5125;
+}
+
+:global(html[data-theme="dark"]) .hit {
+  background: #1c1917;
+  border-color: #44403c;
+}
+
+:global(html[data-theme="dark"]) .chapterTitle {
+  color: #fafaf9;
+}
+
+:global(html[data-theme="dark"]) .summary,
+:global(html[data-theme="dark"]) .parent {
+  color: #a8a29e;
+}
+
+:global(html[data-theme="dark"]) .manualBadge {
+  background: rgba(255, 81, 37, 0.16);
+  color: #ff8566;
+}

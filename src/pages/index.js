@@ -3,9 +3,11 @@ import Layout from "@theme/Layout";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useHistory, useLocation } from "@docusaurus/router";
-import { groups, sitesByGroup, groupsEn, sitesEn } from "@site/src/data/sites";
+import { groups, sitesByGroup, groupsEn, sites, sitesEn } from "@site/src/data/sites";
 import SiteCard from "@site/src/components/SiteCard";
 import SectionIcon from "@site/src/components/SectionIcon";
+import ChapterSearchHit from "@site/src/components/ChapterSearchHit";
+import { searchDocCenter } from "@site/src/utils/docCenterSearch";
 import styles from "./index.module.css";
 
 function SearchIcon({ className }) {
@@ -147,21 +149,13 @@ function filterGrouped(grouped, query) {
   return filtered;
 }
 
-function flattenMatches(grouped, groupsMap) {
-  return Object.entries(grouped).flatMap(([groupId, items]) =>
-    items.map((item) => ({
-      ...item,
-      groupTitle: groupsMap[groupId]?.title || "",
-      accent: groupsMap[groupId]?.accent,
-    })),
-  );
-}
-
-function SearchResults({ query, results }) {
+function SearchResults({ query, chapterHits, manualHits, total }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
   const normalized = query.trim();
   if (!normalized) return null;
+
+  const hasResults = total > 0;
 
   return (
     <section className={styles.searchResults} aria-live="polite">
@@ -171,32 +165,60 @@ function SearchResults({ query, results }) {
         </h2>
         <span className={styles.searchResultsCount}>
           {isEnglish
-            ? `${results.length} matched manual(s)`
-            : `命中 ${results.length} 个手册`}
+            ? `${total} result(s) (${chapterHits.length} chapter, ${manualHits.length} manual)`
+            : `共 ${total} 条（章节 ${chapterHits.length} · 手册 ${manualHits.length}）`}
         </span>
       </div>
-      {results.length ? (
-        <div className={styles.grid}>
-          {results.map((item) => (
-            <SiteCard
-              key={`search-${item.id}-${item.href}`}
-              title={item.title}
-              description={item.description}
-              href={item.href}
-              tags={item.tags}
-              versions={item.versions}
-              external={item.external}
-              pendingRelease={item.pendingRelease}
-              groupLabel={item.groupTitle}
-              accent={item.accent}
-            />
-          ))}
-        </div>
+      {hasResults ? (
+        <>
+          {chapterHits.length ? (
+            <div className={styles.searchSection}>
+              <h3 className={styles.searchSectionTitle}>
+                {isEnglish ? "Matched chapters" : "章节匹配"}
+              </h3>
+              <div className={styles.chapterHitList}>
+                {chapterHits.map((item) => (
+                  <ChapterSearchHit
+                    key={item.id}
+                    manualTitle={item.manualTitle}
+                    chapterTitle={item.chapterTitle}
+                    parentChapter={item.parentChapter}
+                    summary={item.summary}
+                    href={item.href}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : null}
+          {manualHits.length ? (
+            <div className={styles.searchSection}>
+              <h3 className={styles.searchSectionTitle}>
+                {isEnglish ? "Matched manuals" : "手册匹配"}
+              </h3>
+              <div className={styles.grid}>
+                {manualHits.map((item) => (
+                  <SiteCard
+                    key={`search-${item.id}-${item.href}`}
+                    title={item.title}
+                    description={item.description}
+                    href={item.href}
+                    tags={item.tags}
+                    versions={item.versions}
+                    external={item.external}
+                    pendingRelease={item.pendingRelease}
+                    groupLabel={item.groupTitle}
+                    accent={item.accent}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </>
       ) : (
         <p className={styles.searchResultsEmpty}>
           {isEnglish
-            ? "No matching manuals were found. Try another keyword."
-            : "未找到匹配手册，请尝试其他关键词。"}
+            ? "No matching chapters or manuals were found. Try another keyword."
+            : "未找到匹配章节或手册，请尝试其他关键词。"}
         </p>
       )}
     </section>
@@ -225,10 +247,18 @@ export default function Home() {
     () => filterGrouped(grouped, searchQuery),
     [grouped, searchQuery],
   );
-  const searchResults = useMemo(
-    () => flattenMatches(filteredGrouped, groupsMap),
-    [filteredGrouped, groupsMap],
+  const currentSites = isEnglish ? sitesEn : sites;
+  const docSearch = useMemo(
+    () =>
+      searchDocCenter(searchQuery, {
+        locale: isEnglish ? "en" : "zh",
+        sites: currentSites,
+        grouped,
+        groupsMap,
+      }),
+    [searchQuery, isEnglish, currentSites, grouped, groupsMap],
   );
+  const isSearching = Boolean(searchQuery.trim());
 
   useEffect(() => {
     const normalized = location.pathname.replace(/\/+$/, "");
@@ -249,10 +279,21 @@ export default function Home() {
     >
       <Hero searchQuery={searchQuery} onSearchChange={setSearchQuery} />
       <main className={clsx(styles.main, "home-page-content")}>
-        <SearchResults query={searchQuery} results={searchResults} />
-        {currentGroups.map((g) => (
-          <GroupSection key={g.id} group={g} items={filteredGrouped[g.id] || []} />
-        ))}
+        <SearchResults
+          query={searchQuery}
+          chapterHits={docSearch.chapterHits}
+          manualHits={docSearch.manualHits}
+          total={docSearch.total}
+        />
+        {!isSearching
+          ? currentGroups.map((g) => (
+              <GroupSection
+                key={g.id}
+                group={g}
+                items={filteredGrouped[g.id] || []}
+              />
+            ))
+          : null}
       </main>
     </Layout>
   );

@@ -6,6 +6,7 @@
  * - 新增/删除文档入口：修改 DOC_CENTER_CONFIG.entries
  * - 首页、分组锚点、卡片数据均由该配置自动派生
  * - pendingRelease: true 时点击卡片仅提示「文档正在准备中，暂未上架。感谢您的关注与耐心等待！」，不跳转
+ * - RDK X / RDK S / TROS / Magicbox / 算法工具链(OE) 章节简介搜索索引见 manualChapterIndex*.js
  */
 const DOC_CENTER_CONFIG = {
   categories: [

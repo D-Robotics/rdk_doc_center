@@ -1,127 +1,79 @@
-# RDK DOC
-
 [English](./README_EN.md) | 简体中文
 
-基于 Docusaurus 的 RDK 多语言文档中心门户，仅承载首页聚合能力，不在本仓承载业务文档内容。
+# RDK 文档中心
 
-## 特性
+D-Robotics **RDK 文档中心**门户站点：提供多语言首页、文档入口聚合与搜索。
 
-- 📝 **多语言支持**：中文（zh-Hans）和英文（en）双语切换
-- 🧭 **纯文档中心入口**：首页聚合所有文档站点，统一分类导航
-- 🗂️ **单一配置管理**：分类与文档入口统一在 `src/data/sites.js` 中维护，支持快速新增/删除
-- 🌐 **外链聚合**：所有卡片均可配置为外部文档地址，支持统一入口跳转
-- 🚀 **GitHub Pages**：支持 GitHub Pages 部署
+| 项 | 值 |
+| --- | --- |
+| 线上地址（中文） | https://developer.d-robotics.cc/rdk_doc_center/ |
+| 线上地址（英文） | https://developer.d-robotics.cc/rdk_doc_center/en/ |
 
-## 快速开始
 
-### 环境要求
+## 功能概览
+
+- **文档入口聚合**：按分类展示 RDK X/S、SDK、TROS、Model Zoo、示例、配件、软件、算法工具链等手册卡片
+- **搜索**：在首页搜索框检索已索引手册章节
+- **双语门户**：导航栏语言切换；中文/英文文案在配置中分别维护
+- **外链跳转**：卡片 `href` 指向各子站（`developer.d-robotics.cc` 等），`pendingRelease: true` 时仅提示未上架
+- **反馈浮层**：首页与英文首页可配置问卷入口（见 `docusaurus.config.js` → `customFields.feedbackFloat`）
+
+## 环境要求
 
 - Node.js >= 18.0
+- npm（推荐与 CI 一致使用 `npm ci` 安装依赖）
 
-### 安装依赖
+## 本地开发
 
 ```bash
-npm install
+npm ci
 ```
 
-### 开发模式
+| 命令 | 说明 |
+| --- | --- |
+| `npm run start` | 中文门户开发服务（`zh-Hans`） |
+| `npm run start:en` | 英文门户开发服务（`en`） |
+| `npm run start:port` | 中文门户，端口 `3001` |
+| `npm run start:no-watch` | 中文门户，不监听文件变更 |
+| `npm run start:no-watch:en` | 英文门户，不监听文件变更 |
 
-启动中文门户：
-```bash
-npm run start
-```
-访问链接：http://localhost:3000/rdk_doc_manage1/
+本地访问（端口以实际为主）：
 
-启动英文门户：
-```bash
-npm run start:en
-```
-访问链接：http://localhost:3000/rdk_doc_manage1/en/
+- 中文：http://localhost:3000/rdk_doc_center/
+- 英文：http://localhost:3000/rdk_doc_center/en/
 
-启动中文文档（不带文件监听）：
-```bash
-npm run start:no-watch
-```
-访问链接：http://localhost:3000/rdk_doc_manage1/
-
-启动英文文档（不带文件监听）：
-```bash
-npm run start:no-watch:en
-```
-访问链接：http://localhost:3000/rdk_doc_manage1/en/
-
-启动指定端口：
-```bash
-npm run start:port
-```
-访问链接：http://localhost:3001/rdk_doc_manage1/
-
-## 构建与部署
-
-### 构建生产版本
+## 构建与预览
 
 ```bash
 npm run build
-```
-
-### 本地预览构建结果
-
-```bash
 npm run serve
 ```
 
-访问链接：
-- 中文门户：http://localhost:3000/rdk_doc_manage1/
-- 英文门户：http://localhost:3000/rdk_doc_manage1/en/
+构建产物在 `build/`（中文）与 `build/en/`（英文）。`npm run serve` 预览时路径与上表相同。
 
-### GitHub Pages 部署
 
-```bash
-npm run deploy
-```
+## 配置与维护
 
-## 项目结构
+### 文档卡片（分类 + 入口）
 
-```
-.
-├── i18n/                 # 多语言翻译文件
-├── src/
-│   ├── components/       # React 组件
-│   ├── data/             # 文档中心分类与入口配置
-│   ├── pages/            # 页面组件
-│   └── theme/            # Docusaurus 主题组件
-├── static/               # 静态资源
-├── docusaurus.config.js  # Docusaurus 配置
-└── package.json
-```
+唯一配置源：[`src/data/sites.js`](src/data/sites.js)
 
-## 核心功能说明
+- `DOC_CENTER_CONFIG.categories`：首页分类（锚点、图标、中英文标题）
+- `DOC_CENTER_CONFIG.entries`：手册卡片（标题、描述、`href`、是否 `pendingRelease`）
 
-### 文档中心统一维护
+修改后首页分组与卡片会自动更新，无需改页面代码。
 
-文档中心首页的分类和卡片入口统一维护在 `src/data/sites.js`：
+### 搜索索引
 
-- `DOC_CENTER_CONFIG.categories`：管理分类（新增/删除分类）
-- `DOC_CENTER_CONFIG.entries`：管理文档入口（新增/删除卡片）
-- 中文、英文文案在同一配置对象中分别维护，避免多处重复修改
+各子站章节用于首页搜索，按手册拆分维护：
 
-### 纯门户模式说明
+| 文件 | 对应手册 |
+| --- | --- |
+| `manualChapterIndex.js` | RDK X |
+| `manualChapterIndexRdkS.js` | RDK S |
+| `manualChapterIndexTros.js` | TROS |
+| `manualChapterIndexMagicbox.js` | Magicbox |
+| `manualChapterIndexOe.js` | 算法工具链 |
+| `manualChapterIndexStudio.js` | RDK Studio |
 
-本仓已关闭所有本地 docs 插件路由，仅保留门户首页能力。  
-文档内容应部署在独立文档站点，并通过 `src/data/sites.js` 维护外链聚合入口。
-
-当前仓库已移除本地中文/英文文档正文目录（包括 `docs/`、各子文档目录及 `i18n/en` 下 docs 内容翻译）。
-
-## 常用命令
-
-| 命令 | 说明 |
-|------|------|
-| `npm run clear` | 清除 Docusaurus 缓存 |
-| `npm run swizzle` | 自定义主题组件 |
-| `npm run write-translations` | 提取翻译内容 |
-
-## 技术栈
-
-- **Docusaurus**: 3.7.0
-- **React**: 18.x
 

@@ -1,127 +1,75 @@
-# RDK DOC
+[English](./README.md) | 简体中文
 
-English | [简体中文](./README.md)
+# RDK Documentation Center
 
-A Docusaurus-based multilingual documentation center portal for RDK, focused on homepage aggregation only (no local docs hosting in this repository).
+D-Robotics **RDK Documentation Center** portal site: Provides multilingual homepage, documentation entry aggregation, and search functionality.
 
-## Features
+| Item | Value |
+| --- | --- |
+| Online URL (Chinese) | https://developer.d-robotics.cc/rdk_doc_center/ |
+| Online URL (English) | https://developer.d-robotics.cc/rdk_doc_center/en/ |
 
-- 📝 **Multilingual Support**: Chinese (zh-Hans) and English (en) language switching
-- 🧭 **Documentation Center First**: Home page works as a unified portal for all document sites
-- 🗂️ **Single Source of Truth**: Categories and document entries are managed in `src/data/sites.js` for easy add/remove
-- 🌐 **External Link Aggregation**: Every card can point to an external documentation site
-- 🚀 **GitHub Pages**: Support for GitHub Pages deployment
+## Feature Overview
 
-## Quick Start
+- **Documentation Entry Aggregation**: Display manual cards for RDK X/S, SDK, TROS, Model Zoo, examples, accessories, software, algorithm toolchain, etc., categorized for easy browsing
+- **Search**: Search indexed manual sections from the homepage search box
+- **Bilingual Portal**: Language toggle in the navigation bar; Chinese/English text is maintained separately in the configuration
+- **External Link Redirects**: Card `href` points to various sub-sites (e.g., `developer.d-robotics.cc`); when `pendingRelease: true`, only a "not yet released" message is shown
+- **Feedback Overlay**: Configurable questionnaire entry on the homepage and English homepage (see `docusaurus.config.js` → `customFields.feedbackFloat`)
 
-### Requirements
+## Environment Requirements
 
 - Node.js >= 18.0
+- npm (recommended to use `npm ci` to install dependencies, consistent with CI)
 
-### Install Dependencies
+## Local Development
 
 ```bash
-npm install
+npm ci
 ```
 
-### Development Mode
+| Command | Description |
+| --- | --- |
+| `npm run start` | Chinese portal development server (`zh-Hans`) |
+| `npm run start:en` | English portal development server (`en`) |
+| `npm run start:port` | Chinese portal, port `3001` |
+| `npm run start:no-watch` | Chinese portal, do not watch file changes |
+| `npm run start:no-watch:en` | English portal, do not watch file changes |
 
-Start Chinese portal:
-```bash
-npm run start
-```
-Access URL: http://localhost:3000/rdk_doc_manage1/
+Local access (ports may vary):
 
-Start English portal:
-```bash
-npm run start:en
-```
-Access URL: http://localhost:3000/rdk_doc_manage1/en/
+- Chinese: http://localhost:3000/rdk_doc_center/
+- English: http://localhost:3000/rdk_doc_center/en/
 
-Start Chinese documentation (without file watching):
-```bash
-npm run start:no-watch
-```
-Access URL: http://localhost:3000/rdk_doc_manage1/
-
-Start English documentation (without file watching):
-```bash
-npm run start:no-watch:en
-```
-Access URL: http://localhost:3000/rdk_doc_manage1/en/
-
-Start with specific port:
-```bash
-npm run start:port
-```
-Access URL: http://localhost:3001/rdk_doc_manage1/
-
-## Build & Deploy
-
-### Build Production Version
+## Build and Preview
 
 ```bash
 npm run build
-```
-
-### Preview Build Result Locally
-
-```bash
 npm run serve
 ```
 
-Access URLs:
-- Chinese portal: http://localhost:3000/rdk_doc_manage1/
-- English portal: http://localhost:3000/rdk_doc_manage1/en/
+Build outputs are located in `build/` (Chinese) and `build/en/` (English). Paths for `npm run serve` preview are the same as the table above.
 
-### Deploy to GitHub Pages
+## Configuration and Maintenance
 
-```bash
-npm run deploy
-```
+### Documentation Cards (Categories + Entries)
 
-## Project Structure
+The sole configuration source: [`src/data/sites.js`](src/data/sites.js)
 
-```
-.
-├── i18n/                 # Multilingual translation files
-├── src/
-│   ├── components/       # React components
-│   ├── data/             # Doc center category/card configuration
-│   ├── pages/            # Page components
-│   └── theme/            # Docusaurus theme components
-├── static/               # Static resources
-├── docusaurus.config.js  # Docusaurus configuration
-└── package.json
-```
+- `DOC_CENTER_CONFIG.categories`: Homepage categories (anchors, icons, Chinese/English titles)
+- `DOC_CENTER_CONFIG.entries`: Manual cards (title, description, `href`, `pendingRelease` status)
 
-## Core Features
+After modification, homepage groups and cards update automatically without changing page code.
 
-### Unified Doc Center Maintenance
+### Search Indexes
 
-The home page category tree and site cards are now maintained from one place: `src/data/sites.js`.
+Sections from various sub-sites are used for homepage search and maintained separately by manual:
 
-- `DOC_CENTER_CONFIG.categories`: add/remove top-level categories
-- `DOC_CENTER_CONFIG.entries`: add/remove documentation cards
-- Chinese and English copy live in the same config object to avoid duplicated edits
-
-### Portal-Only Mode
-
-All local docs plugin routes are disabled in this repository.  
-Documentation content should be hosted in dedicated doc sites and aggregated here via `src/data/sites.js`.
-
-Local Chinese/English documentation content directories have been removed from this repository (including `docs/`, doc subsite folders, and docs-content translations under `i18n/en`).
-
-## Common Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm run clear` | Clear Docusaurus cache |
-| `npm run swizzle` | Customize theme components |
-| `npm run write-translations` | Extract translation content |
-
-## Tech Stack
-
-- **Docusaurus**: 3.7.0
-- **React**: 18.x
-
+| File | Corresponding Manual |
+| --- | --- |
+| `manualChapterIndex.js` | RDK X |
+| `manualChapterIndexRdkS.js` | RDK S |
+| `manualChapterIndexTros.js` | TROS |
+| `manualChapterIndexMagicbox.js` | Magicbox |
+| `manualChapterIndexOe.js` | Algorithm Toolchain |
+| `manualChapterIndexStudio.js` | RDK Studio |

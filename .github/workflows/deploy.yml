@@ -42,7 +42,7 @@ jobs:
         OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
       run: |
         ossutil cp -r build/ oss://cn-rdk-front-prod/rdk_doc_center/ \
-          -e https://d-robotics.cc \
+          -e https://oss-cn-beijing.aliyuncs.com \
           -i $OSS_ACCESS_KEY_ID \
           -k $OSS_ACCESS_KEY_SECRET \
           --region cn-beijing \
@@ -51,7 +51,21 @@ jobs:
 
     - name: Verify English homepage on OSS
       run: |
-        curl -sfI "https://developer.d-robotics.cc/rdk_doc_center/en/index.html" | head -1 | grep -q "200"
+        echo "Checking https://developer.d-robotics.cc/rdk_doc_center/en/index.html"
+        code="$(curl -s -o /dev/null -w "%{http_code}" "https://developer.d-robotics.cc/rdk_doc_center/en/index.html")"
+        echo "HTTP status: ${code}"
+        test "${code}" = "200"
+
+    - name: Verify en/index.html exists on OSS
+      env:
+        OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+        OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+      run: |
+        ossutil ls oss://cn-rdk-front-prod/rdk_doc_center/en/index.html \
+          -e https://oss-cn-beijing.aliyuncs.com \
+          -i $OSS_ACCESS_KEY_ID \
+          -k $OSS_ACCESS_KEY_SECRET \
+          --region cn-beijing
 
     - name: Debug env variables
       run: |

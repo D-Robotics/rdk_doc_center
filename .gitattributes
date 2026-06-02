@@ -1,0 +1,33 @@
+# 统一文本文件为 LF，避免 Windows 下 git add 出现 CRLF 警告
+* text=auto eol=lf
+
+# 源码与配置
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.svg text eol=lf
+
+# 二进制文件不参与换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.zip binary
+
+# 锁文件保持 LF
+package-lock.json text eol=lf
+pnpm-lock.yaml text eol=lf

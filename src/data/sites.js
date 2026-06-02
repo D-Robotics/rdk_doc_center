@@ -195,6 +195,25 @@ const DOC_CENTER_CONFIG = {
       },
     },
     {
+      id: "system-software-sdk",
+      categoryId: "system-software",
+      pendingRelease: true,
+      href: "https://developer.d-robotics.cc/sdk_doc/intro",
+      zh: {
+        title: "RDK S100 SDK 用户手册",
+        // description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
+        // tags: ["系统软件"],
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+      },
+      en: {
+        title: "RDK X5 SDK User Manual",
+        description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on various aspects including development environment setup, solution evaluation, software feature development, etc. The content covers development board usage, hardware design, system customization, application development, algorithm toolchain, and more.",
+        href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
+        // tags: ["System Software"],
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
+      },
+    },
+    {
       id: "tros",
       categoryId: "robot-app",
       href: "https://developer.d-robotics.cc/tros_doc/tros",

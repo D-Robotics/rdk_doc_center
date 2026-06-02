@@ -15,7 +15,7 @@ const copyrightYearLabel =
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RDK 文档中心",
+  title: "RDK 资料中心",
   favicon: "img/logo.png",
   url: "https://developer.d-robotics.cc",
   // 必须与仓库名一致：GitHub Pages 项目站点路径为 /<repo>/

@@ -60,6 +60,10 @@ const config = {
       src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
       async: true,
     },
+    // 修复线上网关对 /en/ 目录请求的重写问题：
+    // - 将语言切换链接从 /en/ 统一改为 /en
+    // - 若落到 /en/ 或 /en/index.html 则跳转到 /en
+    { src: "/rdk_doc_center/js/locale-slash-fix.js", defer: true },
     // {
     //   src: "/rdk_doc_manager/js/dify-config.js",
     // },

@@ -9,7 +9,7 @@ export const TROS_CHAPTERS = [
       title: "TogetheROS.Bot 总览",
       parent: null,
       summary:
-        "介绍 Communication 通信组件、Boxs 算法仓库、Apps 应用示例、常见名词解释与功能支持矩阵。",
+        "TROS 总览：Communication 通信组件、Boxs 算法仓库、Apps 应用示例；含 zero-copy、hobot_dnn 等名词解释与功能支持矩阵。",
       keywords: [
         "TROS",
         "TogetheROS",
@@ -26,7 +26,7 @@ export const TROS_CHAPTERS = [
       parent: null,
       summary:
         "Overview of Communication components, Boxs algorithms, Apps examples, glossary and feature matrix.",
-      keywords: ["TROS", "TogetheROS", "Communication", "Boxs", "Apps", "zero-copy"],
+      keywords: ["TogetheROS", "Communication", "Boxs", "Apps"],
     },
   },
   {
@@ -50,7 +50,7 @@ export const TROS_CHAPTERS = [
       title: "环境准备",
       parent: "5.1 快速开始",
       summary: "环境准备与仓库配置入口，分别面向 RDK 平台与 X86 平台。",
-      keywords: ["环境准备", "RDK平台", "X86平台", "apt", "SSH"],
+      keywords: ["环境准备"],
     },
     en: {
       title: "Environment Preparation",
@@ -65,7 +65,7 @@ export const TROS_CHAPTERS = [
       title: "安装 tros.b",
       parent: "5.1 快速开始",
       summary: "通过 apt 安装/升级 tros.b，含不同硬件平台的源配置与注意事项。",
-      keywords: ["install", "apt", "tros.b", "升级", "deb"],
+      keywords: ["apt", "tros.b", "升级"],
     },
     en: {
       title: "Install tros.b",
@@ -80,7 +80,7 @@ export const TROS_CHAPTERS = [
       title: "源码安装与交叉编译",
       parent: "5.1 快速开始",
       summary: "源码安装与交叉编译全流程：Docker、代码拉取、指定版本编译、X86 编译与常见问题。",
-      keywords: ["交叉编译", "源码", "Docker", "robot_dev_config", "vcs-import"],
+      keywords: ["交叉编译", "源码", "Docker"],
     },
     en: {
       title: "Source Build & Cross Compile",
@@ -95,13 +95,13 @@ export const TROS_CHAPTERS = [
       title: "Hello World",
       parent: "5.1 快速开始",
       summary: "Hello World 最小示例，验证基础运行链路是否正常。",
-      keywords: ["Hello World", "入门示例"],
+      keywords: ["Hello World"],
     },
     en: {
       title: "Hello World",
       parent: "5.1 Quick Start",
       summary: "Minimal Hello World sample to verify the basic runtime pipeline.",
-      keywords: ["Hello World", "getting started"],
+      keywords: ["Hello World"],
     },
   },
   {
@@ -110,7 +110,7 @@ export const TROS_CHAPTERS = [
       title: "ROS2 package 使用",
       parent: "5.1 快速开始",
       summary: "ROS2 package 的安装与使用说明，指导包管理与调用。",
-      keywords: ["ROS2", "package", "foxy", "humble"],
+      keywords: ["ROS2", "package"],
     },
     en: {
       title: "ROS2 Package Usage",
@@ -125,7 +125,7 @@ export const TROS_CHAPTERS = [
       title: "版本发布记录",
       parent: "5.1 快速开始",
       summary: "按 tros-jazzy / tros-humble / tros-foxy 维护的版本变更历史。",
-      keywords: ["changelog", "tros-humble", "tros-foxy", "tros-jazzy", "Release"],
+      keywords: ["tros-humble", "tros-foxy", "tros-jazzy"],
     },
     en: {
       title: "Release Changelog",
@@ -140,7 +140,7 @@ export const TROS_CHAPTERS = [
       title: "5.2 快速示例",
       parent: null,
       summary: "传感器采集、可视化、编解码、CV 加速、通信、推理、TTS 等快速体验示例。",
-      keywords: ["快速示例", "demo", "传感器", "推理"],
+      keywords: ["快速示例", "传感器", "推理"],
     },
     en: {
       title: "5.2 Quick Demos",
@@ -186,7 +186,7 @@ export const TROS_CHAPTERS = [
       title: "图像编解码",
       parent: "5.2 快速示例",
       summary: "hobot_codec 图像编解码示例：功能介绍、平台支持、准备、使用方式与注意事项。",
-      keywords: ["编解码", "hobot_codec", "编码", "解码"],
+      keywords: ["编解码", "hobot_codec", "解码"],
     },
     en: {
       title: "Image Codec",
@@ -201,13 +201,13 @@ export const TROS_CHAPTERS = [
       title: "图像处理加速",
       parent: "5.2 快速示例",
       summary: "高斯/均值滤波、crop/resize/rotate/pyramid/color 等 CV 算子加速示例。",
-      keywords: ["hobot_cv", "图像处理", "滤波", "resize", "pyramid"],
+      keywords: ["图像处理", "滤波", "resize", "pyramid"],
     },
     en: {
       title: "CV Acceleration",
       parent: "5.2 Quick Demos",
       summary: "Accelerated CV ops: filter, crop, resize, rotate, pyramid and color.",
-      keywords: ["hobot_cv", "image processing"],
+      keywords: [],
     },
   },
   {
@@ -231,13 +231,13 @@ export const TROS_CHAPTERS = [
       title: "模型推理快速上手",
       parent: "5.2 快速示例",
       summary: "模型推理快速上手：准备、运行、结果分析与多算法推理入口。",
-      keywords: ["模型推理", "hobot_dnn", "BPU", "多算法推理"],
+      keywords: ["模型推理", "多算法推理"],
     },
     en: {
       title: "Quick AI Inference",
       parent: "5.2 Quick Demos",
       summary: "Quick start for model inference: prep, run, analysis and multi-algorithm entry.",
-      keywords: ["inference", "hobot_dnn", "BPU"],
+      keywords: ["inference"],
     },
   },
   {
@@ -261,7 +261,7 @@ export const TROS_CHAPTERS = [
       title: "文本转语音",
       parent: "5.2 快速示例",
       summary: "hobot_tts 文本转语音示例：模型准备、推理执行与注意事项。",
-      keywords: ["TTS", "语音合成", "hobot_tts"],
+      keywords: ["TTS", "hobot_tts"],
     },
     en: {
       title: "Text to Speech",
@@ -276,7 +276,7 @@ export const TROS_CHAPTERS = [
       title: "5.3 Boxs 算法仓库",
       parent: null,
       summary: "语音、人体/手势、检测、分割、空间感知、驾驶感知、大模型等算法 Box 示例集合。",
-      keywords: ["Boxs", "算法仓库", "ROS2"],
+      keywords: ["Boxs", "算法仓库"],
     },
     en: {
       title: "5.3 Boxs Algorithm Repository",
@@ -291,13 +291,13 @@ export const TROS_CHAPTERS = [
       title: "智能语音 hobot_audio",
       parent: "5.3 Boxs 算法仓库",
       summary: "智能语音能力示例：语音前后处理、推理链路、结果分析。",
-      keywords: ["语音", "hobot_audio", "ASR", "唤醒"],
+      keywords: ["语音", "hobot_audio"],
     },
     en: {
       title: "hobot_audio",
       parent: "5.3 Boxs Algorithm Repository",
       summary: "Smart audio pipeline: preprocessing, inference and result analysis.",
-      keywords: ["audio", "hobot_audio", "ASR"],
+      keywords: ["audio", "hobot_audio"],
     },
   },
   {
@@ -321,7 +321,7 @@ export const TROS_CHAPTERS = [
       title: "人体检测与跟踪",
       parent: "5.3 Boxs 算法仓库",
       summary: "mono2d_body_detection 人体检测与跟踪基础示例。",
-      keywords: ["人体检测", "跟踪", "body detection"],
+      keywords: ["人体检测", "跟踪"],
     },
     en: {
       title: "Body Detection & Tracking",
@@ -336,7 +336,7 @@ export const TROS_CHAPTERS = [
       title: "YOLO Pose 人体关键点",
       parent: "5.3 Boxs 算法仓库",
       summary: "基于 YOLO Pose 的人体关键点检测与跟踪。",
-      keywords: ["YOLO Pose", "关键点", "姿态"],
+      keywords: ["YOLO Pose", "关键点"],
     },
     en: {
       title: "YOLO Pose",
@@ -351,7 +351,7 @@ export const TROS_CHAPTERS = [
       title: "手部关键点检测",
       parent: "5.3 Boxs 算法仓库",
       summary: "手部关键点检测算法示例。",
-      keywords: ["手部关键点", "hand landmark"],
+      keywords: ["手部关键点"],
     },
     en: {
       title: "Hand Landmark Detection",
@@ -366,7 +366,7 @@ export const TROS_CHAPTERS = [
       title: "手势识别",
       parent: "5.3 Boxs 算法仓库",
       summary: "手势识别算法示例。",
-      keywords: ["手势识别", "gesture"],
+      keywords: ["手势识别"],
     },
     en: {
       title: "Hand Gesture Detection",
@@ -411,13 +411,13 @@ export const TROS_CHAPTERS = [
       title: "人脸 106 关键点",
       parent: "5.3 Boxs 算法仓库",
       summary: "人脸 106 关键点检测示例。",
-      keywords: ["人脸关键点", "landmark"],
+      keywords: [],
     },
     en: {
       title: "Face 106 Landmarks",
       parent: "5.3 Boxs Algorithm Repository",
       summary: "Face 106 landmark detection sample.",
-      keywords: ["face landmark"],
+      keywords: [],
     },
   },
   {
@@ -426,7 +426,7 @@ export const TROS_CHAPTERS = [
       title: "人体 ReID 跟踪",
       parent: "5.3 Boxs 算法仓库",
       summary: "人体实例跟踪/ReID 场景示例。",
-      keywords: ["ReID", "人体跟踪"],
+      keywords: ["ReID"],
     },
     en: {
       title: "Human ReID",
@@ -531,7 +531,7 @@ export const TROS_CHAPTERS = [
       title: "DOSOD 检测",
       parent: "5.3 Boxs 算法仓库",
       summary: "DOSOD 检测示例（含进阶使用）。",
-      keywords: ["DOSOD", "开放词汇", "检测"],
+      keywords: ["DOSOD", "检测"],
     },
     en: {
       title: "DOSOD Detection",
@@ -561,7 +561,7 @@ export const TROS_CHAPTERS = [
       title: "CenterPoint 激光雷达 3D 检测",
       parent: "5.3 Boxs 算法仓库",
       summary: "激光雷达 3D 目标检测（CenterPoint）示例。",
-      keywords: ["CenterPoint", "激光雷达", "3D检测"],
+      keywords: ["CenterPoint", "激光雷达"],
     },
     en: {
       title: "CenterPoint LiDAR 3D",
@@ -576,7 +576,7 @@ export const TROS_CHAPTERS = [
       title: "BEV 感知",
       parent: "5.3 Boxs 算法仓库",
       summary: "BEV 感知示例。",
-      keywords: ["BEV", "驾驶感知"],
+      keywords: ["BEV"],
     },
     en: {
       title: "BEV Perception",
@@ -591,7 +591,7 @@ export const TROS_CHAPTERS = [
       title: "路面结构化/车位感知",
       parent: "5.3 Boxs 算法仓库",
       summary: "路面结构化与车位相关感知示例。",
-      keywords: ["车位", "泊车", "结构化"],
+      keywords: ["车位", "结构化"],
     },
     en: {
       title: "Parking Perception",
@@ -636,7 +636,7 @@ export const TROS_CHAPTERS = [
       title: "Bloom 大语言模型",
       parent: "5.3 Boxs 算法仓库",
       summary: "Bloom 大语言模型接入示例。",
-      keywords: ["LLM", "Bloom", "大模型"],
+      keywords: ["Bloom"],
     },
     en: {
       title: "Bloom LLM",
@@ -651,7 +651,7 @@ export const TROS_CHAPTERS = [
       title: "DeepSeek 大语言模型",
       parent: "5.3 Boxs 算法仓库",
       summary: "DeepSeek 大语言模型接入示例。",
-      keywords: ["DeepSeek", "LLM", "大模型"],
+      keywords: ["DeepSeek"],
     },
     en: {
       title: "DeepSeek LLM",
@@ -666,7 +666,7 @@ export const TROS_CHAPTERS = [
       title: "视觉语言模型（llama.cpp）",
       parent: "5.3 Boxs 算法仓库",
       summary: "视觉语言模型 llama.cpp 路线示例。",
-      keywords: ["VLM", "llama.cpp", "视觉语言"],
+      keywords: ["llama.cpp", "视觉语言"],
     },
     en: {
       title: "VLM (llama.cpp)",
@@ -741,7 +741,7 @@ export const TROS_CHAPTERS = [
       title: "视觉惯性里程计 VIO",
       parent: "5.3 Boxs 算法仓库",
       summary: "hobot_vio 视觉惯性里程计示例。",
-      keywords: ["VIO", "里程计", "SLAM"],
+      keywords: ["VIO", "里程计"],
     },
     en: {
       title: "VIO",
@@ -756,7 +756,7 @@ export const TROS_CHAPTERS = [
       title: "单目 3D 室内检测",
       parent: "5.3 Boxs 算法仓库",
       summary: "单目 3D 室内检测示例。",
-      keywords: ["单目3D", "室内检测"],
+      keywords: ["室内检测"],
     },
     en: {
       title: "Mono3D Indoor Detection",
@@ -771,7 +771,7 @@ export const TROS_CHAPTERS = [
       title: "单目高程网络",
       parent: "5.3 Boxs 算法仓库",
       summary: "单目高程网络检测示例。",
-      keywords: ["高程", "elevation"],
+      keywords: ["高程"],
     },
     en: {
       title: "Elevation Net",
@@ -801,7 +801,7 @@ export const TROS_CHAPTERS = [
       title: "双目深度 Stereonet",
       parent: "5.3 Boxs 算法仓库",
       summary: "hobot_stereonet 双目深度：模型、启动、话题、参数与数据保存。",
-      keywords: ["双目深度", "Stereonet", "深度估计"],
+      keywords: ["双目深度", "Stereonet"],
     },
     en: {
       title: "StereoNet Depth",
@@ -816,7 +816,7 @@ export const TROS_CHAPTERS = [
       title: "双目 IMU 相机 / OpenVINS",
       parent: "5.3 Boxs 算法仓库",
       summary: "双目 IMU 相机与 OpenVINS 相关流程示例。",
-      keywords: ["OpenVINS", "双目IMU", "相机"],
+      keywords: ["OpenVINS", "相机"],
     },
     en: {
       title: "Stereo IMU Camera",
@@ -831,7 +831,7 @@ export const TROS_CHAPTERS = [
       title: "5.4 Apps 应用示例",
       parent: null,
       summary: "SLAM、导航、跌倒检测、小车跟随/手势/语音控制、智能盒子等完整应用方案。",
-      keywords: ["Apps", "SLAM", "Navigation2", "小车", "应用"],
+      keywords: ["Apps", "SLAM", "小车", "应用"],
     },
     en: {
       title: "5.4 Apps Examples",
@@ -861,13 +861,13 @@ export const TROS_CHAPTERS = [
       title: "Navigation2 导航",
       parent: "5.4 Apps 应用示例",
       summary: "Navigation2 导航应用示例。",
-      keywords: ["Navigation2", "导航", "Nav2"],
+      keywords: ["Navigation2", "导航"],
     },
     en: {
       title: "Navigation2",
       parent: "5.4 Apps Examples",
       summary: "Navigation2 navigation application sample.",
-      keywords: ["Navigation2", "Nav2"],
+      keywords: ["Navigation2"],
     },
   },
   {
@@ -891,13 +891,13 @@ export const TROS_CHAPTERS = [
       title: "小车人体跟随",
       parent: "5.4 Apps 应用示例",
       summary: "小车人体跟随应用。",
-      keywords: ["小车", "人体跟随", "跟踪"],
+      keywords: ["小车", "人体跟随"],
     },
     en: {
       title: "Car Body Tracking",
       parent: "5.4 Apps Examples",
       summary: "Car following human body application.",
-      keywords: ["car tracking", "follow"],
+      keywords: ["follow"],
     },
   },
   {
@@ -951,7 +951,7 @@ export const TROS_CHAPTERS = [
       title: "小车车位寻找",
       parent: "5.4 Apps 应用示例",
       summary: "小车车位寻找应用。",
-      keywords: ["车位", "泊车", "小车"],
+      keywords: ["车位", "小车"],
     },
     en: {
       title: "Parking Search",
@@ -966,13 +966,13 @@ export const TROS_CHAPTERS = [
       title: "智能盒子",
       parent: "5.4 Apps 应用示例",
       summary: "智能盒子应用（含不同域配置与启动）。",
-      keywords: ["智能盒子", "video boxs"],
+      keywords: ["智能盒子"],
     },
     en: {
       title: "Smart Video Box",
       parent: "5.4 Apps Examples",
       summary: "Smart box application with domain config and launch.",
-      keywords: ["video boxs"],
+      keywords: [],
     },
   },
   {
@@ -981,13 +981,13 @@ export const TROS_CHAPTERS = [
       title: "视觉语音盒子",
       parent: "5.4 Apps 应用示例",
       summary: "视觉语音盒子应用（多输入源与进阶功能）。",
-      keywords: ["视觉语音", "llamacpp", "盒子"],
+      keywords: ["视觉语音", "盒子"],
     },
     en: {
       title: "Vision-Voice Box",
       parent: "5.4 Apps Examples",
       summary: "Vision-voice box app with multi-input and advanced features.",
-      keywords: ["llamacpp", "vision voice"],
+      keywords: [],
     },
   },
   {
@@ -996,7 +996,7 @@ export const TROS_CHAPTERS = [
       title: "5.5 tros 开发进阶",
       parent: null,
       summary: "zero-copy 开发、模型推理工程化、Breakpad、火焰图、垃圾检测等进阶主题。",
-      keywords: ["开发进阶", "zero-copy", "性能分析"],
+      keywords: ["开发进阶", "zero-copy"],
     },
     en: {
       title: "5.5 Advanced tros Development",
@@ -1011,7 +1011,7 @@ export const TROS_CHAPTERS = [
       title: "zero-copy 开发实践",
       parent: "5.5 tros 开发进阶",
       summary: "zero-copy 机制开发实践：背景、任务、总结与限制。",
-      keywords: ["zero-copy", "零拷贝", "开发"],
+      keywords: ["zero-copy", "开发"],
     },
     en: {
       title: "zero-copy Development",
@@ -1056,7 +1056,7 @@ export const TROS_CHAPTERS = [
       title: "性能火焰图",
       parent: "5.5 tros 开发进阶",
       summary: "性能火焰图分析流程。",
-      keywords: ["火焰图", "性能分析", "profiling"],
+      keywords: ["火焰图"],
     },
     en: {
       title: "Flame Graph Profiling",
@@ -1071,7 +1071,7 @@ export const TROS_CHAPTERS = [
       title: "垃圾检测开发示例",
       parent: "5.5 tros 开发进阶",
       summary: "垃圾检测开发示例：功能、算法、配置、结果分析。",
-      keywords: ["垃圾检测", "trash detection"],
+      keywords: ["垃圾检测"],
     },
     en: {
       title: "Trash Detection (Dev)",

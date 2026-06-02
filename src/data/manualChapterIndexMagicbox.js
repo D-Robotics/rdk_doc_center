@@ -10,7 +10,7 @@ export const MAGICBOX_CHAPTERS = [
       parent: null,
       summary:
         "介绍 RDK X5 Magicbox 多模态智能平台：融合视觉、听觉与动觉，支持「看、听、说、动」交互，适用于教学、创意开发与智能展示。",
-      keywords: ["Magicbox", "产品概述", "多模态", "RDK X5", "看听说动"],
+      keywords: ["Magicbox", "产品概述", "多模态", "RDK X5"],
     },
     en: {
       title: "1. Product Overview",
@@ -49,7 +49,7 @@ export const MAGICBOX_CHAPTERS = [
       parent: "1. Product Overview",
       summary:
         "Ports, buttons and status LEDs; red/green/blue keys for depth, gesture and voice demos.",
-      keywords: ["interface", "button", "LED", "HDMI", "USB"],
+      keywords: ["interface", "button", "LED"],
     },
   },
   {
@@ -73,13 +73,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "RDK X5 8G 主控",
       parent: "硬件规格",
       summary: "CPU/BPU/GPU、内存、存储、接口、显示、音频、网络、电源等参数。",
-      keywords: ["RDK X5", "8G", "主控", "BPU", "10TOPS"],
+      keywords: ["RDK X5", "8G", "主控", "BPU"],
     },
     en: {
       title: "RDK X5 8G Main Board",
       parent: "Hardware Specifications",
       summary: "CPU, BPU, GPU, memory, storage, interfaces, display, audio, network and power.",
-      keywords: ["RDK X5", "8G", "BPU", "TOPS"],
+      keywords: ["RDK X5", "8G", "BPU"],
     },
   },
   {
@@ -88,13 +88,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "双目相机 GS130WI",
       parent: "硬件规格",
       summary: "传感器、IMU、分辨率/帧率、FOV、基线、翻折角度等。",
-      keywords: ["GS130WI", "双目相机", "SC132GS", "IMU", "FOV"],
+      keywords: ["GS130WI", "双目相机", "IMU", "FOV"],
     },
     en: {
       title: "Stereo Camera GS130WI",
       parent: "Hardware Specifications",
       summary: "Sensor, IMU, resolution, frame rate, FOV, baseline and fold angle.",
-      keywords: ["GS130WI", "stereo camera", "SC132GS"],
+      keywords: ["GS130WI", "stereo camera"],
     },
   },
   {
@@ -163,13 +163,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "2. 快速入门",
       parent: null,
       summary: "从开箱到上手的完整流程，含安全注意事项与三大功能体验。",
-      keywords: ["快速入门", "开箱", "上电", "网络配置"],
+      keywords: ["快速入门", "开箱"],
     },
     en: {
       title: "2. Quick Start",
       parent: null,
       summary: "Unboxing to first use: safety notes and three demo experiences.",
-      keywords: ["quick start", "unboxing", "network"],
+      keywords: ["quick start", "unboxing"],
     },
   },
   {
@@ -178,7 +178,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "开箱清单",
       parent: "2. 快速入门",
       summary: "主机（含 32GB TF 卡）及两条数据线。",
-      keywords: ["开箱", "TF卡", "数据线"],
+      keywords: ["开箱", "数据线"],
     },
     en: {
       title: "Package Contents",
@@ -193,7 +193,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "系统烧录",
       parent: "2. 快速入门",
       summary: "出厂已预置系统；需重烧时拆 TF 卡，参考 RDK X5 烧录文档操作。",
-      keywords: ["烧录", "TF卡", "RDK OS"],
+      keywords: ["烧录"],
     },
     en: {
       title: "System Flashing",
@@ -214,7 +214,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "Quick Start Video",
       parent: "2. Quick Start",
       summary: "Embedded quick start demonstration video.",
-      keywords: ["video", "tutorial"],
+      keywords: ["video"],
     },
   },
   {
@@ -253,7 +253,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "有线网口配置",
       parent: "网络配置",
       summary: "PC 通过网口连接，配置 IPv4，ping 192.168.127.10 验证。",
-      keywords: ["网口", "192.168.127.10", "以太网"],
+      keywords: ["网口", "192.168.127.10"],
     },
     en: {
       title: "Wired Ethernet Setup",
@@ -274,7 +274,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "Boot RDK X5 Magicbox",
       parent: "2. Quick Start",
       summary: "About 50s after power-on; white LED blink and sound indicate ready.",
-      keywords: ["boot", "power on"],
+      keywords: ["boot"],
     },
   },
   {
@@ -298,13 +298,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "手势交互（快速体验）",
       parent: "示例体验",
       summary: "按中键（绿灯），5 种手势控制摇臂/灯光，浏览器 :8000 查看。",
-      keywords: ["手势", "绿灯", "ThumbUp", "Victory"],
+      keywords: ["手势", "绿灯"],
     },
     en: {
       title: "Gesture Demo (Quick Start)",
       parent: "Demo Experience",
       summary: "Press middle button (green); five gestures control arm and lights at :8000.",
-      keywords: ["gesture", "green LED"],
+      keywords: ["gesture"],
     },
   },
   {
@@ -319,7 +319,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "Voice Demo (Quick Start)",
       parent: "Demo Experience",
       summary: "Press right button (blue); wake word and end-conversation flow.",
-      keywords: ["voice", "wake word", "blue LED"],
+      keywords: ["voice", "wake word"],
     },
   },
   {
@@ -334,7 +334,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "More Demos via RDK Studio",
       parent: "Demo Experience",
       summary: "Connect with RDK Studio for additional sample apps.",
-      keywords: ["RDK Studio", "samples"],
+      keywords: ["RDK Studio"],
     },
   },
   {
@@ -389,7 +389,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "灯光控制",
       parent: "3. 基础外设使用",
       summary: "WS2812B 24-bit 全彩，SPI 总线 1 设备 0，运行 ws2812b.py。",
-      keywords: ["WS2812B", "灯带", "ws2812b.py", "SPI"],
+      keywords: ["WS2812B", "ws2812b.py", "SPI"],
     },
     en: {
       title: "LED Control",
@@ -449,13 +449,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "4. 资源下载",
       parent: null,
       summary: "集中提供硬件、系统与工具下载链接。",
-      keywords: ["资源下载", "下载", "镜像"],
+      keywords: ["资源下载", "下载"],
     },
     en: {
       title: "4. Resource Download",
       parent: null,
       summary: "Hardware docs, system images and tool download links.",
-      keywords: ["download", "resources"],
+      keywords: ["download"],
     },
   },
   {
@@ -509,13 +509,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "5. 算法开发",
       parent: null,
       summary: "预置三大 AI 交互算法的开发说明与启动方式。",
-      keywords: ["算法开发", "AI", "深度", "手势", "语音"],
+      keywords: ["算法开发", "AI"],
     },
     en: {
       title: "5. Algorithm Development",
       parent: null,
       summary: "Development guides for depth, gesture and voice interaction demos.",
-      keywords: ["algorithm", "AI", "development"],
+      keywords: ["algorithm", "development"],
     },
   },
   {
@@ -525,13 +525,13 @@ export const MAGICBOX_CHAPTERS = [
       parent: "5. 算法开发",
       summary:
         "基于 IGEV/GRU 的双目深度算法，输入双目图像，输出视差图与深度图；GS130WI、V2.4_int16/int8，run_stereo.sh，浏览器 :8000。",
-      keywords: ["双目深度", "IGEV", "GRU", "stereonet", "GS130WI", "8000"],
+      keywords: ["双目深度", "IGEV", "GRU", "GS130WI", "8000"],
     },
     en: {
       title: "Stereo Depth Estimation",
       parent: "5. Algorithm Development",
       summary: "IGEV/GRU stereo depth; GS130WI; V2.4 models; run_stereo.sh; browser :8000.",
-      keywords: ["stereo depth", "IGEV", "GRU", "stereonet"],
+      keywords: ["stereo depth", "IGEV", "GRU"],
     },
   },
   {
@@ -556,13 +556,13 @@ export const MAGICBOX_CHAPTERS = [
       parent: "5. 算法开发",
       summary:
         "人体检测、人手关键点与手势识别；ThumbUp/Victory/ThumbLeft/ThumbRight/Okay 控制摇臂与灯光；ros2 launch，:8000。",
-      keywords: ["手势", "gesture", "fastrcnn", "handLMKs", "gestureDet"],
+      keywords: ["手势"],
     },
     en: {
       title: "Gesture Interaction",
       parent: "5. Algorithm Development",
       summary: "Body/hand/gesture models; five gestures control arm and LEDs; ros2 launch.",
-      keywords: ["gesture", "hand", "ThumbUp", "Victory"],
+      keywords: ["gesture", "hand"],
     },
   },
   {
@@ -603,13 +603,13 @@ export const MAGICBOX_CHAPTERS = [
       title: "大语言模型功能说明",
       parent: "语音交互",
       summary: "模型默认 /dev/shm/、llm_model_path、wait_for_audio 参数。",
-      keywords: ["大模型", "LLM", "llm_model_path", "Qwen"],
+      keywords: ["LLM", "llm_model_path"],
     },
     en: {
       title: "LLM Configuration",
       parent: "Voice Interaction",
       summary: "Model under /dev/shm/, llm_model_path and wait_for_audio.",
-      keywords: ["LLM", "llm_model_path", "Qwen"],
+      keywords: ["LLM", "llm_model_path"],
     },
   },
   {
@@ -655,7 +655,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "Software Known Issues",
       parent: "7. Known Issues",
       summary: "Edge black bars from rectify for larger FOV; no impact on imaging or algorithms.",
-      keywords: ["black border", "rectify", "FOV"],
+      keywords: ["rectify", "FOV"],
     },
   },
   {
@@ -664,7 +664,7 @@ export const MAGICBOX_CHAPTERS = [
       title: "8. 更新日志",
       parent: null,
       summary: "RDK OS 版本记录。",
-      keywords: ["更新日志", "changelog"],
+      keywords: ["更新日志"],
     },
     en: {
       title: "8. Changelog",

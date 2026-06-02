@@ -1,15 +1,12 @@
 name: Sync gh-pages to OSS
 
 on:
-  workflow_run:
-    workflows: ["Deploy Docusaurus site to GitHub Pages"]  # deploy.yml workflow 名称
-    types:
-      - completed
-  workflow_dispatch: # 允许手动触发
+  # OSS 上传已改由 deploy.yml 在 build 后直接同步（含 build/en/）。
+  # 此处仅保留手动触发，避免从 stale 的 gh-pages 覆盖 OSS。
+  workflow_dispatch:
 
 jobs:
   sync-gh-pages:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:

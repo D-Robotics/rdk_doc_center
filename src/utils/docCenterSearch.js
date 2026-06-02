@@ -4,6 +4,12 @@ function normalizeQuery(query) {
   return query.trim().toLowerCase();
 }
 
+/** 搜索结果展示用：去掉「1.2 」「3.7.1 」等章节序号前缀 */
+export function stripChapterPrefix(title) {
+  if (!title) return title;
+  return title.replace(/^\d+(?:\.\d+)*\.?\s+/, "");
+}
+
 function buildHaystack(localeFields) {
   return [localeFields.title, localeFields.parent, localeFields.summary, ...(localeFields.keywords || [])]
     .filter(Boolean)
@@ -46,8 +52,8 @@ export function searchManualChapters(query, { locale, sites }) {
         id: `${manual.siteHrefMatch}-${chapter.path}`,
         manualTitle: site.title,
         manualHref: site.href,
-        chapterTitle: fields.title,
-        parentChapter: fields.parent,
+        chapterTitle: stripChapterPrefix(fields.title),
+        parentChapter: stripChapterPrefix(fields.parent),
         summary: fields.summary,
         href: resolveChapterHref(manual.docBase, chapter.path, locale),
         external: true,

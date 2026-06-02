@@ -10,14 +10,14 @@ export const OE_CHAPTERS = [
       parent: null,
       summary:
         "整体文档章节简介、内容跳转与推荐阅读顺序；适用于 S100、S100P、S600 平台开发者。",
-      keywords: ["OE", "文档脉络", "导读", "阅读顺序", "Open Explorer"],
+      keywords: ["OE", "文档脉络", "阅读顺序"],
     },
     en: {
       title: "OE Documentation Overview",
       parent: null,
       summary:
         "Chapter summaries, navigation links and recommended reading order for the toolchain manual.",
-      keywords: ["OE", "overview", "reading order", "Open Explorer"],
+      keywords: ["OE", "overview", "reading order"],
     },
   },
   {
@@ -26,13 +26,13 @@ export const OE_CHAPTERS = [
       title: "认识 Open Explorer",
       parent: "产品简介",
       summary: "Open Explorer 介绍及 OE 包发布物（samples、model_zoo、ucp_tutorial 等）说明。",
-      keywords: ["Open Explorer", "OE包", "发布物", "samples", "model_zoo"],
+      keywords: ["Open Explorer", "发布物", "samples", "model_zoo"],
     },
     en: {
       title: "Learn Open Explorer",
       parent: "Product Introduction",
       summary: "Introduction to Open Explorer and OE package deliverables.",
-      keywords: ["Open Explorer", "OE package", "samples"],
+      keywords: ["Open Explorer", "OE package"],
     },
   },
   {
@@ -56,7 +56,7 @@ export const OE_CHAPTERS = [
       title: "关键概念",
       parent: "产品简介",
       summary: "浮点模型、HBM、模型转换、march、BPU 架构与 S100/S100P/S600 对应关系等背景知识。",
-      keywords: ["关键概念", "HBM", "HBIR", "march", "nash-e", "BPU"],
+      keywords: ["关键概念", "HBM", "march", "BPU"],
     },
     en: {
       title: "Key Concepts",
@@ -72,7 +72,7 @@ export const OE_CHAPTERS = [
       parent: null,
       summary:
         "开发机 PTQ/QAT 环境依赖、Docker 与本地安装，以及板端运行环境与补充工具部署。",
-      keywords: ["环境部署", "Docker", "Ubuntu", "板端", "运行环境"],
+      keywords: ["环境部署", "Docker", "板端", "运行环境"],
     },
     en: {
       title: "Environment Deployment",
@@ -104,7 +104,7 @@ export const OE_CHAPTERS = [
       parent: "快速入门",
       summary:
         "PTQ 方案从浮点模型到量化编译、上板推理的快速入门示例与基本流程。",
-      keywords: ["PTQ", "快速上手", "上板", "hb_compile"],
+      keywords: ["PTQ", "快速上手", "上板"],
     },
     en: {
       title: "PTQ Quantization and On-board Quick Start",
@@ -119,7 +119,7 @@ export const OE_CHAPTERS = [
       title: "算法模型 QAT 量化+部署 快速上手",
       parent: "快速入门",
       summary: "QAT 从模型改造、校准/训练到导出 HBIR、转定点与部署的快速流程。",
-      keywords: ["QAT", "快速上手", "部署", "horizon_plugin_pytorch"],
+      keywords: ["QAT", "快速上手", "部署"],
     },
     en: {
       title: "QAT Quantization and Deployment Quick Start",
@@ -135,7 +135,7 @@ export const OE_CHAPTERS = [
       parent: "训练后量化（PTQ）",
       summary:
         "浮点模型准备、模型检查、模型转换、性能评估与精度评估五阶段全流程详解。",
-      keywords: ["PTQ", "转换原理", "流程", "模型检查", "校准"],
+      keywords: ["PTQ", "转换原理", "流程", "模型检查"],
     },
     en: {
       title: "PTQ Conversion Principle and Process",
@@ -152,13 +152,13 @@ export const OE_CHAPTERS = [
       parent: "训练后量化（PTQ）",
       summary:
         "PTQ 工具包概览：hb_compile、hb_verifier、HBRuntime、精度 debug、hb_model_info 等。",
-      keywords: ["PTQ工具", "hb_compile", "hb_verifier", "HBRuntime", "accuracy_debug"],
+      keywords: ["hb_compile", "hb_verifier", "HBRuntime"],
     },
     en: {
       title: "PTQ Conversion Tools",
       parent: "Post-training Quantization (PTQ)",
       summary: "Overview of PTQ toolchain utilities including hb_compile and HBRuntime.",
-      keywords: ["PTQ tools", "hb_compile", "HBRuntime"],
+      keywords: ["hb_compile", "HBRuntime"],
     },
   },
   {
@@ -168,13 +168,13 @@ export const OE_CHAPTERS = [
       parent: "训练后量化（PTQ）",
       summary:
         "从模型准备、验证、校准数据、量化编译到性能与精度分析、调优的 PTQ 使用指导总览。",
-      keywords: ["PTQ转换步骤", "模型准备", "校准", "量化编译"],
+      keywords: ["模型准备", "校准", "量化编译"],
     },
     en: {
       title: "PTQ Conversion Steps",
       parent: "Post-training Quantization (PTQ)",
       summary: "Guidance on PTQ steps from model prep through compile and tuning.",
-      keywords: ["PTQ steps", "model preparation", "calibration"],
+      keywords: ["PTQ steps"],
     },
   },
   {
@@ -183,7 +183,7 @@ export const OE_CHAPTERS = [
       title: "模型验证",
       parent: "PTQ 转换步骤",
       summary: "使用 hb_compile 检查浮点模型算子是否满足平台约束及检查结果解读。",
-      keywords: ["模型验证", "模型检查", "hb_compile", "算子约束"],
+      keywords: ["模型验证", "hb_compile"],
     },
     en: {
       title: "Model Checking",
@@ -198,7 +198,7 @@ export const OE_CHAPTERS = [
       title: "校准数据准备",
       parent: "PTQ 转换步骤",
       summary: "模型校准集准备、预处理与 featuremap 输入数据格式要求。",
-      keywords: ["校准数据", "数据准备", "预处理", "npy"],
+      keywords: ["校准数据", "数据准备", "预处理"],
     },
     en: {
       title: "Calibration Data Preparation",
@@ -214,13 +214,13 @@ export const OE_CHAPTERS = [
       parent: "PTQ 转换步骤",
       summary:
         "模型解析、优化、校准、量化与编译各阶段产出物（onnx/bc/hbm）及输入数据处理说明。",
-      keywords: ["量化", "编译", "quantized_model", "hbm", "hb_compile"],
+      keywords: ["量化", "编译", "hbm"],
     },
     en: {
       title: "Model Quantization and Compilation",
       parent: "PTQ Conversion Steps",
       summary: "PTQ optimization, calibration, quantization and compilation outputs.",
-      keywords: ["quantization", "compile", "hbm"],
+      keywords: ["quantization"],
     },
   },
   {
@@ -229,13 +229,13 @@ export const OE_CHAPTERS = [
       title: "模型精度分析",
       parent: "PTQ 转换步骤",
       summary: "使用 quantized_model.bc 等在开发机上评测 PTQ 转换后模型精度。",
-      keywords: ["精度分析", "精度评估", "accuracy", "quantized_model"],
+      keywords: ["精度分析", "quantized_model"],
     },
     en: {
       title: "Model Accuracy Analysis",
       parent: "PTQ Conversion Steps",
       summary: "Evaluate quantized model accuracy on the development host.",
-      keywords: ["accuracy evaluation", "PTQ"],
+      keywords: ["PTQ"],
     },
   },
   {
@@ -244,7 +244,7 @@ export const OE_CHAPTERS = [
       title: "模型精度调优",
       parent: "PTQ 转换步骤",
       summary: "混合精度、精度 debug 工具与 quant_config 等方式降低 PTQ 量化精度损失。",
-      keywords: ["精度调优", "混合精度", "int16", "accuracy_debug"],
+      keywords: ["精度调优", "混合精度"],
     },
     en: {
       title: "Model Accuracy Tuning",
@@ -260,13 +260,13 @@ export const OE_CHAPTERS = [
       parent: "训练后量化（PTQ）",
       summary:
         "horizon_model_convert_sample 示例包结构、00_init.sh 获取模型与数据及分类/检测/分割示例。",
-      keywords: ["PTQ示例", "horizon_model_convert_sample", "model_zoo"],
+      keywords: ["horizon_model_convert_sample"],
     },
     en: {
       title: "PTQ Conversion Samples",
       parent: "Post-training Quantization (PTQ)",
       summary: "horizon_model_convert_sample package layout and usage.",
-      keywords: ["PTQ sample", "horizon_model_convert_sample"],
+      keywords: ["horizon_model_convert_sample"],
     },
   },
   {
@@ -275,7 +275,7 @@ export const OE_CHAPTERS = [
       title: "训练后量化（PTQ）常见问题",
       parent: "常见问题及故障处理",
       summary: "PTQ 模型准备、转换、性能与精度相关常见问题解答。",
-      keywords: ["PTQ FAQ", "常见问题", "mean_value", "onnx"],
+      keywords: ["常见问题"],
     },
     en: {
       title: "PTQ FAQ",
@@ -291,7 +291,7 @@ export const OE_CHAPTERS = [
       parent: "常见问题及故障处理",
       summary:
         "Segmentation fault、mean_value 配置错误、模型非法等 PTQ 转换常见故障排查建议。",
-      keywords: ["故障处理", "troubleshooting", "core dumped", "mean_value"],
+      keywords: ["故障处理", "mean_value"],
     },
     en: {
       title: "Common Failure Handling",
@@ -312,7 +312,7 @@ export const OE_CHAPTERS = [
       title: "PTQ Appendix · Data Normalization",
       parent: "Post-training Quantization (PTQ)",
       summary: "Normalization parameter configuration and formula explanation.",
-      keywords: ["normalization", "mean", "scale", "appendix"],
+      keywords: ["normalization", "appendix"],
     },
   },
   {
@@ -321,7 +321,7 @@ export const OE_CHAPTERS = [
       title: "PTQ 附录 · Transformer",
       parent: "PTQ 附录",
       summary: "图片缩放、裁剪、归一化等 transformer 概念、参数说明与使用示例。",
-      keywords: ["transformer", "图片处理", "Resize", "Crop", "NormalizeTransformer"],
+      keywords: ["transformer"],
     },
     en: {
       title: "PTQ Appendix · Transformers",
@@ -343,7 +343,7 @@ export const OE_CHAPTERS = [
       title: "QAT Introduction",
       parent: "Quantization-Aware Training (QAT)",
       summary: "Introduction to horizon_plugin_pytorch QAT toolkit.",
-      keywords: ["QAT", "horizon_plugin_pytorch", "fake quant"],
+      keywords: ["QAT", "horizon_plugin_pytorch"],
     },
   },
   {
@@ -352,7 +352,7 @@ export const OE_CHAPTERS = [
       title: "术语约定",
       parent: "量化感知训练（QAT）",
       summary: "浮点模型、Calibration、QAT 模型、伪量化、HBIR、march 等术语定义。",
-      keywords: ["术语", "Calibration", "伪量化", "HBIR", "Nash"],
+      keywords: ["术语", "Calibration", "伪量化", "HBIR"],
     },
     en: {
       title: "Terminology",
@@ -367,13 +367,13 @@ export const OE_CHAPTERS = [
       title: "环境依赖",
       parent: "量化感知训练（QAT）",
       summary: "QAT 训练环境要求：Ubuntu 22.04、Python 3.10、CUDA 12.6、PyTorch 2.6 等。",
-      keywords: ["环境依赖", "CUDA", "PyTorch", "Ubuntu", "安装"],
+      keywords: ["环境依赖", "CUDA", "PyTorch", "Ubuntu"],
     },
     en: {
       title: "Environment Dependencies",
       parent: "Quantization-Aware Training (QAT)",
       summary: "QAT environment: Ubuntu, Python, CUDA and PyTorch versions.",
-      keywords: ["environment", "CUDA", "PyTorch", "installation"],
+      keywords: ["environment", "CUDA", "PyTorch"],
     },
   },
   {
@@ -383,13 +383,13 @@ export const OE_CHAPTERS = [
       parent: "量化感知训练（QAT）",
       summary:
         "QAT 模型改造、Calibration/QAT 训练、导出 HBIR、转定点与编译部署的完整快速流程。",
-      keywords: ["QAT", "快速上手", "export", "convert", "部署"],
+      keywords: ["QAT", "快速上手", "部署"],
     },
     en: {
       title: "QAT Quantization and Deployment Quick Start",
       parent: "Quantization-Aware Training (QAT)",
       summary: "End-to-end QAT quick start from model prep to board deployment.",
-      keywords: ["QAT", "quick start", "export"],
+      keywords: ["QAT", "quick start"],
     },
   },
   {
@@ -399,13 +399,13 @@ export const OE_CHAPTERS = [
       parent: "量化感知训练（QAT）",
       summary:
         "QAT 浮点模型要求、prepare/qconfig、精度调优与训练部署一致性等开发指导入口。",
-      keywords: ["开发指南", "浮点模型", "symbolic_trace", "QAT开发"],
+      keywords: ["开发指南", "浮点模型"],
     },
     en: {
       title: "Development Guide",
       parent: "Quantization-Aware Training (QAT)",
       summary: "QAT development guide entry: model requirements and workflow.",
-      keywords: ["development guide", "QAT", "float model"],
+      keywords: ["development guide", "QAT"],
     },
   },
   {
@@ -414,7 +414,7 @@ export const OE_CHAPTERS = [
       title: "prepare 详解",
       parent: "开发指南",
       summary: "浮点转伪量化 prepare 流程：算子替换、融合、JIT_STRIP/EAGER 模式与模型检查。",
-      keywords: ["prepare", "伪量化", "JIT_STRIP", "EAGER", "fuse"],
+      keywords: ["prepare", "伪量化", "JIT_STRIP", "EAGER"],
     },
     en: {
       title: "prepare Explained",
@@ -429,13 +429,13 @@ export const OE_CHAPTERS = [
       title: "qconfig 配置",
       parent: "开发指南",
       summary: "量化配置 qconfig、模板与 per-layer 精度设置说明。",
-      keywords: ["qconfig", "量化配置", "int8", "int16"],
+      keywords: ["qconfig", "量化配置"],
     },
     en: {
       title: "qconfig Configuration",
       parent: "Development Guide",
       summary: "Quantization qconfig and template configuration.",
-      keywords: ["qconfig", "quantization config"],
+      keywords: ["qconfig"],
     },
   },
   {
@@ -444,13 +444,13 @@ export const OE_CHAPTERS = [
       title: "量化精度调优指南",
       parent: "开发指南",
       summary: "QAT 模型结构与 qconfig 检查、混合精度调优流程与实践建议。",
-      keywords: ["精度调优", "混合精度", "QAT", "check_qat_model"],
+      keywords: ["精度调优", "混合精度", "QAT"],
     },
     en: {
       title: "Quantization Accuracy Tuning Guide",
       parent: "Development Guide",
       summary: "QAT accuracy tuning workflow and mixed-precision strategies.",
-      keywords: ["accuracy tuning", "QAT", "mixed precision"],
+      keywords: ["accuracy tuning", "QAT"],
     },
   },
   {
@@ -459,7 +459,7 @@ export const OE_CHAPTERS = [
       title: "Eager 模式",
       parent: "深入探索",
       summary: "QAT Eager 模式原理、用法及与 Graph Mode 的对比。",
-      keywords: ["Eager", "深入探索", "QAT", "PrepareMethod"],
+      keywords: ["Eager", "深入探索", "QAT"],
     },
     en: {
       title: "Eager Mode",
@@ -474,7 +474,7 @@ export const OE_CHAPTERS = [
       title: "FX Quantization 原理介绍",
       parent: "深入探索",
       summary: "FX 符号化 trace、自动 fuse 与 prepare 集成原理。",
-      keywords: ["FX", "Quantization", "fuse_fx", "Graph Mode"],
+      keywords: ["FX", "Quantization"],
     },
     en: {
       title: "FX Quantization Explained",
@@ -495,7 +495,7 @@ export const OE_CHAPTERS = [
       title: "Operator Fusion",
       parent: "Advanced Topics",
       summary: "Operator fusion patterns and APIs for QAT.",
-      keywords: ["fusion", "operators", "QAT"],
+      keywords: ["fusion", "QAT"],
     },
   },
   {
@@ -504,7 +504,7 @@ export const OE_CHAPTERS = [
       title: "API 参考",
       parent: "量化感知训练（QAT）",
       summary: "horizon_plugin_pytorch QAT API 参考（prepare、export、qconfig 等）。",
-      keywords: ["API参考", "plugin_api_reference", "horizon_plugin_pytorch"],
+      keywords: ["horizon_plugin_pytorch"],
     },
     en: {
       title: "API Reference",
@@ -519,7 +519,7 @@ export const OE_CHAPTERS = [
       title: "QAT 常见问题",
       parent: "常见问题及常见故障",
       summary: "QAT 训练环境、量化训练、配置与导出等常见问题解答。",
-      keywords: ["QAT FAQ", "常见问题", "量化训练"],
+      keywords: ["常见问题", "量化训练"],
     },
     en: {
       title: "QAT FAQ",
@@ -535,7 +535,7 @@ export const OE_CHAPTERS = [
       parent: "常见问题及常见故障",
       summary:
         "horizon_plugin_pytorch 扩展库加载失败、CUDA 环境不匹配等常见故障处理。",
-      keywords: ["常见故障", "failure", "_C.so", "CUDA", "import"],
+      keywords: ["常见故障", "CUDA"],
     },
     en: {
       title: "QAT Common Failures",
@@ -551,13 +551,13 @@ export const OE_CHAPTERS = [
       parent: "模型性能调优指导",
       summary:
         "编译参数（debug_mode、compile_mode、optimize_level）与 CPU 算子、模型分段等性能优化建议。",
-      keywords: ["性能调优", "compile_mode", "latency", "optimize_level"],
+      keywords: ["性能调优", "compile_mode", "optimize_level"],
     },
     en: {
       title: "Model Performance Tuning",
       parent: "Model Performance Tuning Guide",
       summary: "Compiler and model configuration tips to improve inference performance.",
-      keywords: ["performance tuning", "compile", "latency"],
+      keywords: ["performance tuning", "compile"],
     },
   },
   {
@@ -572,7 +572,7 @@ export const OE_CHAPTERS = [
       title: "Efficient Model Design Guide",
       parent: "Model Performance Tuning Guide",
       summary: "Guidance on efficient model architecture and memory/compute balance.",
-      keywords: ["efficient model", "design", "HENet"],
+      keywords: ["efficient model", "design"],
     },
   },
   {
@@ -582,7 +582,7 @@ export const OE_CHAPTERS = [
       parent: "统一计算平台（UCP）",
       summary:
         "统一计算平台（UCP）异构编程接口、直连/中继模式、backend 与 x86 仿真能力介绍。",
-      keywords: ["UCP", "统一计算平台", "异构", "BPU", "ucp_service"],
+      keywords: ["UCP", "统一计算平台", "异构"],
     },
     en: {
       title: "UCP Overview",
@@ -598,13 +598,13 @@ export const OE_CHAPTERS = [
       parent: "统一计算平台（UCP）",
       summary:
         "板端 HBM 模型加载推理、依赖库配置、hrt_model_exec 与 AI Benchmark 等开发指导。",
-      keywords: ["模型推理", "runtime", "hrt_model_exec", "hbm", "LD_LIBRARY_PATH"],
+      keywords: ["模型推理", "hrt_model_exec", "hbm"],
     },
     en: {
       title: "Model Inference Development",
       parent: "Unified Compute Platform (UCP)",
       summary: "Board-side model inference app development and tools.",
-      keywords: ["inference", "runtime", "hrt_model_exec"],
+      keywords: ["inference"],
     },
   },
   {
@@ -613,13 +613,13 @@ export const OE_CHAPTERS = [
       title: "UCP 通用 API 概览",
       parent: "统一计算平台（UCP）",
       summary: "UCP 任务管理、内存管理、版本信息等通用 API 与数据结构。",
-      keywords: ["UCP API", "hbUCPSubmitTask", "hbUCPMalloc", "版本"],
+      keywords: ["版本"],
     },
     en: {
       title: "UCP Common API Overview",
       parent: "Unified Compute Platform (UCP)",
       summary: "UCP common APIs for tasks, memory and versioning.",
-      keywords: ["UCP API", "hbUCP", "memory"],
+      keywords: ["memory"],
     },
   },
   {
@@ -634,7 +634,7 @@ export const OE_CHAPTERS = [
       title: "UCP Performance Analysis Tools",
       parent: "Unified Compute Platform (UCP)",
       summary: "UCP Trace usage with Perfetto and Chrome backends.",
-      keywords: ["UCP trace", "Perfetto", "profiling"],
+      keywords: ["UCP trace", "Perfetto"],
     },
   },
   {
@@ -643,7 +643,7 @@ export const OE_CHAPTERS = [
       title: "UCP 常见问题及错误码",
       parent: "统一计算平台（UCP）",
       summary: "UCP 异构编程常见问题、推理超时/挂起排查及错误码说明。",
-      keywords: ["UCP FAQ", "错误码", "hbUCP", "推理挂起"],
+      keywords: ["错误码"],
     },
     en: {
       title: "UCP FAQ and Error Codes",
@@ -659,13 +659,13 @@ export const OE_CHAPTERS = [
       parent: "模型部署实践指导",
       summary:
         "模型从浮点准备、转换编译、性能评测到板端部署的全流程原理与示例代码指引。",
-      keywords: ["模型部署", "原理", "流程", "上板"],
+      keywords: ["模型部署", "原理", "流程"],
     },
     en: {
       title: "Model Deployment Principles and Process",
       parent: "Model Deployment Guidance",
       summary: "End-to-end deployment principles from model prep to on-board run.",
-      keywords: ["deployment", "principles", "workflow"],
+      keywords: ["deployment", "principles"],
     },
   },
   {
@@ -675,7 +675,7 @@ export const OE_CHAPTERS = [
       parent: "模型部署实践指导",
       summary:
         "以公版 ResNet18 为例的 PTQ 全流程实践（RGB/Pyramid/多 Batch 等典型输入场景）。",
-      keywords: ["ResNet18", "部署实践", "Pyramid", "RGB", "PTQ通路"],
+      keywords: ["ResNet18", "部署实践", "Pyramid", "RGB"],
     },
     en: {
       title: "Model Deployment Practice Examples",
@@ -720,7 +720,7 @@ export const OE_CHAPTERS = [
       title: "S600 模型性能 Benchmark",
       parent: "模型性能 Benchmark",
       summary: "S600 平台 AI Benchmark 模型 Latency、FPS 与多线程配置参考数据。",
-      keywords: ["S600", "Benchmark", "FPS", "Latency", "j6ph"],
+      keywords: ["S600", "Benchmark", "FPS", "Latency"],
     },
     en: {
       title: "S600 Model Performance Benchmark",
@@ -735,7 +735,7 @@ export const OE_CHAPTERS = [
       title: "S100 模型性能 Benchmark",
       parent: "模型性能 Benchmark",
       summary: "S100/S100P 平台 Benchmark 模型性能与精度参考数据。",
-      keywords: ["S100", "S100P", "Benchmark", "j6em", "性能"],
+      keywords: ["S100", "S100P", "Benchmark", "性能"],
     },
     en: {
       title: "S100 Model Performance Benchmark",
@@ -750,13 +750,13 @@ export const OE_CHAPTERS = [
       title: "工具链算子支持约束列表",
       parent: "附录",
       summary: "ONNX/Torch 算子 BPU/CPU 支持列表与各平台算子 BPU 约束条件。",
-      keywords: ["算子列表", "算子约束", "ONNX", "BPU", "supported_op"],
+      keywords: ["ONNX", "BPU"],
     },
     en: {
       title: "Toolchain Operator Support Constraint List",
       parent: "Appendix",
       summary: "Operator support and BPU constraint lists per platform.",
-      keywords: ["operator", "constraints", "ONNX", "BPU"],
+      keywords: ["operator", "BPU"],
     },
   },
   {
@@ -765,7 +765,7 @@ export const OE_CHAPTERS = [
       title: "HBIR Operator Definition",
       parent: "附录",
       summary: "HBIR 算子定义说明及在地平线计算平台上的使用限制。",
-      keywords: ["HBIR", "算子定义", "Operator Definition", "hbir_op"],
+      keywords: ["HBIR", "算子定义", "Operator Definition"],
     },
     en: {
       title: "HBIR Operator Definition",
@@ -786,7 +786,7 @@ export const OE_CHAPTERS = [
       title: "Dataset Download",
       parent: "Appendix",
       summary: "Download links for datasets used in toolchain samples.",
-      keywords: ["dataset", "download", "ImageNet", "COCO"],
+      keywords: ["dataset", "download"],
     },
   },
   {
@@ -795,7 +795,7 @@ export const OE_CHAPTERS = [
       title: "常用缩略语",
       parent: "附录",
       summary: "文档中常见缩略词全称与含义对照，便于阅读工具链文档。",
-      keywords: ["缩略语", "缩写", "术语", "附录"],
+      keywords: ["缩略语", "附录"],
     },
     en: {
       title: "Common Abbreviations",
@@ -810,13 +810,13 @@ export const OE_CHAPTERS = [
       title: "社区优质文章",
       parent: "附录",
       summary: "OE 开发包示例介绍及算法工具链相关社区优质文章与资料索引。",
-      keywords: ["社区", "优质文章", "OE示例", "horizon_model_convert"],
+      keywords: ["社区", "优质文章"],
     },
     en: {
       title: "Community Articles",
       parent: "Appendix",
       summary: "OE package sample overview and curated community articles.",
-      keywords: ["community", "articles", "OE sample"],
+      keywords: ["community", "articles"],
     },
   },
   {
@@ -825,13 +825,13 @@ export const OE_CHAPTERS = [
       title: "工具链授权使用协议",
       parent: "授权使用协议及第三方软件漏洞说明",
       summary: "工具链软件包授权范围、使用限制、免责声明与协议终止条款。",
-      keywords: ["授权", "使用协议", "license", "法律"],
+      keywords: ["授权", "使用协议"],
     },
     en: {
       title: "Toolchain License Agreement",
       parent: "License and Third-party Notices",
       summary: "License terms, restrictions and disclaimers for the toolchain.",
-      keywords: ["license", "agreement", "legal"],
+      keywords: ["license", "agreement"],
     },
   },
   {
@@ -846,7 +846,7 @@ export const OE_CHAPTERS = [
       title: "Third-Party Software and License Statement",
       parent: "License and Third-party Notices",
       summary: "Third-party components and their license statements.",
-      keywords: ["third-party", "license", "open source"],
+      keywords: ["third-party", "license"],
     },
   },
   {
@@ -855,13 +855,13 @@ export const OE_CHAPTERS = [
       title: "第三方软件漏洞说明",
       parent: "授权使用协议及第三方软件漏洞说明",
       summary: "第三方软件/组件相关漏洞说明与安全披露信息。",
-      keywords: ["漏洞", "第三方", "安全", "trd_component"],
+      keywords: ["漏洞", "第三方", "安全"],
     },
     en: {
       title: "Third-Party Software Vulnerability Notice",
       parent: "License and Third-party Notices",
       summary: "Vulnerability disclosures for third-party software components.",
-      keywords: ["vulnerability", "third-party", "security"],
+      keywords: ["vulnerability", "third-party"],
     },
   },
 ];

@@ -10,7 +10,7 @@ export const RDK_S_CHAPTERS = [
       parent: null,
       summary:
         "RDK Super 系列（S100 / S100P / S600）整体介绍与文档入口；套件定位、产品说明与文档结构指引。",
-      keywords: ["RDK S", "S100", "S100P", "S600", "Super", "总览"],
+      keywords: ["RDK S", "S100", "S100P", "S600", "Super"],
     },
     en: {
       title: "Home · D-Robotics RDK Super Series",
@@ -26,13 +26,13 @@ export const RDK_S_CHAPTERS = [
       title: "1. 快速开始",
       parent: null,
       summary: "系统安装与硬件入门，帮助首次上手 S 系列开发板。",
-      keywords: ["快速开始", "入门", "S100", "S600"],
+      keywords: ["快速开始", "入门"],
     },
     en: {
       title: "1. Quick Start",
       parent: null,
       summary: "System installation and hardware basics for S-series boards.",
-      keywords: ["quick start", "S100", "S600"],
+      keywords: ["quick start"],
     },
   },
   {
@@ -47,7 +47,7 @@ export const RDK_S_CHAPTERS = [
       title: "1.1 Hardware Introduction",
       parent: "1. Quick Start",
       summary: "Hardware specs, interfaces, expansion boards and kits for S100/S600.",
-      keywords: ["hardware", "specification", "expansion board"],
+      keywords: ["hardware", "expansion board"],
     },
   },
   {
@@ -71,13 +71,13 @@ export const RDK_S_CHAPTERS = [
       title: "S100 相机扩展板",
       parent: "1.1 硬件简介",
       summary: "相机扩展板功能、连接与使用方式。",
-      keywords: ["相机扩展板", "S100", "MIPI", "摄像头"],
+      keywords: ["相机扩展板", "S100"],
     },
     en: {
       title: "S100 Camera Expansion Board",
       parent: "1.1 Hardware Introduction",
       summary: "Camera expansion board features, connection and usage.",
-      keywords: ["camera expansion", "S100", "MIPI"],
+      keywords: ["camera expansion", "S100"],
     },
   },
   {
@@ -86,7 +86,7 @@ export const RDK_S_CHAPTERS = [
       title: "S100 MCU 扩展板",
       parent: "1.1 硬件简介",
       summary: "MCU 扩展板功能、连接与使用方式。",
-      keywords: ["MCU扩展板", "S100", "扩展板"],
+      keywords: ["S100", "扩展板"],
     },
     en: {
       title: "S100 MCU Expansion Board",
@@ -116,13 +116,13 @@ export const RDK_S_CHAPTERS = [
       title: "硬件简介 FAQ",
       parent: "1.1 硬件简介",
       summary: "硬件与套件相关常见问题。",
-      keywords: ["硬件FAQ", "套件", "排错"],
+      keywords: ["套件"],
     },
     en: {
       title: "Hardware Introduction FAQ",
       parent: "1.1 Hardware Introduction",
       summary: "FAQ for hardware and kit related issues.",
-      keywords: ["hardware FAQ", "kit"],
+      keywords: ["kit"],
     },
   },
   {
@@ -131,13 +131,13 @@ export const RDK_S_CHAPTERS = [
       title: "1.2 系统烧录",
       parent: "1. 快速开始",
       summary: "S100/S600 烧录说明、准备事项；XBurn 在 Windows/Linux/macOS 的操作步骤与 FAQ。",
-      keywords: ["烧录", "XBurn", "镜像", "S100", "S600", "故障排查"],
+      keywords: ["烧录", "XBurn", "S100", "S600"],
     },
     en: {
       title: "1.2 System Flashing",
       parent: "1. Quick Start",
       summary: "S100/S600 flashing guide; XBurn on Windows/Linux/macOS; FAQ and troubleshooting.",
-      keywords: ["flash", "XBurn", "image", "S100", "S600"],
+      keywords: ["flash", "XBurn", "S100", "S600"],
     },
   },
   {
@@ -197,7 +197,7 @@ export const RDK_S_CHAPTERS = [
       title: "1.6 Resource Downloads",
       parent: "1. Quick Start",
       summary: "Official download hub for images, tools and documentation.",
-      keywords: ["download", "resources", "image"],
+      keywords: ["download", "image"],
     },
   },
   {
@@ -206,7 +206,7 @@ export const RDK_S_CHAPTERS = [
       title: "1.9 RDK Studio",
       parent: "1. 快速开始",
       summary: "RDK Studio 安装与基础使用。",
-      keywords: ["RDK Studio", "安装", "工作台"],
+      keywords: ["RDK Studio", "安装"],
     },
     en: {
       title: "1.9 RDK Studio",
@@ -236,13 +236,13 @@ export const RDK_S_CHAPTERS = [
       title: "2.1 网络与蓝牙",
       parent: "2. 系统配置",
       summary: "有线/无线网络及蓝牙配置。",
-      keywords: ["网络", "蓝牙", "Wi-Fi", "以太网"],
+      keywords: ["网络", "蓝牙"],
     },
     en: {
       title: "2.1 Network & Bluetooth",
       parent: "2. System Configuration",
       summary: "Wired/wireless network and Bluetooth configuration.",
-      keywords: ["network", "bluetooth", "Wi-Fi"],
+      keywords: ["network", "bluetooth"],
     },
   },
   {
@@ -251,7 +251,7 @@ export const RDK_S_CHAPTERS = [
       title: "2.2 srpi-config 工具",
       parent: "2. 系统配置",
       summary: "系统功能项配置入口与用法。",
-      keywords: ["srpi-config", "配置工具"],
+      keywords: ["srpi-config"],
     },
     en: {
       title: "2.2 srpi-config Tool",
@@ -266,7 +266,7 @@ export const RDK_S_CHAPTERS = [
       title: "2.3 config.txt 配置",
       parent: "2. 系统配置",
       summary: "设备树覆盖与系统行为定制。",
-      keywords: ["config.txt", "设备树", "启动配置"],
+      keywords: ["config.txt", "设备树"],
     },
     en: {
       title: "2.3 config.txt",
@@ -296,13 +296,13 @@ export const RDK_S_CHAPTERS = [
       title: "2.5 开机自启动",
       parent: "2. 系统配置",
       summary: "systemd/脚本自启动配置方式。",
-      keywords: ["自启动", "systemd", "开机启动"],
+      keywords: ["自启动", "systemd"],
     },
     en: {
       title: "2.5 Auto Start on Boot",
       parent: "2. System Configuration",
       summary: "Configure systemd/scripts for boot auto-start.",
-      keywords: ["autostart", "systemd"],
+      keywords: ["systemd"],
     },
   },
   {
@@ -356,7 +356,7 @@ export const RDK_S_CHAPTERS = [
       title: "3.1 图像应用",
       parent: "3. 基础应用开发",
       summary: "MIPI/USB 相机接入、驱动、采集示例与常见问题。",
-      keywords: ["图像", "MIPI", "USB相机", "摄像头", "采集"],
+      keywords: ["图像", "MIPI", "采集"],
     },
     en: {
       title: "3.1 Image Applications",
@@ -418,13 +418,13 @@ export const RDK_S_CHAPTERS = [
       title: "4. 算法应用开发",
       parent: null,
       summary: "Model Zoo、hbm_runtime Python API 与 Python/C++ 参考示例。",
-      keywords: ["算法应用", "Model Zoo", "hbm_runtime", "推理"],
+      keywords: ["算法应用", "Model Zoo", "hbm_runtime"],
     },
     en: {
       title: "4. Algorithm Application Development",
       parent: null,
       summary: "Model Zoo, hbm_runtime Python API, and Python/C++ reference samples.",
-      keywords: ["algorithm", "Model Zoo", "hbm_runtime", "inference"],
+      keywords: ["algorithm", "Model Zoo", "hbm_runtime"],
     },
   },
   {
@@ -433,7 +433,7 @@ export const RDK_S_CHAPTERS = [
       title: "4.1 Model Zoo 概述",
       parent: "4. 算法应用开发",
       summary: "模型资源、部署流程与目录说明。",
-      keywords: ["Model Zoo", "模型仓库", "部署"],
+      keywords: ["Model Zoo", "部署"],
     },
     en: {
       title: "4.1 Model Zoo Overview",
@@ -463,7 +463,7 @@ export const RDK_S_CHAPTERS = [
       title: "4.2 Python 参考示例",
       parent: "4. 算法应用开发",
       summary:
-        "分类/检测/分割/姿态/车道线/语音/OCR/实时流（USB/MIPI/WebSocket/RTSP）等 Python 推理示例。",
+        "YOLO/ResNet/MobileNet 等分类检测，分割/姿态/车道线/ASR 语音/OCR/实时流（USB/MIPI/WebSocket/RTSP）等 Python 推理示例。",
       keywords: [
         "Python示例",
         "YOLO",
@@ -481,7 +481,7 @@ export const RDK_S_CHAPTERS = [
       parent: "4. Algorithm Application Development",
       summary:
         "Python inference samples: classification, detection, segmentation, pose, lane, ASR, OCR, RTSP/WebSocket streams.",
-      keywords: ["Python", "YOLO", "ResNet", "segmentation", "OCR", "RTSP"],
+      keywords: ["Python", "segmentation", "OCR", "RTSP"],
     },
   },
   {
@@ -565,7 +565,7 @@ export const RDK_S_CHAPTERS = [
       title: "4.3 C++ 参考示例",
       parent: "4. 算法应用开发",
       summary: "与 Python 示例对应的 C++ 编译与部署示例。",
-      keywords: ["C++示例", "编译", "部署"],
+      keywords: ["编译", "部署"],
     },
     en: {
       title: "4.3 C++ Reference Samples",
@@ -595,13 +595,13 @@ export const RDK_S_CHAPTERS = [
       title: "6. 应用开发指南",
       parent: null,
       summary: "面向场景的案例索引（机器狗、语音控制、无人车等）与实现路径说明。",
-      keywords: ["应用案例", "机器狗", "无人车", "场景方案"],
+      keywords: ["机器狗", "无人车"],
     },
     en: {
       title: "6. Application Development Guide",
       parent: null,
       summary: "Scenario-based case index (robot dog, voice control, AMR, etc.) and implementation paths.",
-      keywords: ["application case", "robot dog", "AMR"],
+      keywords: ["robot dog", "AMR"],
     },
   },
   {
@@ -610,13 +610,13 @@ export const RDK_S_CHAPTERS = [
       title: "7. 进阶开发",
       parent: null,
       summary: "硬件、Linux、多媒体、算法工具链、MCU、构建系统、VDSP 深度开发。",
-      keywords: ["进阶开发", "驱动", "MCU", "VDSP", "rdk_gen"],
+      keywords: ["进阶开发", "MCU", "VDSP"],
     },
     en: {
       title: "7. Advanced Development",
       parent: null,
       summary: "Hardware, Linux, multimedia, toolchain, MCU, build system and VDSP development.",
-      keywords: ["advanced", "driver", "MCU", "VDSP"],
+      keywords: ["advanced", "MCU", "VDSP"],
     },
   },
   {
@@ -625,13 +625,13 @@ export const RDK_S_CHAPTERS = [
       title: "7.1 硬件开发指南",
       parent: "7. 进阶开发",
       summary: "硬件资料、配件清单、S100 bringup 流程。",
-      keywords: ["硬件开发", "bringup", "原理图", "配件清单"],
+      keywords: ["硬件开发", "bringup", "配件清单"],
     },
     en: {
       title: "7.1 Hardware Development Guide",
       parent: "7. Advanced Development",
       summary: "Hardware docs, accessory list and S100 bring-up workflow.",
-      keywords: ["hardware development", "bringup"],
+      keywords: ["hardware development"],
     },
   },
   {
@@ -685,13 +685,13 @@ export const RDK_S_CHAPTERS = [
       title: "7.4 算法工具链",
       parent: "7. 进阶开发",
       summary: "算法工具链总览，S100/S600 LLM 工具链使用。",
-      keywords: ["算法工具链", "LLM", "量化", "模型转换", "S100", "S600"],
+      keywords: ["算法工具链", "LLM", "S100", "S600"],
     },
     en: {
       title: "7.4 Algorithm Toolchain",
       parent: "7. Advanced Development",
       summary: "Toolchain overview and S100/S600 LLM toolchain usage.",
-      keywords: ["toolchain", "LLM", "quantization"],
+      keywords: ["toolchain", "LLM"],
     },
   },
   {
@@ -717,7 +717,7 @@ export const RDK_S_CHAPTERS = [
       title: "7.6 构建系统开发指南（rdk_gen）",
       parent: "7. 进阶开发",
       summary: "rdk_gen 构建、打包与离线/在线流程。",
-      keywords: ["rdk_gen", "构建系统", "打包", "离线构建"],
+      keywords: ["rdk_gen", "构建系统", "打包"],
     },
     en: {
       title: "7.6 Build System Guide (rdk_gen)",
@@ -762,13 +762,13 @@ export const RDK_S_CHAPTERS = [
       title: "8.1 硬件、系统与环境",
       parent: "8. 常见问题（FAQ）",
       summary: "硬件、系统与环境类 FAQ。",
-      keywords: ["硬件FAQ", "系统", "环境"],
+      keywords: ["系统", "环境"],
     },
     en: {
       title: "8.1 Hardware, System & Environment",
       parent: "8. FAQ",
       summary: "Hardware, system and environment FAQ.",
-      keywords: ["hardware FAQ", "system"],
+      keywords: ["system"],
     },
   },
   {
@@ -777,13 +777,13 @@ export const RDK_S_CHAPTERS = [
       title: "8.2 接口、外设与驱动",
       parent: "8. 常见问题（FAQ）",
       summary: "接口、外设与驱动相关 FAQ。",
-      keywords: ["接口FAQ", "外设", "驱动"],
+      keywords: ["外设", "驱动"],
     },
     en: {
       title: "8.2 Interfaces & Drivers",
       parent: "8. FAQ",
       summary: "Interface, peripheral and driver FAQ.",
-      keywords: ["interface FAQ", "driver"],
+      keywords: ["driver"],
     },
   },
   {
@@ -792,13 +792,13 @@ export const RDK_S_CHAPTERS = [
       title: "8.3 应用开发、编译与示例",
       parent: "8. 常见问题（FAQ）",
       summary: "应用开发、编译与示例运行 FAQ。",
-      keywords: ["应用FAQ", "编译", "示例"],
+      keywords: ["编译", "示例"],
     },
     en: {
       title: "8.3 Applications, Build & Samples",
       parent: "8. FAQ",
       summary: "Application development, build and sample execution FAQ.",
-      keywords: ["application FAQ", "build"],
+      keywords: ["build"],
     },
   },
   {
@@ -807,13 +807,13 @@ export const RDK_S_CHAPTERS = [
       title: "8.4 多媒体",
       parent: "8. 常见问题（FAQ）",
       summary: "多媒体相关 FAQ。",
-      keywords: ["多媒体FAQ", "相机", "编解码"],
+      keywords: [],
     },
     en: {
       title: "8.4 Multimedia",
       parent: "8. FAQ",
       summary: "Multimedia related FAQ.",
-      keywords: ["multimedia FAQ"],
+      keywords: [],
     },
   },
   {
@@ -822,7 +822,7 @@ export const RDK_S_CHAPTERS = [
       title: "8.5 AI 模型与工具链",
       parent: "8. 常见问题（FAQ）",
       summary: "AI 模型与算法工具链 FAQ。",
-      keywords: ["工具链FAQ", "AI模型", "hbm_runtime"],
+      keywords: [],
     },
     en: {
       title: "8.5 AI Models & Toolchain",
@@ -858,7 +858,7 @@ export const RDK_S_CHAPTERS = [
       title: "8.7 Desktop Applications",
       parent: "8. FAQ",
       summary: "Desktop application FAQ.",
-      keywords: ["desktop FAQ"],
+      keywords: [],
     },
   },
   {
@@ -882,7 +882,7 @@ export const RDK_S_CHAPTERS = [
       title: "9.1 RDK 专属命令",
       parent: "9. 附录",
       summary: "rdkos_info、hrut_boardid、hrut_socuid、hrut_somstatus、hrut_ps、devmem 等命令说明。",
-      keywords: ["rdkos_info", "hrut", "devmem", "板级命令"],
+      keywords: ["rdkos_info", "hrut", "devmem"],
     },
     en: {
       title: "9.1 RDK Commands",
@@ -897,7 +897,7 @@ export const RDK_S_CHAPTERS = [
       title: "9.2 Linux 命令手册",
       parent: "9. 附录",
       summary: "apt/dpkg、ssh/scp/rsync、ip/route、mount/find/grep/ps/top/tar、dmesg/nohup 等实用命令。",
-      keywords: ["Linux命令", "apt", "ssh", "grep", "mount", "ip"],
+      keywords: ["apt", "ssh", "grep", "mount", "ip"],
     },
     en: {
       title: "9.2 Linux Command Manual",
@@ -912,7 +912,7 @@ export const RDK_S_CHAPTERS = [
       title: "10. 版本发布",
       parent: null,
       summary: "S100 / S600 版本规划与 Release Notes，记录新特性、修复与兼容性说明。",
-      keywords: ["版本发布", "Release Notes", "S100", "S600", "changelog"],
+      keywords: ["版本发布", "Release Notes", "S100", "S600"],
     },
     en: {
       title: "10. Release Notes",
@@ -927,7 +927,7 @@ export const RDK_S_CHAPTERS = [
       title: "S100 版本发布",
       parent: "10. 版本发布",
       summary: "RDK S100 各版本新增/修复/兼容性说明。",
-      keywords: ["S100", "Release", "版本"],
+      keywords: ["S100", "版本"],
     },
     en: {
       title: "S100 Release Notes",
@@ -942,7 +942,7 @@ export const RDK_S_CHAPTERS = [
       title: "S600 版本发布",
       parent: "10. 版本发布",
       summary: "RDK S600 版本演进与 Beta 发布说明。",
-      keywords: ["S600", "Beta", "Release"],
+      keywords: ["S600", "Beta"],
     },
     en: {
       title: "S600 Release Notes",

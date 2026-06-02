@@ -5,6 +5,7 @@
 import { MAGICBOX_CHAPTERS } from "./manualChapterIndexMagicbox";
 import { OE_CHAPTERS } from "./manualChapterIndexOe";
 import { RDK_S_CHAPTERS } from "./manualChapterIndexRdkS";
+import { STUDIO_CHAPTERS } from "./manualChapterIndexStudio";
 import { TROS_CHAPTERS } from "./manualChapterIndexTros";
 
 export const MANUAL_CHAPTER_INDEX = [
@@ -41,7 +42,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "1. Quick Start",
           parent: null,
           summary: "System installation and hardware basics for first-time board setup.",
-          keywords: ["quick start", "getting started", "installation"],
+          keywords: ["quick start", "installation"],
         },
       },
       {
@@ -49,14 +50,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "1.1 硬件简介",
           parent: "1. 快速开始",
-          summary: "各型号硬件规格、接口与配件说明。",
+          summary: "X3/X5 等各型号硬件规格、40PIN 与 MIPI 等接口及配件说明。",
           keywords: ["硬件", "规格", "接口", "配件", "X3", "X5", "40PIN", "MIPI"],
         },
         en: {
           title: "1.1 Hardware Introduction",
           parent: "1. Quick Start",
-          summary: "Hardware specifications, interfaces, and accessories for each model.",
-          keywords: ["hardware", "specification", "interface", "accessories"],
+          summary: "Hardware specifications, 40-pin and MIPI interfaces, and accessories for X3/X5 models.",
+          keywords: ["hardware", "specification", "interface", "accessories", "X3", "X5", "40-pin", "MIPI"],
         },
       },
       {
@@ -64,14 +65,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "1.2 系统烧录",
           parent: "1. 快速开始",
-          summary: "按产品（X3 / X5 / Module 等）分流的镜像烧录、NAND 固件、启动流程。",
-          keywords: ["烧录", "镜像", "固件", "NAND", "SD卡", "启动", "Etcher", "xburn"],
+          summary: "按产品（X3 / X5 / Module 等）分流的镜像烧录、SD 卡写入、Etcher/xburn 工具、NAND 固件与启动流程。",
+          keywords: ["烧录", "镜像", "固件", "NAND", "启动", "Etcher", "xburn"],
         },
         en: {
           title: "1.2 System Flashing",
           parent: "1. Quick Start",
-          summary: "Image flashing, NAND firmware, and boot flow for X3, X5, Module variants.",
-          keywords: ["flash", "image", "firmware", "NAND", "boot"],
+          summary: "Image flashing for X3/X5/Module: SD card write, Etcher/xburn tools, NAND firmware, and boot flow.",
+          keywords: ["flash", "image", "firmware", "NAND", "SD card", "boot", "Etcher", "xburn"],
         },
       },
       {
@@ -79,13 +80,13 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "1.5 显示屏使用",
           parent: "1. 快速开始",
-          summary: "显示屏连接与使用。",
+          summary: "HDMI、LCD、MIPI DSI 等显示屏连接与使用。",
           keywords: ["显示屏", "HDMI", "LCD", "MIPI DSI"],
         },
         en: {
           title: "1.5 Display Usage",
           parent: "1. Quick Start",
-          summary: "Display connection and usage.",
+          summary: "Display connection and usage via HDMI, LCD, and MIPI DSI.",
           keywords: ["display", "HDMI", "LCD", "MIPI"],
         },
       },
@@ -94,13 +95,13 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "1.6 算法体验",
           parent: "1. 快速开始",
-          summary: "板端预装分类示例（如 MobileNet）快速体验。",
+          summary: "板端 BPU 预装分类示例（如 MobileNet）快速推理体验。",
           keywords: ["算法体验", "MobileNet", "BPU", "推理", "示例"],
         },
         en: {
           title: "1.6 Algorithm Experience",
           parent: "1. Quick Start",
-          summary: "Quick try-out of pre-installed classification demos such as MobileNet on board.",
+          summary: "Quick BPU inference try-out of pre-installed classification demos such as MobileNet.",
           keywords: ["algorithm", "MobileNet", "BPU", "inference", "demo"],
         },
       },
@@ -109,14 +110,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "1.7 下载资源汇总",
           parent: "1. 快速开始",
-          summary: "系统镜像、硬件资料、工具链等全部下载资源汇总。",
+          summary: "系统镜像、OpenExplore/MiniBoot 工具链、硬件资料等全部下载资源汇总。",
           keywords: ["下载", "镜像", "OpenExplore", "MiniBoot", "资源"],
         },
         en: {
           title: "1.7 Download Resources",
           parent: "1. Quick Start",
-          summary: "Aggregated download resources: OS images, hardware docs, toolchain packages.",
-          keywords: ["download", "image", "OpenExplore", "resources"],
+          summary: "Aggregated downloads: OS images, OpenExplore/MiniBoot toolchain, and hardware docs.",
+          keywords: ["download", "image", "OpenExplore", "MiniBoot", "resources"],
         },
       },
       {
@@ -140,13 +141,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "1.9 RDK Studio 使用指南",
           parent: "1. 快速开始",
           summary: "RDK Studio 桌面工作台使用说明入口。",
-          keywords: ["RDK Studio", "工作台", "烧录"],
+          keywords: ["RDK Studio", "工作台"],
         },
         en: {
           title: "1.9 RDK Studio Guide",
           parent: "1. Quick Start",
           summary: "Entry guide for the RDK Studio desktop workspace.",
-          keywords: ["RDK Studio", "workspace", "flashing"],
+          keywords: ["RDK Studio", "workspace" ],
         },
       },
       {
@@ -154,14 +155,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "2. 系统配置",
           parent: null,
-          summary: "保证系统正常运行与按需调优的配置步骤。",
+          summary: "网络、蓝牙、自启动等保证系统正常运行与按需调优的配置步骤。",
           keywords: ["系统配置", "网络", "蓝牙", "自启动"],
         },
         en: {
           title: "2. System Configuration",
           parent: null,
-          summary: "Configuration steps to keep the system running and tuned to your needs.",
-          keywords: ["system configuration", "network", "bluetooth"],
+          summary: "Network, bluetooth, autostart, and other configuration steps to keep the system running.",
+          keywords: ["system configuration", "network", "bluetooth", "autostart"],
         },
       },
       {
@@ -169,14 +170,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "2.1 网络与蓝牙",
           parent: "2. 系统配置",
-          summary: "有线/无线、静态 IP、DHCP、蓝牙等网络与蓝牙配置。",
-          keywords: ["网络", "蓝牙", "Wi-Fi", "以太网", "DHCP", "静态IP", "bluetooth"],
+          summary: "Wi-Fi/以太网有线无线、静态 IP、DHCP、蓝牙等网络与蓝牙配置。",
+          keywords: ["网络", "蓝牙", "Wi-Fi", "以太网", "DHCP", "静态 IP"],
         },
         en: {
           title: "2.1 Network & Bluetooth",
           parent: "2. System Configuration",
           summary: "Wired/wireless networking, static IP, DHCP, and Bluetooth setup.",
-          keywords: ["network", "bluetooth", "Wi-Fi", "ethernet", "DHCP"],
+          keywords: ["network", "bluetooth", "DHCP"],
         },
       },
       {
@@ -191,7 +192,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "2.2 srpi-config",
           parent: "2. System Configuration",
           summary: "System configuration utility srpi-config.",
-          keywords: ["srpi-config", "configuration tool"],
+          keywords: ["srpi-config"],
         },
       },
       {
@@ -200,7 +201,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "2.3 config.txt",
           parent: "2. 系统配置",
           summary: "启动与硬件相关 config.txt 配置项说明。",
-          keywords: ["config.txt", "启动配置", "硬件配置"],
+          keywords: ["config.txt", "启动", "硬件"],
         },
         en: {
           title: "2.3 config.txt",
@@ -214,7 +215,7 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "2.4 频率管理",
           parent: "2. 系统配置",
-          summary: "CPU/BPU 等频率与性能调节。",
+          summary: "CPU/BPU 频率调频与性能调节。",
           keywords: ["频率", "CPU", "BPU", "性能", "调频"],
         },
         en: {
@@ -229,14 +230,14 @@ export const MANUAL_CHAPTER_INDEX = [
         zh: {
           title: "2.5 自启动",
           parent: "2. 系统配置",
-          summary: "服务/应用开机自启配置。",
-          keywords: ["自启动", "systemd", "开机启动", "服务"],
+          summary: "systemd 服务/应用开机自启配置。",
+          keywords: ["自启动", "systemd", "开机自启", "服务"],
         },
         en: {
           title: "2.5 Auto Start",
           parent: "2. System Configuration",
           summary: "Configure services and applications to start on boot.",
-          keywords: ["autostart", "systemd", "boot"],
+          keywords: ["boot"],
         },
       },
       {
@@ -253,7 +254,7 @@ export const MANUAL_CHAPTER_INDEX = [
           parent: null,
           summary:
             "Pre-installed capabilities and starter samples: GPIO, audio/video, multimedia APIs, Python/C examples.",
-          keywords: ["basic application", "GPIO", "multimedia", "pydev", "cdev"],
+          keywords: ["basic application", "GPIO", "multimedia"],
         },
       },
       {
@@ -277,13 +278,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "3.2 参考示例（C 语言）",
           parent: "3. 基础应用开发",
           summary: "C dev 多媒体/采集等示例（如 VIO 采集）。",
-          keywords: ["C语言", "cdev", "VIO", "多媒体", "采集"],
+          keywords: ["VIO", "多媒体", "采集"],
         },
         en: {
           title: "3.2 Reference Samples (C)",
           parent: "3. Basic Application Development",
           summary: "C dev multimedia and capture samples (e.g. VIO capture).",
-          keywords: ["C", "cdev", "VIO", "multimedia", "capture"],
+          keywords: ["C", "VIO", "multimedia", "capture"],
         },
       },
       {
@@ -293,14 +294,14 @@ export const MANUAL_CHAPTER_INDEX = [
           parent: "3. 基础应用开发",
           summary:
             "图像分类、检测、分割、姿态、相机/RTSP 等 BPU 推理示例（RDK X3/X5 分目录）。",
-          keywords: ["Python", "pydev", "BPU", "检测", "分割", "分类", "RTSP", "推理"],
+          keywords: ["Python", "BPU", "检测", "分割", "分类", "RTSP", "推理"],
         },
         en: {
           title: "3.3 Reference Samples (Python)",
           parent: "3. Basic Application Development",
           summary:
             "BPU inference samples: classification, detection, segmentation, pose, camera/RTSP (X3/X5).",
-          keywords: ["Python", "pydev", "BPU", "detection", "segmentation", "inference"],
+          keywords: ["Python", "BPU", "detection", "segmentation", "inference"],
         },
       },
       {
@@ -309,7 +310,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "3.4 视觉方案",
           parent: "3. 基础应用开发",
           summary: "USB/MIPI 相机等视觉接入方案。",
-          keywords: ["视觉", "相机", "USB", "MIPI", "摄像头"],
+          keywords: ["视觉", "相机", "USB", "MIPI"],
         },
         en: {
           title: "3.4 Vision Solutions",
@@ -354,13 +355,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "6. 应用开发指南",
           parent: null,
           summary: "面向具体场景的完整应用方案（算法/机器人等）。",
-          keywords: ["应用开发", "场景方案", "机器人"],
+          keywords: ["应用开发", "机器人"],
         },
         en: {
           title: "6. Application Development Guide",
           parent: null,
           summary: "End-to-end application solutions for algorithms and robotics scenarios.",
-          keywords: ["application guide", "robotics", "solution"],
+          keywords: ["robotics", "solution"],
         },
       },
       {
@@ -375,7 +376,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "Deep Learning Line-Following Car",
           parent: "6. Application Development Guide",
           summary: "CNN-based line following perception and car control (mainly for X3 series).",
-          keywords: ["line follower", "CNN", "deep learning", "X3"],
+          keywords: ["CNN", "deep learning", "X3"],
         },
       },
       {
@@ -384,13 +385,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "AMR 开发指南",
           parent: "6. 应用开发指南",
           summary: "自主移动机器人：激光雷达、导航框架、组装与开发流程（面向 RDK X5）。",
-          keywords: ["AMR", "激光雷达", "导航", "SLAM", "X5", "移动机器人"],
+          keywords: ["AMR", "激光雷达", "导航", "X5", "移动机器人"],
         },
         en: {
           title: "AMR Development Guide",
           parent: "6. Application Development Guide",
           summary: "Autonomous mobile robot: lidar, navigation stack, assembly and dev workflow (RDK X5).",
-          keywords: ["AMR", "lidar", "navigation", "SLAM", "X5"],
+          keywords: ["AMR", "lidar", "navigation", "X5"],
         },
       },
       {
@@ -399,13 +400,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "7. 进阶开发",
           parent: null,
           summary: "硬件、Linux 系统、多媒体与算法工具链的深度开发。",
-          keywords: ["进阶", "驱动", "内核", "工具链", "多媒体开发"],
+          keywords: ["进阶", "工具链"],
         },
         en: {
           title: "7. Advanced Development",
           parent: null,
           summary: "In-depth hardware, Linux, multimedia, and algorithm toolchain development.",
-          keywords: ["advanced", "driver", "kernel", "toolchain"],
+          keywords: ["advanced", "toolchain"],
         },
       },
       {
@@ -414,13 +415,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "7.1 硬件开发指南",
           parent: "7. 进阶开发",
           summary: "各型号硬件设计、接口、配件与扩展板资料。",
-          keywords: ["硬件开发", "原理图", "扩展板", "硬件设计"],
+          keywords: ["硬件开发", "扩展板", "硬件设计"],
         },
         en: {
           title: "7.1 Hardware Development Guide",
           parent: "7. Advanced Development",
           summary: "Hardware design, interfaces, accessories and expansion board documentation.",
-          keywords: ["hardware development", "schematic", "expansion board"],
+          keywords: ["hardware development", "expansion board"],
         },
       },
       {
@@ -444,7 +445,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "7.3 多媒体开发指南",
           parent: "7. 进阶开发",
           summary: "视频输入/输出、编解码、区域处理、调试与示例。",
-          keywords: ["多媒体开发", "编解码", "视频", "VIO"],
+          keywords: ["多媒体开发", "编解码", "视频"],
         },
         en: {
           title: "7.3 Multimedia Development Guide",
@@ -459,13 +460,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "7.4 算法工具链开发指南",
           parent: "7. 进阶开发",
           summary: "模型训练、量化、上板；含中级/专家级环境与 runtime 示例。",
-          keywords: ["算法工具链", "量化", "训练", "runtime", "模型转换"],
+          keywords: ["算法工具链", "量化", "训练", "runtime"],
         },
         en: {
           title: "7.4 Algorithm Toolchain Guide",
           parent: "7. Advanced Development",
           summary: "Model training, quantization, on-board deployment; intermediate/expert environments.",
-          keywords: ["toolchain", "quantization", "training", "runtime"],
+          keywords: ["toolchain", "quantization", "training"],
         },
       },
       {
@@ -519,13 +520,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "8.3 应用与示例",
           parent: "8. 常见问题（FAQ）",
           summary: "示例运行、应用类问题。",
-          keywords: ["应用", "示例", "运行失败"],
+          keywords: ["应用", "示例"],
         },
         en: {
           title: "8.3 Applications & Samples",
           parent: "8. FAQ",
           summary: "Sample execution and application related issues.",
-          keywords: ["application", "sample", "runtime"],
+          keywords: ["application", "sample"],
         },
       },
       {
@@ -540,7 +541,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "8.4 Multimedia",
           parent: "8. FAQ",
           summary: "Audio/video, camera, encode/decode issues.",
-          keywords: ["multimedia", "camera", "codec"],
+          keywords: ["multimedia", "camera"],
         },
       },
       {
@@ -549,13 +550,13 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "8.5 工具链",
           parent: "8. 常见问题（FAQ）",
           summary: "算法工具链与开发环境问题。",
-          keywords: ["工具链", "量化", "开发环境"],
+          keywords: ["工具链", "开发环境"],
         },
         en: {
           title: "8.5 Toolchain",
           parent: "8. FAQ",
           summary: "Algorithm toolchain and development environment issues.",
-          keywords: ["toolchain", "quantization", "environment"],
+          keywords: ["toolchain", "environment"],
         },
       },
       {
@@ -579,7 +580,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "8.7 桌面应用",
           parent: "8. 常见问题（FAQ）",
           summary: "桌面/GPU/VLC 等桌面体验问题。",
-          keywords: ["桌面", "GPU", "VLC", "HDMI"],
+          keywords: ["桌面", "GPU", "VLC"],
         },
         en: {
           title: "8.7 Desktop Applications",
@@ -609,7 +610,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "9.1 RDK 专属命令",
           parent: "9. 附录",
           summary: "hrut_*、rdk-backup、devmem 等板级信息与管理命令。",
-          keywords: ["hrut", "rdk-backup", "devmem", "板级命令"],
+          keywords: ["hrut", "rdk-backup", "devmem"],
         },
         en: {
           title: "9.1 RDK Commands",
@@ -624,7 +625,7 @@ export const MANUAL_CHAPTER_INDEX = [
           title: "9.2 Linux 命令",
           parent: "9. 附录",
           summary: "grep、find、dpkg、mount、ip 等通用命令说明。",
-          keywords: ["Linux命令", "grep", "find", "dpkg", "mount", "ip"],
+          keywords: ["grep", "find", "dpkg", "mount", "ip"],
         },
         en: {
           title: "9.2 Linux Commands",
@@ -640,14 +641,14 @@ export const MANUAL_CHAPTER_INDEX = [
           parent: null,
           summary:
             "RDK OS 各版本发布记录：版本号、发布日期、新特性（hbm_runtime、pydev 示例重构、HDMI/GPU 优化）、修复项与升级注意事项。",
-          keywords: ["版本发布", "Release", "RDK OS", "升级", "changelog"],
+          keywords: ["版本发布", "RDK OS", "升级"],
         },
         en: {
           title: "10. Release Notes",
           parent: null,
           summary:
             "RDK OS release history: version, date, features (hbm_runtime, pydev refactor, HDMI/GPU), fixes and upgrade notes.",
-          keywords: ["release notes", "RDK OS", "upgrade", "changelog"],
+          keywords: ["release notes", "RDK OS", "upgrade"],
         },
       },
     ],
@@ -677,5 +678,13 @@ export const MANUAL_CHAPTER_INDEX = [
       en: "https://toolchain.d-robotics.cc/en",
     },
     chapters: OE_CHAPTERS,
+  },
+  {
+    siteHrefMatch: "rdk_studio_doc",
+    docBase: {
+      zh: "https://developer.d-robotics.cc/rdk_studio_doc",
+      en: "https://developer.d-robotics.cc/rdk_studio_doc/en",
+    },
+    chapters: STUDIO_CHAPTERS,
   },
 ];

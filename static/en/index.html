@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=/rdk_doc_center/en" />
+    <title>Redirecting…</title>
+    <script>
+      (function () {
+        var target = "/rdk_doc_center/en";
+        try {
+          // Avoid infinite loops if the gateway serves this file for /en as well.
+          if (window.location.pathname === target) return;
+          window.location.replace(target);
+        } catch (e) {
+          // Fallback to meta refresh.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>
+      Redirecting to
+      <a href="/rdk_doc_center/en">/rdk_doc_center/en</a>
+    </p>
+  </body>
+</html>

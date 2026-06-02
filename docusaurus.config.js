@@ -20,6 +20,9 @@ const config = {
   url: "https://developer.d-robotics.cc",
   // 必须与仓库名一致：GitHub Pages 项目站点路径为 /<repo>/
   baseUrl: "/rdk_doc_center/",
+  // 线上网关对带尾随 "/" 的路径存在重写问题：如 /en/ -> /en//index.html (404)
+  // 关闭尾随斜杠，确保语言切换与链接使用 /en 而不是 /en/
+  trailingSlash: false,
   organizationName: "D-Robotics",
   projectName: "rdk_doc_center",
   onBrokenLinks: "warn",

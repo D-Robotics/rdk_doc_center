@@ -49,23 +49,33 @@ jobs:
           --update \
           --retry-times=3
 
-    - name: Verify English homepage on OSS
-      run: |
-        echo "Checking https://developer.d-robotics.cc/rdk_doc_center/en/index.html"
-        code="$(curl -s -o /dev/null -w "%{http_code}" "https://developer.d-robotics.cc/rdk_doc_center/en/index.html")"
-        echo "HTTP status: ${code}"
-        test "${code}" = "200"
-
-    - name: Verify en/index.html exists on OSS
+    - name: Verify English homepage on OSS (diagnostic)
       env:
         OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
         OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
       run: |
+        set -euo pipefail
+        echo "Checking https://developer.d-robotics.cc/rdk_doc_center/en"
+        code="$(curl -s -o /dev/null -w "%{http_code}" "https://developer.d-robotics.cc/rdk_doc_center/en")"
+        echo "HTTP status: ${code}"
+
+        echo ""
+        echo "OSS object check: oss://cn-rdk-front-prod/rdk_doc_center/en/index.html"
         ossutil ls oss://cn-rdk-front-prod/rdk_doc_center/en/index.html \
           -e https://oss-cn-beijing.aliyuncs.com \
           -i $OSS_ACCESS_KEY_ID \
           -k $OSS_ACCESS_KEY_SECRET \
           --region cn-beijing
+
+        echo ""
+        echo "OSS directory sample: oss://cn-rdk-front-prod/rdk_doc_center/en/"
+        ossutil ls oss://cn-rdk-front-prod/rdk_doc_center/en/ \
+          -e https://oss-cn-beijing.aliyuncs.com \
+          -i $OSS_ACCESS_KEY_ID \
+          -k $OSS_ACCESS_KEY_SECRET \
+          --region cn-beijing | head -n 50 || true
+
+        test "${code}" = "200"
 
     - name: Debug env variables
       run: |

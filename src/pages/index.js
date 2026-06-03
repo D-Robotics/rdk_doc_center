@@ -270,7 +270,7 @@ export default function Home() {
 
   return (
     <Layout
-      title={isEnglish ? "RDK Documentation Center" : "RDK 文档中心"}
+      title={isEnglish ? "RDK Resource Center" : "RDK 资料中心"}
       description={
         isEnglish
           ? "D-Robotics Developer Documentation Hub —— Aggregating RDK, SDK, Robot Applications, Algorithm Toolchain and other sub-sites"

@@ -19,8 +19,19 @@ function buildHaystack(localeFields) {
 
 function resolveChapterHref(docBase, path, locale) {
   const base = locale === "en" ? docBase.en : docBase.zh;
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${base.replace(/\/$/, "")}${normalizedPath}`;
+  const rawPath = String(path || "").trim();
+  const pathMatch = rawPath.match(/^([^?#]*)([?#].*)?$/);
+  const pathname = pathMatch?.[1] || "";
+  const suffix = pathMatch?.[2] || "";
+  const normalizedPathname = pathname
+    ? `/${pathname.replace(/^\/+/, "").replace(/\/+$/, "")}`
+    : "/";
+  const normalizedBase = String(base || "").replace(/\/+$/, "");
+  const href =
+    normalizedPathname === "/"
+      ? normalizedBase
+      : `${normalizedBase}${normalizedPathname}`;
+  return `${href}${suffix}`;
 }
 
 function findManualSite(sites, hrefMatch) {

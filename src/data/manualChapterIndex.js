@@ -61,7 +61,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Quick_start/install_os/",
+        path: "/Quick_start/install_os",
         zh: {
           title: "1.2 系统烧录",
           parent: "1. 快速开始",

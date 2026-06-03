@@ -40,10 +40,10 @@ const config = {
   customFields: {
     feedbackFloat: {
       enabled: true,
-          questionnaireUrl: "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",
-          questionnaireUrlByLocale: {
-            "zh-Hans": "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",
-            en: "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",
+      questionnaireUrl: "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf",
+      questionnaireUrlByLocale: {
+        "zh-Hans": "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf?table=tblIRpryehWqWy88&view=vewEkEvyTe",
+        en: "https://horizonrobotics.feishu.cn/wiki/EZs4w6IxMixCDbklSuvcYHhtnaf?table=tbl3YxZ2U4e0vkX5&view=vewEkEvyTe",
       },
       // 站点内路径规则（基于 baseUrl 之后的路径）：
       // - "/" 精确匹配中文首页

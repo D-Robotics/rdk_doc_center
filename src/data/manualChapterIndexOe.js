@@ -760,7 +760,7 @@ export const OE_CHAPTERS = [
     },
   },
   {
-    path: "/guide/appendix/hbir_op.html",
+    path: "/guide/appendix/supported_op_list.html",
     zh: {
       title: "HBIR Operator Definition",
       parent: "附录",

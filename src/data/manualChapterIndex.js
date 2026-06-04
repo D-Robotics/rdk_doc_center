@@ -1,6 +1,6 @@
 /**
  * 手册章节搜索索引（与卡片 description 分离，专供首页搜索）。
- * 维护：在对应文件中新增 path（相对手册根路径，与各子站 slug 一致）。
+ * 维护：path 须与线上子站侧栏 slug 一致（如 rdk_x_doc 烧录为 /install_os/rdk_x3，非旧版 Quick_start/install_os）。
  */
 import { MAGICBOX_CHAPTERS } from "./manualChapterIndexMagicbox";
 import { OE_CHAPTERS } from "./manualChapterIndexOe";
@@ -46,7 +46,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Quick_start/hardware_introduction",
+        path: "/Quick_start/hardware_introduction/rdk_x3",
         zh: {
           title: "1.1 硬件简介",
           parent: "1. 快速开始",
@@ -61,7 +61,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Quick_start/install_os",
+        path: "/install_os/rdk_x3",
         zh: {
           title: "1.2 系统烧录",
           parent: "1. 快速开始",
@@ -76,7 +76,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Quick_start/display_use",
+        path: "/display_use",
         zh: {
           title: "1.5 显示屏使用",
           parent: "1. 快速开始",
@@ -166,7 +166,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/System_configuration/01_network_blueteeth",
+        path: "/System_configuration/network_blueteeth",
         zh: {
           title: "2.1 网络与蓝牙",
           parent: "2. 系统配置",
@@ -181,7 +181,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/System_configuration/02_srpi-config",
+        path: "/System_configuration/srpi-config",
         zh: {
           title: "2.2 srpi-config",
           parent: "2. 系统配置",
@@ -196,7 +196,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/System_configuration/03_config_txt",
+        path: "/System_configuration/config_txt",
         zh: {
           title: "2.3 config.txt",
           parent: "2. 系统配置",
@@ -211,7 +211,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/System_configuration/04_frequency_management",
+        path: "/System_configuration/frequency_management",
         zh: {
           title: "2.4 频率管理",
           parent: "2. 系统配置",
@@ -226,7 +226,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/System_configuration/05_self_start",
+        path: "/System_configuration/self_start",
         zh: {
           title: "2.5 自启动",
           parent: "2. 系统配置",
@@ -258,7 +258,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/01_40pin_user_sample",
+        path: "/Basic_Application/40pin_user_sample",
         zh: {
           title: "3.1 40PIN 管脚应用",
           parent: "3. 基础应用开发",
@@ -273,7 +273,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/02_cdev_demo_sample",
+        path: "/03_Basic_Application/02_cdev_demo_sample",
         zh: {
           title: "3.2 参考示例（C 语言）",
           parent: "3. 基础应用开发",
@@ -288,7 +288,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/03_pydev_demo_sample",
+        path: "/Basic_Application/pydev_demo_sample",
         zh: {
           title: "3.3 参考示例（Python）",
           parent: "3. 基础应用开发",
@@ -305,7 +305,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/04_vision",
+        path: "/03_Basic_Application/04_vision",
         zh: {
           title: "3.4 视觉方案",
           parent: "3. 基础应用开发",
@@ -320,7 +320,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/05_audio",
+        path: "/03_Basic_Application/05_audio/rdk_x3_and_rdk_x3_module",
         zh: {
           title: "3.5 声觉方案",
           parent: "3. 基础应用开发",
@@ -335,7 +335,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Basic_Application/06_multi_media_sp_dev_api",
+        path: "/03_Basic_Application/06_multi_media_sp_dev_api",
         zh: {
           title: "3.6 API 说明",
           parent: "3. 基础应用开发",
@@ -410,7 +410,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Advanced_development/01_hardware_development",
+        path: "/07_Advanced_development/01_hardware_development/rdk_x3",
         zh: {
           title: "7.1 硬件开发指南",
           parent: "7. 进阶开发",
@@ -425,7 +425,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Advanced_development/02_linux_development",
+        path: "/linux_development",
         zh: {
           title: "7.2 Linux 开发指南",
           parent: "7. 进阶开发",
@@ -440,7 +440,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Advanced_development/03_multimedia_development",
+        path: "/03_multimedia_development",
         zh: {
           title: "7.3 多媒体开发指南",
           parent: "7. 进阶开发",
@@ -455,7 +455,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Advanced_development/04_toolchain_development",
+        path: "/04_toolchain_development",
         zh: {
           title: "7.4 算法工具链开发指南",
           parent: "7. 进阶开发",
@@ -485,7 +485,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/01_hardware_and_system",
+        path: "/FAQ/hardware_and_system",
         zh: {
           title: "8.1 硬件、系统与环境",
           parent: "8. 常见问题（FAQ）",
@@ -500,7 +500,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/02_interface",
+        path: "/FAQ/interface",
         zh: {
           title: "8.2 接口",
           parent: "8. 常见问题（FAQ）",
@@ -515,7 +515,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/03_applications_and_examples",
+        path: "/FAQ/applications_and_examples",
         zh: {
           title: "8.3 应用与示例",
           parent: "8. 常见问题（FAQ）",
@@ -530,7 +530,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/04_multimedia",
+        path: "/FAQ/multimedia",
         zh: {
           title: "8.4 多媒体",
           parent: "8. 常见问题（FAQ）",
@@ -545,7 +545,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/05_toolchain",
+        path: "/FAQ/toolchain",
         zh: {
           title: "8.5 工具链",
           parent: "8. 常见问题（FAQ）",
@@ -560,7 +560,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/06_tros_ros",
+        path: "/FAQ/tros_ros",
         zh: {
           title: "8.6 TROS/ROS",
           parent: "8. 常见问题（FAQ）",
@@ -575,7 +575,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/FAQ/07_desktop_app",
+        path: "/FAQ/desktop_app",
         zh: {
           title: "8.7 桌面应用",
           parent: "8. 常见问题（FAQ）",
@@ -605,7 +605,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Appendix/rdk-command-manual",
+        path: "/09_Appendix/rdk-command-manual",
         zh: {
           title: "9.1 RDK 专属命令",
           parent: "9. 附录",
@@ -620,7 +620,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Appendix/linux-command-manual",
+        path: "/09_Appendix/linux-command-manual",
         zh: {
           title: "9.2 Linux 命令",
           parent: "9. 附录",
@@ -635,7 +635,7 @@ export const MANUAL_CHAPTER_INDEX = [
         },
       },
       {
-        path: "/Release_Note",
+        path: "/10_Release_Note",
         zh: {
           title: "10. 版本发布",
           parent: null,

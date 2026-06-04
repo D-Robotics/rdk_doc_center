@@ -36,7 +36,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction",
+    path: "/01_hardware_introduction",
     zh: {
       title: "1.1 硬件简介",
       parent: "1. 快速开始",
@@ -51,7 +51,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction/01_rdk_s100",
+    path: "/01_hardware_introduction/01_rdk_s100",
     zh: {
       title: "RDK S100 硬件简介",
       parent: "1.1 硬件简介",
@@ -66,7 +66,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction/01_rdk_s100/02_rdk_s100_camera_expansion_board",
+    path: "/Quick_start/hardware_introduction/rdk_s100/rdk_s100_camera_expansion_board",
     zh: {
       title: "S100 相机扩展板",
       parent: "1.1 硬件简介",
@@ -81,7 +81,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction/01_rdk_s100/03_rdk_s100_mcu_port_expansion_board",
+    path: "/Quick_start/hardware_introduction/rdk_s100/rdk_s100_mcu_port_expansion_board",
     zh: {
       title: "S100 MCU 扩展板",
       parent: "1.1 硬件简介",
@@ -96,7 +96,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction/02_rdk_s600",
+    path: "/01_hardware_introduction/02_rdk_s600",
     zh: {
       title: "RDK S600 硬件简介",
       parent: "1.1 硬件简介",
@@ -111,7 +111,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/01_hardware_introduction/03_FAQ",
+    path: "/Quick_start/hardware_introduction/FAQ",
     zh: {
       title: "硬件简介 FAQ",
       parent: "1.1 硬件简介",
@@ -126,7 +126,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/02_install_os",
+    path: "/02_install_os/rdk_s100",
     zh: {
       title: "1.2 系统烧录",
       parent: "1. 快速开始",
@@ -141,7 +141,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Quick_start/03_configuration_wizard",
+    path: "/Quick_start/configuration_wizard/configuration_wizard_s100",
     zh: {
       title: "1.3 入门配置",
       parent: "1. 快速开始",
@@ -231,7 +231,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/01_network_bluetooth",
+    path: "/System_configuration/network_bluetooth",
     zh: {
       title: "2.1 网络与蓝牙",
       parent: "2. 系统配置",
@@ -246,7 +246,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/02_srpi-config",
+    path: "/System_configuration/srpi-config",
     zh: {
       title: "2.2 srpi-config 工具",
       parent: "2. 系统配置",
@@ -261,7 +261,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/03_config_txt",
+    path: "/System_configuration/config_txt",
     zh: {
       title: "2.3 config.txt 配置",
       parent: "2. 系统配置",
@@ -276,7 +276,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/04_frequency_management",
+    path: "/System_configuration/frequency_management",
     zh: {
       title: "2.4 Thermal & CPU 频率管理",
       parent: "2. 系统配置",
@@ -291,7 +291,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/05_self_start",
+    path: "/System_configuration/self_start",
     zh: {
       title: "2.5 开机自启动",
       parent: "2. 系统配置",
@@ -306,7 +306,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/06_gui_network_config",
+    path: "/System_configuration/gui_network_config",
     zh: {
       title: "2.6 GUI 配网流程",
       parent: "2. 系统配置",
@@ -321,7 +321,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/System_configuration/07_share_file_tool",
+    path: "/System_configuration/share_file_tool",
     zh: {
       title: "2.7 共享文件配置",
       parent: "2. 系统配置",
@@ -351,7 +351,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Application/01_Image",
+    path: "/Basic_Application/Image/mipi_camera",
     zh: {
       title: "3.1 图像应用",
       parent: "3. 基础应用开发",
@@ -366,7 +366,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Application/02_audio",
+    path: "/Basic_Application/audio/audio_board_super",
     zh: {
       title: "3.2 语音应用",
       parent: "3. 基础应用开发",
@@ -381,7 +381,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Application/03_40pin_user_guide",
+    path: "/Basic_Application/03_40pin_user_guide/s100/01_40pin_define",
     zh: {
       title: "3.3 40Pin 扩展引脚",
       parent: "3. 基础应用开发",
@@ -396,7 +396,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Application/04_multi_media",
+    path: "/Basic_Application/multi_media/pydev_vio_demo",
     zh: {
       title: "3.4 多媒体应用",
       parent: "3. 基础应用开发",
@@ -428,7 +428,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/01_model_zoo_intro",
+    path: "/Algorithm_Application/model_zoo_intro",
     zh: {
       title: "4.1 Model Zoo 概述",
       parent: "4. 算法应用开发",
@@ -443,7 +443,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/02_Python_API",
+    path: "/Algorithm_Application/python-api",
     zh: {
       title: "4.2 Python API 手册（hbm_runtime）",
       parent: "4. 算法应用开发",
@@ -458,7 +458,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample",
+    path: "/03_Python_Sample",
     zh: {
       title: "4.2 Python 参考示例",
       parent: "4. 算法应用开发",
@@ -485,7 +485,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample/04_Ultralytics_YOLOv5x",
+    path: "/Algorithm_Application/Python_Sample/Ultralytics_YOLOv5x",
     zh: {
       title: "YOLOv5x 检测示例",
       parent: "4.2 Python 参考示例",
@@ -500,7 +500,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample/05_Ultralytics_YOLO11",
+    path: "/Algorithm_Application/Python_Sample/Ultralytics_YOLO11",
     zh: {
       title: "YOLO11 检测示例",
       parent: "4.2 Python 参考示例",
@@ -515,7 +515,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample/10_LaneNet",
+    path: "/Algorithm_Application/Python_Sample/LaneNet",
     zh: {
       title: "LaneNet 车道线示例",
       parent: "4.2 Python 参考示例",
@@ -530,7 +530,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample/12_PaddleOCR",
+    path: "/Algorithm_Application/Python_Sample/PaddleOCR",
     zh: {
       title: "PaddleOCR 示例",
       parent: "4.2 Python 参考示例",
@@ -545,7 +545,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/03_Python_Sample/16_rtsp_yolov5x_display",
+    path: "/Algorithm_Application/Python_Sample/rtsp_yolov5x_display",
     zh: {
       title: "RTSP 实时流推理示例",
       parent: "4.2 Python 参考示例",
@@ -560,7 +560,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Basic_Development/04_C++_Sample",
+    path: "/Basic_Development",
     zh: {
       title: "4.3 C++ 参考示例",
       parent: "4. 算法应用开发",
@@ -590,7 +590,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Application_case",
+    path: "/Application_case/intro",
     zh: {
       title: "6. 应用开发指南",
       parent: null,
@@ -620,7 +620,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/01_hardware_development",
+    path: "/hardware_development",
     zh: {
       title: "7.1 硬件开发指南",
       parent: "7. 进阶开发",
@@ -635,7 +635,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/02_linux_development",
+    path: "/linux_development",
     zh: {
       title: "7.2 Linux 开发指南",
       parent: "7. 进阶开发",
@@ -663,7 +663,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/03_multimedia_development",
+    path: "/03_multimedia_development",
     zh: {
       title: "7.3 多媒体开发指南",
       parent: "7. 进阶开发",
@@ -680,7 +680,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/04_toolchain_development",
+    path: "/04_toolchain_development",
     zh: {
       title: "7.4 算法工具链",
       parent: "7. 进阶开发",
@@ -695,7 +695,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/05_mcu_development",
+    path: "/05_MCU_development",
     zh: {
       title: "7.5 MCU 开发指南",
       parent: "7. 进阶开发",
@@ -712,7 +712,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/06_rdk_gen",
+    path: "/Advanced_development/rdk_gen",
     zh: {
       title: "7.6 构建系统开发指南（rdk_gen）",
       parent: "7. 进阶开发",
@@ -727,7 +727,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Advanced_development/07_vdsp_development",
+    path: "/Advanced_development/vdsp_development",
     zh: {
       title: "7.7 VDSP 开发指南",
       parent: "7. 进阶开发",
@@ -757,7 +757,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/01_hardware_and_system",
+    path: "/FAQ/hardware_and_system",
     zh: {
       title: "8.1 硬件、系统与环境",
       parent: "8. 常见问题（FAQ）",
@@ -772,7 +772,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/02_interface",
+    path: "/FAQ/interface",
     zh: {
       title: "8.2 接口、外设与驱动",
       parent: "8. 常见问题（FAQ）",
@@ -787,7 +787,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/03_applications_and_examples",
+    path: "/FAQ/applications_and_examples",
     zh: {
       title: "8.3 应用开发、编译与示例",
       parent: "8. 常见问题（FAQ）",
@@ -802,7 +802,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/04_multimedia",
+    path: "/FAQ/multimedia",
     zh: {
       title: "8.4 多媒体",
       parent: "8. 常见问题（FAQ）",
@@ -817,7 +817,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/05_toolchain",
+    path: "/FAQ/toolchain",
     zh: {
       title: "8.5 AI 模型与工具链",
       parent: "8. 常见问题（FAQ）",
@@ -832,7 +832,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/06_tros_ros",
+    path: "/FAQ/tros_ros",
     zh: {
       title: "8.6 TROS/ROS",
       parent: "8. 常见问题（FAQ）",
@@ -847,7 +847,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/FAQ/07_desktop_app",
+    path: "/FAQ/desktop_app",
     zh: {
       title: "8.7 桌面应用",
       parent: "8. 常见问题（FAQ）",
@@ -877,7 +877,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Appendix/rdk-command-manual",
+    path: "/Appendix/rdk-command-manual/cmd_devmem",
     zh: {
       title: "9.1 RDK 专属命令",
       parent: "9. 附录",
@@ -892,7 +892,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Appendix/linux-command-manual",
+    path: "/Appendix/linux-command-manual/cmd_apt",
     zh: {
       title: "9.2 Linux 命令手册",
       parent: "9. 附录",
@@ -907,7 +907,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Release_Note",
+    path: "/Release_Note/roadmap",
     zh: {
       title: "10. 版本发布",
       parent: null,
@@ -922,7 +922,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Release_Note/s100",
+    path: "/Release_Note/roadmap",
     zh: {
       title: "S100 版本发布",
       parent: "10. 版本发布",
@@ -937,7 +937,7 @@ export const RDK_S_CHAPTERS = [
     },
   },
   {
-    path: "/Release_Note/s600",
+    path: "/Release_Note/roadmap",
     zh: {
       title: "S600 版本发布",
       parent: "10. 版本发布",

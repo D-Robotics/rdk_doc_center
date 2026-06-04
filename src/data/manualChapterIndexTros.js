@@ -30,7 +30,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start",
+    path: "/Quick_start/preparation",
     zh: {
       title: "5.1 快速开始",
       parent: null,
@@ -45,7 +45,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/preparation",
+    path: "/Quick_start/preparation",
     zh: {
       title: "环境准备",
       parent: "5.1 快速开始",
@@ -60,7 +60,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/install_tros",
+    path: "/Quick_start/install_tros",
     zh: {
       title: "安装 tros.b",
       parent: "5.1 快速开始",
@@ -75,7 +75,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/cross_compile",
+    path: "/Quick_start/cross_compile",
     zh: {
       title: "源码安装与交叉编译",
       parent: "5.1 快速开始",
@@ -90,7 +90,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/hello_world",
+    path: "/Quick_start/hello_world",
     zh: {
       title: "Hello World",
       parent: "5.1 快速开始",
@@ -105,7 +105,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/ros_pkg",
+    path: "/Quick_start/ros_pkg",
     zh: {
       title: "ROS2 package 使用",
       parent: "5.1 快速开始",
@@ -120,7 +120,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_start/changelog",
+    path: "/Quick_start/changelog",
     zh: {
       title: "版本发布记录",
       parent: "5.1 快速开始",
@@ -135,7 +135,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/quick_demo",
+    path: "/quick_demo/demo_sensor",
     zh: {
       title: "5.2 快速示例",
       parent: null,
@@ -271,7 +271,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/boxs",
+    path: "/boxs/detection/yolo",
     zh: {
       title: "5.3 Boxs 算法仓库",
       parent: null,
@@ -826,7 +826,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/apps",
+    path: "/apps/slam",
     zh: {
       title: "5.4 Apps 应用示例",
       parent: null,
@@ -991,7 +991,7 @@ export const TROS_CHAPTERS = [
     },
   },
   {
-    path: "/tros_dev",
+    path: "/tros_dev/zero_copy",
     zh: {
       title: "5.5 tros 开发进阶",
       parent: null,

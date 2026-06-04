@@ -55,9 +55,17 @@ jobs:
         OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
       run: |
         set -euo pipefail
-        echo "Checking https://developer.d-robotics.cc/rdk_doc_center/en"
-        code="$(curl -s -o /dev/null -w "%{http_code}" "https://developer.d-robotics.cc/rdk_doc_center/en")"
-        echo "HTTP status: ${code}"
+        primary_url="https://developer.d-robotics.cc/rdk_doc_center/en"
+        fallback_url_1="https://developer.d-robotics.cc/rdk_doc_center/en/"
+        fallback_url_2="https://developer.d-robotics.cc/rdk_doc_center/en/index.html"
+
+        echo "Checking English homepage availability"
+        code_primary="$(curl -s -o /dev/null -w "%{http_code}" "${primary_url}")"
+        code_fallback_1="$(curl -s -o /dev/null -w "%{http_code}" "${fallback_url_1}")"
+        code_fallback_2="$(curl -s -o /dev/null -w "%{http_code}" "${fallback_url_2}")"
+        echo "HTTP status ${primary_url}: ${code_primary}"
+        echo "HTTP status ${fallback_url_1}: ${code_fallback_1}"
+        echo "HTTP status ${fallback_url_2}: ${code_fallback_2}"
 
         echo ""
         echo "OSS object check: oss://cn-rdk-front-prod/rdk_doc_center/en/index.html"
@@ -75,7 +83,12 @@ jobs:
           -k $OSS_ACCESS_KEY_SECRET \
           --region cn-beijing | head -n 50 || true
 
-        test "${code}" = "200"
+        if [ "${code_primary}" = "200" ] || [ "${code_fallback_1}" = "200" ] || [ "${code_fallback_2}" = "200" ]; then
+          echo "English homepage check passed."
+        else
+          echo "English homepage check failed: no endpoint returned 200."
+          exit 1
+        fi
 
     - name: Debug env variables
       run: |

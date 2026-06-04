@@ -33,7 +33,7 @@ const config = {
       attributes: {
         defer: "defer",
         src: "https://cloud.umami.is/script.js",
-        "data-website-id": "fbd84605-92b5-43f6-aa3e-4861b62ea8df",
+        "data-website-id": "b0c771b8-947e-4fa4-8880-606ecab89c36",
       },
     },
   ],

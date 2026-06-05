@@ -158,23 +158,23 @@ const DOC_CENTER_CONFIG = {
         // tags: ["User Manual"],
       },
     },
-    {
-      id: "product-rdk-manual",
-      categoryId: "products",
-      href: "https://developer.d-robotics.cc/rdk_s_doc/RDK",
-      zh: {
-        title: "RDK S 系列用户手册",
-        description: "RDK 套件是基于 D-Robotics 智能芯片打造的机器人开发者套件，本文档为 RDK 套件 S 系列的用户手册，为开发者提供关于 RDK S100、RDK S100P、RDK S600 等产品的使用说明和开发指导。",
-        // tags: ["用户手册"],
-      },
-      en: {
-        title: "RDK S Series User Manual",
-        // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
-        description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100, RDK S100P, and RDK S600.",
-        href: "https://developer.d-robotics.cc/rdk_s_doc/en/RDK",
-        tags: ["User Manual"],
-      },
-    },
+    // {
+    //   id: "product-rdk-manual",
+    //   categoryId: "products",
+    //   href: "https://developer.d-robotics.cc/rdk_s_doc/RDK",
+    //   zh: {
+    //     title: "RDK S 系列用户手册",
+    //     description: "RDK 套件是基于 D-Robotics 智能芯片打造的机器人开发者套件，本文档为 RDK 套件 S 系列的用户手册，为开发者提供关于 RDK S100、RDK S100P、RDK S600 等产品的使用说明和开发指导。",
+    //     // tags: ["用户手册"],
+    //   },
+    //   en: {
+    //     title: "RDK S Series User Manual",
+    //     // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
+    //     description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100, RDK S100P, and RDK S600.",
+    //     href: "https://developer.d-robotics.cc/rdk_s_doc/en/RDK",
+    //     tags: ["User Manual"],
+    //   },
+    // },
     {
       id: "system-software-sdk",
       categoryId: "system-software",

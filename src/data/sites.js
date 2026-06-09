@@ -221,7 +221,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Model Zoo X Series User Manual",
         description: "This document serves as a specialized guide for the algorithm development module of the RDK suite, providing developers with case studies and interface descriptions for algorithm application development.",
-        href: "https://developer.d-robotics.cc/model_zoo_doc/en/model_zoo_intro/",
+        href: "https://developer.d-robotics.cc/model_zoo_doc/en/model_zoo_intro",
       },
     },
     {

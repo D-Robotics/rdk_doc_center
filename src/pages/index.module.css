@@ -405,6 +405,11 @@
     padding: 2.25rem 0 2rem;
   }
 
+  .heroTitle {
+    font-size: 1.7rem;
+    line-height: 1.25;
+  }
+
   .heroInner {
     padding: 0 0.325rem;
   }
@@ -422,19 +427,29 @@
 
   .heroSubtitle {
     margin-bottom: 1.35rem;
+    font-size: 0.92rem;
+    line-height: 1.62;
   }
 
   .heroSearch {
     margin-bottom: 1rem;
   }
 
+  .heroSearchInput {
+    font-size: 16px;
+    padding: 0.78rem 1rem 0.78rem 2.55rem;
+  }
+
   .heroNav {
     gap: 0.45rem;
+    justify-content: flex-start;
   }
 
   .heroNavItem {
     font-size: 0.82rem;
     padding: 0.42rem 0.8rem;
+    white-space: normal;
+    text-align: center;
   }
 
   .main {
@@ -442,8 +457,43 @@
     gap: 2.75rem;
   }
 
+  .sectionHeader {
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
   .sectionSubtitle {
     padding-left: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    padding: 1.9rem 0 1.8rem;
+  }
+
+  .heroTitle {
+    font-size: 1.52rem;
+  }
+
+  .heroActions {
+    width: 100%;
+  }
+
+  .heroActionBtn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .main {
+    padding-bottom: 3rem;
+    gap: 2.2rem;
   }
 }
 

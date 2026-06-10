@@ -85,6 +85,47 @@ body {
   margin-right: auto !important;
 }
 
+@media (max-width: 996px) {
+  .home-page-content {
+    max-width: calc(100vw - 36px) !important;
+  }
+
+  .navbar__brand {
+    min-width: 0;
+  }
+
+  .navbar__title {
+    max-width: 12rem;
+    font-size: 0.98rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-page-content {
+    max-width: calc(100vw - 20px) !important;
+  }
+
+  .navbar__logo {
+    width: 28px;
+    height: 28px;
+    margin-right: 0.35rem;
+  }
+
+  .navbar__logo img,
+  .navbar__logo picture {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar__title {
+    max-width: 9.5rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /* navbar 版本下拉：默认全部隐藏，只在对应子站 docs 页面显示             */
 /* Docusaurus 会给 docs 页面的 body 加 plugin-id-<pluginId> 类；        */

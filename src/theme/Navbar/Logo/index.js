@@ -35,13 +35,15 @@ export default function NavbarLogo() {
   } = useThemeConfig();
 
   const title = isEnglish ? 'Resource Center' : '资料中心';
+  const docCenterUrl = isEnglish
+    ? 'https://d-robotics.github.io/rdk_doc_center/en/'
+    : 'https://developer.d-robotics.cc/rdk_doc_center/';
 
   const fallbackAlt = logo?.alt ?? title;
   const alt = logo?.alt ?? fallbackAlt;
 
-  // 使用文档站点首页（自动包含 baseUrl 与当前语言前缀）。勿写死 /rdk_doc_filter/ 等路径，否则会 404。
   return (
-    <Link to="/" className="navbar__brand">
+    <Link href={docCenterUrl} className="navbar__brand">
       {logo && (
         <LogoThemedImage
           logo={logo}

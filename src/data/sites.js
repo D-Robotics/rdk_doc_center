@@ -154,7 +154,7 @@ const DOC_CENTER_CONFIG = {
         title: "RDK X3/X5 User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://developer.d-robotics.cc/rdk_x_doc/en/RDK",
+        href: "https://d-robotics.github.io/rdk_x_doc/en/RDK/",
         // tags: ["User Manual"],
       },
     },
@@ -171,7 +171,7 @@ const DOC_CENTER_CONFIG = {
         title: "RDK S Series User Manual",
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100 and RDK S100P .",
-        href: "https://developer.d-robotics.cc/rdk_s_doc/en/RDK",
+        href: "https://d-robotics.github.io/rdk_s_doc/en/RDK",
         tags: ["User Manual"],
       },
     },
@@ -206,7 +206,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "TogetheROS.Bot User Manual",
         description: "This document serves as the core development guide for the RDK robot platform, providing developers with comprehensive guidance for robot application development based on the TogetheROS.Bot operating system. It helps ecosystem developers efficiently and conveniently create competitive intelligent robot products.",
-        href: "https://developer.d-robotics.cc/tros_doc/en/tros",
+        href: "https://d-robotics.github.io/tros_doc/en/tros/",
         // tags: ["Multi-platform"],
       },
     },
@@ -221,7 +221,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Model Zoo X Series User Manual",
         description: "This document serves as a specialized guide for the algorithm development module of the RDK suite, providing developers with case studies and interface descriptions for algorithm application development.",
-        href: "https://developer.d-robotics.cc/model_zoo_doc/en/model_zoo_intro",
+        href: "https://d-robotics.github.io/model_zoo_doc/en/model_zoo_intro/",
       },
     },
     {
@@ -239,7 +239,7 @@ const DOC_CENTER_CONFIG = {
         title: "Application Development Examples User Manual",
         // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://developer.d-robotics.cc/samples_doc/en/intro",
+        href: "https://d-robotics.github.io/samples_doc/en/intro/",
       },
     },
     {
@@ -253,7 +253,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "RDK Magicbox User Manual",
         description: "This document serves as the user manual for the RDK X5 Magicbox multi-modal intelligent platform, providing developers with usage instructions and development guidelines on various aspects of the product, including dual-camera, movable arm, light strip interaction, voice function, system pre-installed case, and more.",
-        href: "https://developer.d-robotics.cc/magicbox_doc/en/magicbox",
+        href: "https://d-robotics.github.io/magicbox_doc/en/magicbox/",
       },
     },
     {
@@ -268,7 +268,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Accessories User Manual",
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://developer.d-robotics.cc/accessories_doc/en/intro",
+        href: "https://d-robotics.github.io/accessories_doc/en/intro/",
       },
     },
     {
@@ -282,7 +282,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "RDK Studio User Manual",
         description: "RDK Studio is an AI-native desktop workspace for robot development. It puts Moss dialog, project workspace, device connection, remote development, burning, local model, and board-side Agent in the same native window.",
-        href: "https://developer.d-robotics.cc/rdk_studio_doc/en/category/1-product-intro",
+        href: "https://d-robotics.github.io/rdk_studio_doc/en/category/1-product-intro/",
       },
     },
     {
@@ -297,7 +297,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "Xburn User Manual",
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://developer.d-robotics.cc/xburn_doc/en/intro",
+        href: "https://d-robotics.github.io/xburn_doc/en/intro",
       },
     },
     {

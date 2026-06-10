@@ -172,7 +172,7 @@ const DOC_CENTER_CONFIG = {
         // description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK X3, RDK X3 Module, RDK X5 and  RDK X5 Module. ",
         description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100 and RDK S100P .",
         href: "https://d-robotics.github.io/rdk_s_doc/en/RDK",
-        tags: ["User Manual"],
+        // tags: ["User Manual"],
       },
     },
     {

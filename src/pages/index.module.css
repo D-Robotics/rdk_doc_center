@@ -309,34 +309,7 @@
 
 .section {
   scroll-margin-top: 5rem;
-  animation: sectionFadeIn 0.55s ease both;
-}
-
-.section:nth-child(2) {
-  animation-delay: 0.06s;
-}
-
-.section:nth-child(3) {
-  animation-delay: 0.12s;
-}
-
-.section:nth-child(4) {
-  animation-delay: 0.18s;
-}
-
-.section:nth-child(n + 5) {
-  animation-delay: 0.24s;
-}
-
-@keyframes sectionFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: none;
 }
 
 .sectionHeader {

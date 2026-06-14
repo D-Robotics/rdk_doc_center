@@ -120,7 +120,10 @@ const config = {
         },
         items: [
           {
-            href: "https://developer.d-robotics.cc/",
+            href:
+              process.env.DOCUSAURUS_CURRENT_LOCALE === "en"
+                ? "https://developer.d-robotics.cc/en"
+                : "https://developer.d-robotics.cc/",
             label: "Community",
             position: "left",
           },
@@ -157,7 +160,7 @@ const config = {
                 href: "https://github.com/D-Robotics",
               },
               {
-                label: "BiLiBiLi",
+                label: "Bilibili",
                 href: (() => {
                   if (process.env.DOCUSAURUS_CURRENT_LOCALE === "en") {
                     return "https://www.youtube.com/@D-Robotics";

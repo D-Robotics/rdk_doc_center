@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useHistory, useLocation } from "@docusaurus/router";
 import { groups, sitesByGroup, groupsEn, sites, sitesEn } from "@site/src/data/sites";
 import SiteCard from "@site/src/components/SiteCard";
 import SectionIcon from "@site/src/components/SectionIcon";
@@ -226,9 +225,7 @@ function SearchResults({ query, chapterHits, manualHits, total }) {
 }
 
 export default function Home() {
-  const { i18n, siteConfig } = useDocusaurusContext();
-  const history = useHistory();
-  const location = useLocation();
+  const { i18n } = useDocusaurusContext();
   const [searchQuery, setSearchQuery] = useState("");
   const isEnglish = i18n.currentLocale === "en";
   const currentGroups = isEnglish ? groupsEn : groups;
@@ -259,14 +256,6 @@ export default function Home() {
     [searchQuery, isEnglish, currentSites, grouped, groupsMap],
   );
   const isSearching = Boolean(searchQuery.trim());
-
-  useEffect(() => {
-    const normalized = location.pathname.replace(/\/+$/, "");
-    const enRoot = `${siteConfig.baseUrl}en`.replace(/\/+$/, "");
-    if (normalized === enRoot) {
-      history.replace(siteConfig.baseUrl);
-    }
-  }, [location.pathname, history, siteConfig.baseUrl]);
 
   return (
     <Layout

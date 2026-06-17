@@ -7,7 +7,10 @@
   function normalizeEnglishPath() {
     const p = window.location.pathname;
     if (p === EN_WITH_SLASH || p === EN_INDEX) {
-      window.location.replace(EN_NO_SLASH + window.location.search + window.location.hash);
+      const canonical =
+        EN_NO_SLASH + window.location.search + window.location.hash;
+      // Use replaceState to avoid full page reload loops on GitHub Pages.
+      window.history.replaceState(null, "", canonical);
       return true;
     }
     return false;

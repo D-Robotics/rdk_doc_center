@@ -1,4 +1,9 @@
 (() => {
+  // This fix is only needed behind the production gateway.
+  if (window.location.hostname !== "developer.d-robotics.cc") {
+    return;
+  }
+
   const BASE = "/rdk_doc_center";
   const EN_NO_SLASH = `${BASE}/en`;
   const EN_WITH_SLASH = `${BASE}/en/`;

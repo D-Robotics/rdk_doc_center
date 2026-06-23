@@ -8,13 +8,41 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - name: Tune Git for unstable network
+      run: |
+        git config --global http.postBuffer 524288000
+        git config --global http.version HTTP/1.1
+        git config --global http.lowSpeedLimit 1000
+        git config --global http.lowSpeedTime 600
 
-    - name: Setup Node.js
+    - name: Checkout repository
+      id: checkout
+      uses: actions/checkout@v4
+      continue-on-error: true
+      timeout-minutes: 15
+
+    - name: Retry checkout repository
+      if: steps.checkout.outcome != 'success'
+      uses: actions/checkout@v4
+      timeout-minutes: 15
+
+    - name: Detect local Node.js on runner
+      id: detect_node
+      run: |
+        if command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+          echo "has_node=true" >> "$GITHUB_OUTPUT"
+          echo "Using local Node.js:"
+          node -v
+          npm -v
+        else
+          echo "has_node=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Setup Node.js (fallback)
+      if: steps.detect_node.outputs.has_node != 'true'
       uses: actions/setup-node@v4
       with:
         node-version: '24'  # 使用 Node.js 24 版本
@@ -26,69 +54,6 @@ jobs:
 
     - name: Build Docusaurus site
       run: npm run build
-
-    - name: Setup ossutil v2
-      run: |
-        curl -o ossutil.zip https://gosspublic.alicdn.com/ossutil/v2/2.1.2/ossutil-2.1.2-linux-amd64.zip
-        unzip ossutil.zip
-        cd ossutil-2.1.2-linux-amd64
-        chmod 755 ossutil
-        sudo mv ossutil /usr/local/bin/ossutil
-        ossutil version
-
-    - name: Upload build to OSS (zh + en)
-      env:
-        OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-        OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-      run: |
-        ossutil cp -r build/ oss://cn-rdk-front-prod/rdk_doc_center/ \
-          -e https://oss-cn-beijing.aliyuncs.com \
-          -i $OSS_ACCESS_KEY_ID \
-          -k $OSS_ACCESS_KEY_SECRET \
-          --region cn-beijing \
-          --update \
-          --retry-times=3
-
-    - name: Verify English homepage on OSS (diagnostic)
-      env:
-        OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-        OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-      run: |
-        set -euo pipefail
-        primary_url="https://developer.d-robotics.cc/rdk_doc_center/en"
-        fallback_url_1="https://developer.d-robotics.cc/rdk_doc_center/en/"
-        fallback_url_2="https://developer.d-robotics.cc/rdk_doc_center/en/index.html"
-
-        echo "Checking English homepage availability"
-        code_primary="$(curl -s -o /dev/null -w "%{http_code}" "${primary_url}")"
-        code_fallback_1="$(curl -s -o /dev/null -w "%{http_code}" "${fallback_url_1}")"
-        code_fallback_2="$(curl -s -o /dev/null -w "%{http_code}" "${fallback_url_2}")"
-        echo "HTTP status ${primary_url}: ${code_primary}"
-        echo "HTTP status ${fallback_url_1}: ${code_fallback_1}"
-        echo "HTTP status ${fallback_url_2}: ${code_fallback_2}"
-
-        echo ""
-        echo "OSS object check: oss://cn-rdk-front-prod/rdk_doc_center/en/index.html"
-        ossutil ls oss://cn-rdk-front-prod/rdk_doc_center/en/index.html \
-          -e https://oss-cn-beijing.aliyuncs.com \
-          -i $OSS_ACCESS_KEY_ID \
-          -k $OSS_ACCESS_KEY_SECRET \
-          --region cn-beijing
-
-        echo ""
-        echo "OSS directory sample: oss://cn-rdk-front-prod/rdk_doc_center/en/"
-        ossutil ls oss://cn-rdk-front-prod/rdk_doc_center/en/ \
-          -e https://oss-cn-beijing.aliyuncs.com \
-          -i $OSS_ACCESS_KEY_ID \
-          -k $OSS_ACCESS_KEY_SECRET \
-          --region cn-beijing | head -n 50 || true
-
-        if [ "${code_primary}" = "200" ] || [ "${code_fallback_1}" = "200" ] || [ "${code_fallback_2}" = "200" ]; then
-          echo "English homepage check passed."
-        else
-          echo "English homepage check failed: no endpoint returned 200."
-          exit 1
-        fi
 
     - name: Debug env variables
       run: |

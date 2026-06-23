@@ -215,11 +215,11 @@ const DOC_CENTER_CONFIG = {
       categoryId: "model-zoo",
       href: "https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro",
       zh: {
-        title: "Model Zoo X 系列用户手册",
+        title: "Model Zoo 用户手册",
         description: "本文档作为 RDK 套件算法开发模块的专题指南，为开发者提供关于算法应用开发的案例与接口说明。",
       },
       en: {
-        title: "Model Zoo X Series User Manual",
+        title: "Model Zoo User Manual",
         description: "This document serves as a specialized guide for the algorithm development module of the RDK suite, providing developers with case studies and interface descriptions for algorithm application development.",
         href: "https://d-robotics.github.io/model_zoo_doc/en/model_zoo_intro/",
       },

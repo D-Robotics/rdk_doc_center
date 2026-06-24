@@ -227,19 +227,19 @@ const DOC_CENTER_CONFIG = {
     {
       id: "examples",
       categoryId: "examples",
-      pendingRelease: true,
-      href: "https://developer.d-robotics.cc/samples_doc/intro",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/case_doc/case",
       zh: {
-        title: "应用开发示例用户手册",
-        // description: "本文档作为 RDK 应用示例集合，为开发者提供多个应用开发实践方向。",
-        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+        title: "RDK S600 应用案例用户手册",
+        description: "本文档汇总 RDK S600 平台典型应用案例，从基础外设接入到端侧 AI 推理，再到多模态交互与具身智能，按难度递进组织，便于快速上手并逐层深入。",
+        // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
 
       },
       en: {
-        title: "Application Development Examples User Manual",
+        title: "RDK S600 Application Cases User Manual",
         // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
-        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://d-robotics.github.io/samples_doc/en/intro/",
+        description: "This documentation collects typical application cases for the RDK S600 platform, organized by difficulty from basic peripheral integration to on-device AI inference, multimodal interaction, and embodied intelligence—helping you get started quickly and dive deeper step by step.",
+        href: "https://d-robotics.github.io/case_doc/en/case/",
       },
     },
     {
@@ -259,16 +259,16 @@ const DOC_CENTER_CONFIG = {
     {
       id: "accessories",
       categoryId: "accessories",
-      pendingRelease: true,
-      href: "https://developer.d-robotics.cc/accessories_doc/intro",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/accessories_doc/accessories",
       zh: {
-        title: "生态配件用户手册",
-        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+        title: "RDK 配件用户手册",
+        description: "RDK 配件文档汇总 D-Robotics RDK 开发者套件配套硬件模组的使用说明，帮助开发者快速完成选型、安装与点亮。",
       },
       en: {
-        title: "Accessories User Manual",
-        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://d-robotics.github.io/accessories_doc/en/intro/",
+        title: "RDK Accessories User Manual",
+        description: "The RDK Accessories Documentation collects usage guides for hardware modules that ship with D-Robotics RDK developer kits, helping developers quickly complete product selection, installation and bring-up. ",
+        href: "https://d-robotics.github.io/accessories_doc/en/accessories",
       },
     },
     {

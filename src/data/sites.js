@@ -304,7 +304,7 @@ const DOC_CENTER_CONFIG = {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
       // pendingRelease: true,
-      href: "https://toolchain.d-robotics.cc/",
+      href: "https://toolchain.d-robotics.cc/guide/doc_introduction.html",
       zh: {
         title: "RDK S 系列产品算法工具链用户手册",
         description: "本文档适用于使用地瓜S100、S100P、S600计算平台的所有开发者，为您提供全方位的开发过程指导，为您能够充分了解整体的使用过程。",
@@ -312,7 +312,7 @@ const DOC_CENTER_CONFIG = {
       en: {
         title: "RDK S Series Product Algorithm Toolchain User Manual",
         description: "This document is applicable to all developers using the D-Robotics S100, S100P, and S600 computing platforms, providing comprehensive development process guidance to help you fully understand the entire usage process.",
-        href: "https://toolchain.d-robotics.cc/en/index.html",
+        href: "https://toolchain.d-robotics.cc/en/guide/doc_introduction.html",
       },
     },
   ],

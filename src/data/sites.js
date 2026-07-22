@@ -138,7 +138,21 @@ const DOC_CENTER_CONFIG = {
         navTitle: "Algorithm Toolchain",
       },
     },
-    
+    {
+      id: "notifications",
+      anchor: "notifications",
+      accent: "#ff5125",
+      icon: "manual",
+      zh: {
+        title: "通知文件",
+        navTitle: "产品通知",
+      },
+      en: {
+        title: "Notice Files",
+        navTitle: "Notices",
+      },
+    },
+
   ],
   entries: [
     {
@@ -288,16 +302,15 @@ const DOC_CENTER_CONFIG = {
     {
       id: "software-xburn",
       categoryId: "software",
-      pendingRelease: true,
-      href: "https://developer.d-robotics.cc/xburn_doc/intro",
+      href: "https://developer.d-robotics.cc/xburn_doc/overview",
       zh: {
-        title: "Xburn 用户手册",
-        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+        title: "XBurn 用户手册",
+        description: "XBurn 是 D-Robotics 面向 RDK 系列设备的板级烧录工具，运行在 PC 端（Windows/Linux/macOS），用于固件烧录与备份，适用于 RDK S100、RDK S600、RDK X5、RDK X5 Module。",
       },
       en: {
-        title: "Xburn User Manual",
-        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!.",
-        href: "https://d-robotics.github.io/xburn_doc/en/intro",
+        title: "XBurn User Manual",
+        description: "XBurn is a D-Robotics board-level flashing tool that runs on a PC (Windows/Linux/macOS) for firmware flashing and backup. It supports RDK S100, RDK S600, RDK X5, and RDK X5 Module.",
+        href: "https://developer.d-robotics.cc/xburn_doc/en/overview",
       },
     },
     {
@@ -313,6 +326,20 @@ const DOC_CENTER_CONFIG = {
         title: "RDK S Series Product Algorithm Toolchain User Manual",
         description: "This document is applicable to all developers using the D-Robotics S100, S100P, and S600 computing platforms, providing comprehensive development process guidance to help you fully understand the entire usage process.",
         href: "https://toolchain.d-robotics.cc/en/guide/doc_introduction.html",
+      },
+    },
+    {
+      id: "product-notice-archive",
+      categoryId: "notifications",
+      // 站内路由（非 http 外链）：SiteCard 据此用 <Link to> 站内跳转
+      href: "/notifications",
+      zh: {
+        title: "产品通知",
+        description: "记录硬件产品的变更通知（PCN）、停产通知（PDN）与告知（PAN），长期留存、可追溯查询。",
+      },
+      en: {
+        title: "Product Notices",
+        description: "Records of hardware product change notifications (PCN), discontinuation notices (PDN), and advisory notices (PAN). Retained long-term and traceable.",
       },
     },
   ],

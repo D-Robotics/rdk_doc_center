@@ -1,0 +1,42 @@
+/* 通知页样式（占位版）。
+ * 产品通知正式上线前，本页只渲染标题 + 「准备中」说明，仅用以下几个类。
+ * 正式上线替换为真通知页时，本文件会一并被真版本（含表格/徽章样式）替换。
+ */
+
+.main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+
+.pageHeader {
+  margin-bottom: 1.5rem;
+}
+
+.pageTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.pageIntro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 2rem 1rem 3rem;
+  }
+  .pageTitle {
+    font-size: 1.7rem;
+  }
+  .pageIntro {
+    font-size: 1rem;
+  }
+}
+
+:global(html[data-theme="dark"]) .pageIntro {
+  opacity: 0.8;
+}

@@ -331,15 +331,17 @@ const DOC_CENTER_CONFIG = {
     {
       id: "product-notice-archive",
       categoryId: "notifications",
-      // 站内路由（非 http 外链）：SiteCard 据此用 <Link to> 站内跳转
+      // 占位态：待正式上线。pendingRelease 时 SiteCard 不跳转，弹「准备中」对话框。
+      // href 保留站内路由，正式上线时去掉 pendingRelease 即恢复跳转到 /notifications。
+      pendingRelease: true,
       href: "/notifications",
       zh: {
         title: "产品通知",
-        description: "记录硬件产品的变更通知（PCN）、停产通知（PDN）与告知（PAN），长期留存、可追溯查询。",
+        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
       },
       en: {
         title: "Product Notices",
-        description: "Records of hardware product change notifications (PCN), discontinuation notices (PDN), and advisory notices (PAN). Retained long-term and traceable.",
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
       },
     },
   ],

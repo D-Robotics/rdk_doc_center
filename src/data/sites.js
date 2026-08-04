@@ -6,6 +6,7 @@
  * - 新增/删除文档入口：修改 DOC_CENTER_CONFIG.entries
  * - 首页、分组锚点、卡片数据均由该配置自动派生
  * - pendingRelease: true 时点击卡片仅提示「文档正在准备中，暂未上架。感谢您的关注与耐心等待！」，不跳转
+ *   可写在 entry 根级（中英文同时生效），也可写在 zh/en 下单独控制某一语言
  * - RDK X / RDK S / TROS / Magicbox / 算法工具链(OE) / RDK Studio 章节简介搜索索引见 manualChapterIndex*.js
  */
 const DOC_CENTER_CONFIG = {
@@ -192,13 +193,13 @@ const DOC_CENTER_CONFIG = {
     {
       id: "system-software-sdk",
       categoryId: "system-software",
-      pendingRelease: true,
-      href: "https://developer.d-robotics.cc/sdk_doc/intro",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/x5_sdk_doc/",
       zh: {
         title: "RDK X5 SDK 用户手册",
-        // description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
+        description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
         // tags: ["系统软件"],
-        description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+        // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
       },
       en: {
         title: "RDK X5 SDK User Manual",
@@ -206,6 +207,7 @@ const DOC_CENTER_CONFIG = {
         href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
         // tags: ["System Software"],
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
+        pendingRelease: true,
       },
     },
     {
@@ -363,6 +365,10 @@ function toGroup(category, locale) {
 function toSite(entry, locale) {
   const i18n = entry[locale];
   const href = i18n.href || entry.href;
+  const pendingRelease =
+    typeof i18n.pendingRelease === "boolean"
+      ? i18n.pendingRelease
+      : Boolean(entry.pendingRelease);
   return {
     id: entry.id,
     group: entry.categoryId,
@@ -371,7 +377,7 @@ function toSite(entry, locale) {
     href,
     tags: i18n.tags || [],
     external: /^https?:\/\//.test(href),
-    pendingRelease: Boolean(entry.pendingRelease),
+    pendingRelease,
   };
 }
 

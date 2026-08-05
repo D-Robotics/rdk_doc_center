@@ -259,18 +259,33 @@ const DOC_CENTER_CONFIG = {
       },
     },
     {
-      id: "accessories",
+      id: "accessories-stereo-camera",
       categoryId: "accessories",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/accessories_doc/accessories",
+      href: "https://developer.d-robotics.cc/accessories_stereo_camera_doc/overview",
       zh: {
-        title: "RDK 配件用户手册",
-        description: "RDK 配件文档汇总 D-Robotics RDK 开发者套件配套硬件模组的使用说明，帮助开发者快速完成选型、安装与点亮。",
+        title: "双目摄像头用户手册",
+        description: "本文档作为双目摄像头模组的用户手册，为开发者提供产品的使用说明和开发指南。",
       },
       en: {
-        title: "RDK Accessories User Manual",
-        description: "The RDK Accessories Documentation collects usage guides for hardware modules that ship with D-Robotics RDK developer kits, helping developers quickly complete product selection, installation and bring-up. ",
-        href: "https://d-robotics.github.io/accessories_doc/en/accessories",
+        title: "RDK Stereo Camera User Manual",
+        description: "This document serves as the user manual for the stereo camera module, providing developers with usage instructions and development guidelines on various aspects of the product.",
+        href: "https://d-robotics.github.io/accessories_stereo_camera_doc/en/overview/",
+      },
+    },
+    {
+      id: "accessories_bmi088",
+      categoryId: "accessories",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/accessories_bmi088_doc/introduction",
+      zh: {
+        title: "BMI088 IMU 模组用户手册",
+        description: "本文档作为 BMI088 模组的用户手册，为开发者提供产品的使用说明和开发指南。",
+      },
+      en: {
+        title: "RDK BMI088 IMU Module User Manual",
+        description: "This document serves as the user manual for the BMI088 IMU module, providing developers with usage instructions and development guidelines on various aspects of the product.",
+        href: "https://d-robotics.github.io/accessories_bmi088_doc/en/introduction",
       },
     },
     {

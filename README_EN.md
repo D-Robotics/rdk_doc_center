@@ -12,7 +12,7 @@ D-Robotics **RDK Documentation Center** portal site: Provides multilingual homep
 ## Feature Overview
 
 - **Documentation Entry Aggregation**: Display manual cards for RDK X/S, SDK, TROS, Model Zoo, examples, accessories, software, algorithm toolchain, etc., categorized for easy browsing
-- **Search**: Search indexed manual sections from the homepage search box
+- **Search**: Homepage search queries an Algolia federated index (full-text + section anchors); card title/description still match locally
 - **Bilingual Portal**: Language toggle in the navigation bar; Chinese/English text is maintained separately in the configuration
 - **External Link Redirects**: Card `href` points to various sub-sites (e.g., `developer.d-robotics.cc`); when `pendingRelease: true`, only a "not yet released" message is shown
 - **Feedback Overlay**: Configurable questionnaire entry on the homepage and English homepage (see `docusaurus.config.js` → `customFields.feedbackFloat`)
@@ -61,15 +61,3 @@ The sole configuration source: [`src/data/sites.js`](src/data/sites.js)
 
 After modification, homepage groups and cards update automatically without changing page code.
 
-### Search Indexes
-
-Sections from various sub-sites are used for homepage search and maintained separately by manual:
-
-| File | Corresponding Manual |
-| --- | --- |
-| `manualChapterIndex.js` | RDK X |
-| `manualChapterIndexRdkS.js` | RDK S |
-| `manualChapterIndexTros.js` | TROS |
-| `manualChapterIndexMagicbox.js` | Magicbox |
-| `manualChapterIndexOe.js` | Algorithm Toolchain |
-| `manualChapterIndexStudio.js` | RDK Studio |

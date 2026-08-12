@@ -19,21 +19,28 @@ jobs:
         rm -rf node_modules
         npm ci
 
+    # Frontend only: App ID + Search-Only key (never Admin / Write key here)
     - name: Build Docusaurus site
+      env:
+        ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+        # Index name is not confidential; default matches docusaurus.config.js
+        ALGOLIA_INDEX_NAME: ${{ vars.ALGOLIA_INDEX_NAME || 'rdk_doc_center' }}
       run: npm run build
 
-    - name: Debug env variables
-      run: |
-        echo "GIT_USER: ${{ secrets.GITHUB_ACTOR }}"
-        echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-        echo "GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}"
+    # Admin key scoped to this step only — do not echo or pass to build/deploy
+    - name: Update Algolia index
+      env:
+        ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+        ALGOLIA_INDEX_NAME: ${{ vars.ALGOLIA_INDEX_NAME || 'rdk_doc_center' }}
+      run: npm run algolia:index
 
-        
     - name: Set up Git config
       run: |
         git config --global user.email "liql01@qq.com"
         git config --global user.name "liqinglian01"
-        
+
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh

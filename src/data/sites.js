@@ -7,9 +7,10 @@
  * - 首页、分组锚点、卡片数据均由该配置自动派生
  * - pendingRelease: true 时点击卡片仅提示「文档正在准备中，暂未上架。感谢您的关注与耐心等待！」，不跳转
  *   可写在 entry 根级（中英文同时生效），也可写在 zh/en 下单独控制某一语言
- * - RDK X / RDK S / TROS / Magicbox / 算法工具链(OE) / RDK Studio 章节简介搜索索引见 manualChapterIndex*.js
+ * - 首页全文搜索由 Algolia 联邦索引提供（见 algoliaSites.js / scripts/algolia-index.mjs）
+ * - manualChapterIndex*.js 为历史章节摘要索引，已不再用于搜索路径
  */
-const DOC_CENTER_CONFIG = {
+export const DOC_CENTER_CONFIG = {
   categories: [
     {
       id: "products",

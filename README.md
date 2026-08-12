@@ -13,7 +13,7 @@ D-Robotics **RDK 文档中心**门户站点：提供多语言首页、文档入�
 ## 功能概览
 
 - **文档入口聚合**：按分类展示 RDK X/S、SDK、TROS、Model Zoo、示例、配件、软件、算法工具链等手册卡片
-- **搜索**：在首页搜索框检索已索引手册章节
+- **搜索**：首页搜索框通过 Algolia 联邦索引检索各子站正文与章节锚点（卡片标题/描述仍本地匹配）
 - **双语门户**：导航栏语言切换；中文/英文文案在配置中分别维护
 - **外链跳转**：卡片 `href` 指向各子站（`developer.d-robotics.cc` 等），`pendingRelease: true` 时仅提示未上架
 - **反馈浮层**：首页与英文首页可配置问卷入口（见 `docusaurus.config.js` → `customFields.feedbackFloat`）
@@ -63,17 +63,6 @@ npm run serve
 
 修改后首页分组与卡片会自动更新，无需改页面代码。
 
-### 搜索索引
 
-各子站章节用于首页搜索，按手册拆分维护：
-
-| 文件 | 对应手册 |
-| --- | --- |
-| `manualChapterIndex.js` | RDK X |
-| `manualChapterIndexRdkS.js` | RDK S |
-| `manualChapterIndexTros.js` | TROS |
-| `manualChapterIndexMagicbox.js` | Magicbox |
-| `manualChapterIndexOe.js` | 算法工具链 |
-| `manualChapterIndexStudio.js` | RDK Studio |
 
 

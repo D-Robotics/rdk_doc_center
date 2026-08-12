@@ -1,6 +1,8 @@
 /**
- * 手册章节搜索索引（与卡片 description 分离，专供首页搜索）。
- * 维护：path 须与线上子站侧栏 slug 一致（如 rdk_x_doc 烧录为 /install_os/rdk_x3，非旧版 Quick_start/install_os）。
+ * 历史：手册章节摘要索引（曾用于首页本地搜索）。
+ * 首页搜索已改由 Algolia 联邦索引提供（见 algoliaSites.js / scripts/algolia-index.mjs），
+ * 本文件及 manualChapterIndex*.js 不再接入搜索路径，仅保留供对照/迁移。
+ * 维护：path 须与线上子站侧栏 slug 一致（如 rdk_x_doc 烧录为 /install_os/rdk_x3）。
  */
 import { MAGICBOX_CHAPTERS } from "./manualChapterIndexMagicbox";
 import { OE_CHAPTERS } from "./manualChapterIndexOe";

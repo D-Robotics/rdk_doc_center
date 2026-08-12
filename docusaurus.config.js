@@ -38,6 +38,23 @@ const config = {
     },
   ],
   customFields: {
+    // Portal federated search — ONLY Search-Only key + App ID (shipped to browser).
+    // NEVER set ALGOLIA_ADMIN_API_KEY here or in any client bundle.
+    // Local: .env (gitignored). CI: GitHub Secrets → build job env only.
+    algolia: {
+      appId: process.env.ALGOLIA_APP_ID || "",
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY || "",
+      // Not confidential; phase-2: multi-index via searchIndexes / ALGOLIA_SEARCH_INDEXES
+      indexName: process.env.ALGOLIA_INDEX_NAME || "rdk_doc_center",
+      searchIndexes: (
+        process.env.ALGOLIA_SEARCH_INDEXES ||
+        process.env.ALGOLIA_INDEX_NAME ||
+        "rdk_doc_center"
+      )
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+    },
     feedbackFloat: {
       enabled: true,
       questionnaireUrl: "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",

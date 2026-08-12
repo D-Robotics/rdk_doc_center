@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -8,6 +8,8 @@ import SectionIcon from "@site/src/components/SectionIcon";
 import ChapterSearchHit from "@site/src/components/ChapterSearchHit";
 import { searchDocCenter } from "@site/src/utils/docCenterSearch";
 import styles from "./index.module.css";
+
+const EMPTY_SEARCH = { chapterHits: [], manualHits: [], total: 0 };
 
 function SearchIcon({ className }) {
   return (
@@ -148,7 +150,7 @@ function filterGrouped(grouped, query) {
   return filtered;
 }
 
-function SearchResults({ query, chapterHits, manualHits, total }) {
+function SearchResults({ query, chapterHits, manualHits, total, loading }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
   const normalized = query.trim();
@@ -163,12 +165,20 @@ function SearchResults({ query, chapterHits, manualHits, total }) {
           {isEnglish ? "Search Results" : "搜索结果"}
         </h2>
         <span className={styles.searchResultsCount}>
-          {isEnglish
-            ? `${total} result(s) (${chapterHits.length} chapter, ${manualHits.length} manual)`
-            : `共 ${total} 条（章节 ${chapterHits.length} · 手册 ${manualHits.length}）`}
+          {loading
+            ? isEnglish
+              ? "Searching…"
+              : "搜索中…"
+            : isEnglish
+              ? `${total} result(s) (${chapterHits.length} chapter, ${manualHits.length} manual)`
+              : `共 ${total} 条（章节 ${chapterHits.length} · 手册 ${manualHits.length}）`}
         </span>
       </div>
-      {hasResults ? (
+      {loading && !hasResults ? (
+        <p className={styles.searchResultsEmpty}>
+          {isEnglish ? "Searching documentation…" : "正在搜索文档…"}
+        </p>
+      ) : hasResults ? (
         <>
           {chapterHits.length ? (
             <div className={styles.searchSection}>
@@ -225,10 +235,16 @@ function SearchResults({ query, chapterHits, manualHits, total }) {
 }
 
 export default function Home() {
-  const { i18n } = useDocusaurusContext();
+  const { i18n, siteConfig } = useDocusaurusContext();
   const [searchQuery, setSearchQuery] = useState("");
+  const [docSearch, setDocSearch] = useState(EMPTY_SEARCH);
+  const [searchLoading, setSearchLoading] = useState(false);
   const isEnglish = i18n.currentLocale === "en";
   const currentGroups = isEnglish ? groupsEn : groups;
+  const algoliaConfig = siteConfig.customFields?.algolia;
+  const algoliaAppId = algoliaConfig?.appId || "";
+  const algoliaApiKey = algoliaConfig?.apiKey || "";
+  const algoliaIndexKey = (algoliaConfig?.searchIndexes || []).join(",") || algoliaConfig?.indexName || "";
   const groupsMap = useMemo(
     () =>
       Object.fromEntries(
@@ -244,18 +260,45 @@ export default function Home() {
     () => filterGrouped(grouped, searchQuery),
     [grouped, searchQuery],
   );
-  const currentSites = isEnglish ? sitesEn : sites;
-  const docSearch = useMemo(
-    () =>
-      searchDocCenter(searchQuery, {
+  const isSearching = Boolean(searchQuery.trim());
+
+  useEffect(() => {
+    const q = searchQuery.trim();
+    if (!q) {
+      setDocSearch(EMPTY_SEARCH);
+      setSearchLoading(false);
+      return undefined;
+    }
+
+    let cancelled = false;
+    setSearchLoading(true);
+    const timer = setTimeout(() => {
+      searchDocCenter(q, {
         locale: isEnglish ? "en" : "zh",
-        sites: currentSites,
+        sites: isEnglish ? sitesEn : sites,
         grouped,
         groupsMap,
-      }),
-    [searchQuery, isEnglish, currentSites, grouped, groupsMap],
-  );
-  const isSearching = Boolean(searchQuery.trim());
+        algoliaConfig,
+      })
+        .then((result) => {
+          if (!cancelled) setDocSearch(result);
+        })
+        .catch((err) => {
+          console.error("[doc-center] search failed", err);
+          if (!cancelled) {
+            setDocSearch(EMPTY_SEARCH);
+          }
+        })
+        .finally(() => {
+          if (!cancelled) setSearchLoading(false);
+        });
+    }, 280);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [searchQuery, isEnglish, grouped, groupsMap, algoliaConfig, algoliaAppId, algoliaApiKey, algoliaIndexKey]);
 
   return (
     <Layout
@@ -273,6 +316,7 @@ export default function Home() {
           chapterHits={docSearch.chapterHits}
           manualHits={docSearch.manualHits}
           total={docSearch.total}
+          loading={searchLoading}
         />
         {!isSearching
           ? currentGroups.map((g) => (

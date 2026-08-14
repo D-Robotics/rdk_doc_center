@@ -316,11 +316,11 @@ export const DOC_CENTER_CONFIG = {
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
       zh: {
-        title: "RDK S 系列 OE 用户手册",
+        title: "S 系列计算平台 OE 用户手册",
         description: "本文档适用于使用地瓜 S100、S100P、S600 计算平台的所有开发者，为开发者提供关于 OE 的使用说明和开发指南。",
       },
       en: {
-        title: "RDK S Series OE User Manual",
+        title: "S Series Calculation Platform OE User Manual",
         description: "This document is applicable to all developers using the D-Robotics S100, S100P, and S600 computing platforms, providing comprehensive development process guidance to help you fully understand the entire usage process.",
         href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
       },
@@ -331,11 +331,11 @@ export const DOC_CENTER_CONFIG = {
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/index.html",
       zh: {
-        title: "RDK S100 OE LLM 用户手册",
+        title: "S100 OE LLM 用户手册",
         description: "本文档适用于使用地瓜 S100 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
       },
       en: {
-        title: "RDK S100 OE LLM User Manual",
+        title: "S100 OE LLM User Manual",
         description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
         href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/index.html",
       },
@@ -346,11 +346,11 @@ export const DOC_CENTER_CONFIG = {
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_llm_s600_doc/index.html",
       zh: {
-        title: "RDK S600 OE LLM 用户手册",
+        title: "S600 OE LLM 用户手册",
         description: "本文档适用于使用地瓜 S600 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
       },
       en: {
-        title: "RDK S600 OE LLM User Manual",
+        title: "S600 OE LLM User Manual",
         description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
         href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/index.html",
       },
@@ -361,11 +361,11 @@ export const DOC_CENTER_CONFIG = {
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_x5_doc/cn/index.html",
       zh: {
-        title: "RDK X5 OE 用户手册",
+        title: "X5 OE 用户手册",
         description: "本文档旨在为您详细介绍 X5 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
       },
       en: {
-        title: "RDK X5 OE User Manual",
+        title: "X5 OE User Manual",
         description: "This document aims to provide detailed information on the X5 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
         href: "https://developer.d-robotics.cc/oe_x5_doc/en/index.html",
       },
@@ -376,11 +376,11 @@ export const DOC_CENTER_CONFIG = {
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_x3_doc/cn/index.html",
       zh: {
-        title: "RDK X3 OE 用户手册",
+        title: "X3 OE 用户手册",
         description: "本文档旨在为您详细介绍 X3 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
       },
       en: {
-        title: "RDK X3 OE User Manual",
+        title: "X3 OE User Manual",
         description: "This document aims to provide detailed information on the X3 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
         href: "https://developer.d-robotics.cc/oe_x3_doc/en/index.html",
       },

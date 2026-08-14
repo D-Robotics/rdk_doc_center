@@ -29,22 +29,6 @@ export const DOC_CENTER_CONFIG = {
       },
     },
     {
-      id: "system-software",
-      anchor: "system-software",
-      accent: "#1f6feb",
-      icon: "sdk",
-      zh: {
-        title: "SDK 用户手册",
-        navTitle: "SDK",
-        // subtitle: "SDK 开发 / 部署 / 模型转换",
-      },
-      en: {
-        title: "SDK User Manual",
-        // subtitle: "SDK Development / Deployment / Model Conversion",
-        navTitle: "SDK",
-      },
-    },
-    {
       id: "robot-app",
       anchor: "robot-app",
       accent: "#9333ea",
@@ -141,6 +125,22 @@ export const DOC_CENTER_CONFIG = {
       },
     },
     {
+      id: "system-software",
+      anchor: "system-software",
+      accent: "#1f6feb",
+      icon: "sdk",
+      zh: {
+        title: "SDK 用户手册",
+        navTitle: "SDK",
+        // subtitle: "SDK 开发 / 部署 / 模型转换",
+      },
+      en: {
+        title: "SDK User Manual",
+        // subtitle: "SDK Development / Deployment / Model Conversion",
+        navTitle: "SDK",
+      },
+    },
+    {
       id: "notifications",
       anchor: "notifications",
       accent: "#ff5125",
@@ -154,7 +154,6 @@ export const DOC_CENTER_CONFIG = {
         navTitle: "Notices",
       },
     },
-
   ],
   entries: [
     {
@@ -189,26 +188,6 @@ export const DOC_CENTER_CONFIG = {
         description: "This document is the user manual for the D-Robotics RDK Suite. It provides developers with usage instructions and development guidance for products such as RDK S100, RDK S100P and RDK S600.",
         href: "https://d-robotics.github.io/rdk_s_doc/en/RDK",
         // tags: ["User Manual"],
-      },
-    },
-    {
-      id: "system-software-sdk",
-      categoryId: "system-software",
-      // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/x5_sdk_doc/",
-      zh: {
-        title: "X5 芯片用户手册",
-        description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
-        // tags: ["系统软件"],
-        // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
-      },
-      en: {
-        title: "X5 SDK User Manual",
-        description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on various aspects including development environment setup, solution evaluation, software feature development, etc. The content covers development board usage, hardware design, system customization, application development, algorithm toolchain, and more.",
-        href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
-        // tags: ["System Software"],
-        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
-        pendingRelease: true,
       },
     },
     {
@@ -335,15 +314,95 @@ export const DOC_CENTER_CONFIG = {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
       // pendingRelease: true,
-      href: "https://toolchain.d-robotics.cc/guide/doc_introduction.html",
+      href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
       zh: {
-        title: "RDK S 系列产品算法工具链用户手册",
-        description: "本文档适用于使用地瓜S100、S100P、S600计算平台的所有开发者，为您提供全方位的开发过程指导，为您能够充分了解整体的使用过程。",
+        title: "RDK S 系列 OE 用户手册",
+        description: "本文档适用于使用地瓜 S100、S100P、S600 计算平台的所有开发者，为开发者提供关于 OE 的使用说明和开发指南。",
       },
       en: {
-        title: "RDK S Series Product Algorithm Toolchain User Manual",
+        title: "RDK S Series OE User Manual",
         description: "This document is applicable to all developers using the D-Robotics S100, S100P, and S600 computing platforms, providing comprehensive development process guidance to help you fully understand the entire usage process.",
-        href: "https://toolchain.d-robotics.cc/en/guide/doc_introduction.html",
+        href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
+      },
+    },
+    {
+      id: "algorithm-toolchain",
+      categoryId: "toolchain",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/index.html",
+      zh: {
+        title: "RDK S100 OE LLM 用户手册",
+        description: "本文档适用于使用地瓜 S100 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
+      },
+      en: {
+        title: "RDK S100 OE LLM User Manual",
+        description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
+        href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/index.html",
+      },
+    },
+    {
+      id: "algorithm-toolchain",
+      categoryId: "toolchain",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/oe_llm_s600_doc/index.html",
+      zh: {
+        title: "RDK S600 OE LLM 用户手册",
+        description: "本文档适用于使用地瓜 S600 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
+      },
+      en: {
+        title: "RDK S600 OE LLM User Manual",
+        description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
+        href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/index.html",
+      },
+    },
+    {
+      id: "algorithm-toolchain",
+      categoryId: "toolchain",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/oe_x5_doc/cn/index.html",
+      zh: {
+        title: "RDK X5 OE 用户手册",
+        description: "本文档旨在为您详细介绍 X5 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
+      },
+      en: {
+        title: "RDK X5 OE User Manual",
+        description: "This document aims to provide detailed information on the X5 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
+        href: "https://developer.d-robotics.cc/oe_x5_doc/en/index.html",
+      },
+    },
+    {
+      id: "algorithm-toolchain",
+      categoryId: "toolchain",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/oe_x3_doc/cn/index.html",
+      zh: {
+        title: "RDK X3 OE 用户手册",
+        description: "本文档旨在为您详细介绍 X3 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
+      },
+      en: {
+        title: "RDK X3 OE User Manual",
+        description: "This document aims to provide detailed information on the X3 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
+        href: "https://developer.d-robotics.cc/oe_x3_doc/en/index.html",
+      },
+    },
+    {
+      id: "system-software-sdk",
+      categoryId: "system-software",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/x5_sdk_doc/",
+      zh: {
+        title: "X5 芯片用户手册",
+        description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
+        // tags: ["系统软件"],
+        // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+      },
+      en: {
+        title: "X5 SDK User Manual",
+        description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on various aspects including development environment setup, solution evaluation, software feature development, etc. The content covers development board usage, hardware design, system customization, application development, algorithm toolchain, and more.",
+        href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
+        // tags: ["System Software"],
+        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
+        pendingRelease: true,
       },
     },
     {

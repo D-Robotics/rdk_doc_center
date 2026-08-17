@@ -58,18 +58,73 @@ function slugify(text) {
     .slice(0, 80);
 }
 
-function normalizeUrl(url) {
+function toHttps(url) {
   try {
     const u = new URL(url);
-    u.hash = "";
-    let path = u.pathname.replace(/\/+$/, "") || "/";
-    // Drop common index suffixes
-    path = path.replace(/\/index\.html?$/i, "");
-    u.pathname = path;
-    return u.toString().replace(/\/$/, "") || u.origin;
+    if (u.protocol === "http:") u.protocol = "https:";
+    return u.toString();
   } catch {
     return url;
   }
+}
+
+function lastPathSegment(pathname) {
+  return pathname.split("/").filter(Boolean).pop() || "";
+}
+
+function hasFileExtension(pathname) {
+  return /\.[a-z0-9]{1,8}$/i.test(lastPathSegment(pathname));
+}
+
+function normalizeUrl(url) {
+  try {
+    const u = new URL(toHttps(url));
+    u.hash = "";
+    let path = u.pathname || "/";
+    // Collapse index.html to a directory URL, keep the trailing slash.
+    // Stripping both /index.html and "/" makes OE/Sphinx hosts 301 to http://
+    // (port 80 times out) or 404 on extensionless paths like /en and /cn.
+    path = path.replace(/\/index\.html?$/i, "/");
+    if (path !== "/" && !hasFileExtension(path) && !path.endsWith("/")) {
+      path += "/";
+    }
+    u.pathname = path || "/";
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+function fetchUrlCandidates(url) {
+  const seen = new Set();
+  const out = [];
+  const add = (value) => {
+    try {
+      const href = toHttps(new URL(value).toString());
+      if (!seen.has(href)) {
+        seen.add(href);
+        out.push(href);
+      }
+    } catch {
+      /* skip */
+    }
+  };
+
+  add(url);
+  try {
+    const u = new URL(toHttps(url));
+    if (!hasFileExtension(u.pathname)) {
+      const withSlash = new URL(u);
+      if (!withSlash.pathname.endsWith("/")) withSlash.pathname += "/";
+      add(withSlash.toString());
+      const indexHtml = new URL(u);
+      indexHtml.pathname = `${u.pathname.replace(/\/+$/, "")}/index.html`;
+      add(indexHtml.toString());
+    }
+  } catch {
+    /* keep original candidate */
+  }
+  return out;
 }
 
 function sameSiteAllowed(url, startUrl, pathPrefix) {
@@ -99,23 +154,59 @@ function isToolchain(url) {
   return url.includes("toolchain.d-robotics.cc");
 }
 
-async function fetchText(url) {
+function isRedirectStatus(status) {
+  return status === 301 || status === 302 || status === 303 || status === 307 || status === 308;
+}
+
+async function fetchOnce(url, accept) {
+  let current = toHttps(url);
+  for (let hop = 0; hop < 8; hop += 1) {
+    const res = await fetch(current, {
+      redirect: "manual",
+      headers: { "user-agent": USER_AGENT, accept },
+      signal: AbortSignal.timeout(25000),
+    });
+    if (isRedirectStatus(res.status)) {
+      const loc = res.headers.get("location");
+      if (!loc) {
+        return { ok: false, status: res.status, url: current, res };
+      }
+      current = toHttps(new URL(loc, current).toString());
+      continue;
+    }
+    return { ok: res.ok, status: res.status, url: res.url || current, res };
+  }
+  return { ok: false, status: 0, url: current, res: null };
+}
+
+async function fetchText(url, { accept = "text/html,application/xhtml+xml,application/xml,application/json,text/xml,*/*", warn = true } = {}) {
   const prevTls = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
   if (isToolchain(url)) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   }
+  const candidates = fetchUrlCandidates(url);
+  let lastError = "";
   try {
-    const res = await fetch(url, {
-      redirect: "follow",
-      headers: { "user-agent": USER_AGENT, accept: "text/html,application/xhtml+xml,*/*" },
-      signal: AbortSignal.timeout(25000),
-    });
-    if (!res.ok) return null;
-    const ct = res.headers.get("content-type") || "";
-    if (!/html|xml|text/i.test(ct) && ct) return null;
-    return { url: res.url || url, text: await res.text() };
-  } catch (e) {
-    console.warn(`  fetch fail: ${url} (${e.message})`);
+    for (const candidate of candidates) {
+      try {
+        const got = await fetchOnce(candidate, accept);
+        if (!got.ok || !got.res) {
+          lastError = `${got.status || "error"} ${candidate}`;
+          continue;
+        }
+        const ct = got.res.headers.get("content-type") || "";
+        if (ct && !/html|xml|json|text|javascript|ecmascript/i.test(ct)) {
+          lastError = `content-type ${ct} ${candidate}`;
+          continue;
+        }
+        return { url: got.url || candidate, text: await got.res.text() };
+      } catch (e) {
+        lastError = `${e.message} ${candidate}`;
+      }
+    }
+    if (warn) {
+      console.warn(`  fetch fail: ${url} (${lastError || "no candidate succeeded"})`);
+    }
     return null;
   } finally {
     if (isToolchain(url)) {
@@ -133,7 +224,7 @@ async function discoverFromSitemap(startUrl, pathPrefix) {
   ];
   const urls = new Set();
   for (const sm of candidates) {
-    const got = await fetchText(sm);
+    const got = await fetchText(sm, { warn: false });
     if (!got) continue;
     const matches = [...got.text.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)];
     for (const m of matches) {
@@ -151,8 +242,9 @@ async function discoverFromSitemap(startUrl, pathPrefix) {
 }
 
 async function discoverByBfs(startUrl, pathPrefix) {
-  const queue = [normalizeUrl(startUrl)];
-  const seen = new Set(queue);
+  const startKey = normalizeUrl(startUrl);
+  const queue = [startUrl];
+  const seen = new Set([startKey]);
   const pages = [];
 
   while (queue.length && pages.length < MAX_PAGES_PER_LOCALE) {
@@ -160,6 +252,7 @@ async function discoverByBfs(startUrl, pathPrefix) {
     const results = await Promise.all(batch.map((u) => fetchText(u)));
     for (const got of results) {
       if (!got) continue;
+      if (isSpaShell(got.text)) continue;
       const pageUrl = normalizeUrl(got.url);
       pages.push({ url: pageUrl, html: got.text });
       const $ = cheerio.load(got.text);
@@ -170,19 +263,123 @@ async function discoverByBfs(startUrl, pathPrefix) {
         }
         let abs;
         try {
-          abs = normalizeUrl(new URL(href, pageUrl).toString());
+          abs = new URL(href, got.url).toString();
         } catch {
           return;
         }
         if (!sameSiteAllowed(abs, startUrl, pathPrefix)) return;
-        if (seen.has(abs)) return;
-        seen.add(abs);
+        const key = normalizeUrl(abs);
+        if (seen.has(key)) return;
+        seen.add(key);
         if (seen.size <= MAX_PAGES_PER_LOCALE * 2) queue.push(abs);
       });
     }
   }
   console.log(`  bfs: ${pages.length} pages from ${startUrl}`);
   return pages;
+}
+
+function isSpaShell(html) {
+  if (!html) return false;
+  const compact = html.slice(0, 8000);
+  const hasRoot = /id=["']root["']/i.test(compact);
+  const rspress = /generator" content="Rspress/i.test(compact);
+  const hasArticle = /<(article|main)\b/i.test(html);
+  return (hasRoot || rspress) && !hasArticle && html.length < 20000;
+}
+
+function isRspressDataScript(src) {
+  const name = (src.split("/").pop() || "").split("?")[0];
+  if (!/\.js$/i.test(name)) return false;
+  if (/^(lib-|styles\.)/i.test(name)) return false;
+  return true;
+}
+
+function escapeHtml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function htmlFromRspressDoc(doc) {
+  const paras = String(doc.content || "")
+    .split(/\n{2,}/)
+    .map((p) => p.replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join("\n");
+  return `<article class="theme-doc-markdown"><h1>${escapeHtml(doc.title || "")}</h1>${paras}</article>`;
+}
+
+function staticDirFromStartUrl(startUrl) {
+  const u = new URL(startUrl);
+  const root = u.pathname.split("/").filter(Boolean)[0];
+  return root ? `${u.origin}/${root}/static` : `${u.origin}/static`;
+}
+
+async function loadRspressSearchDocs(startPage, localeCfg) {
+  const $ = cheerio.load(startPage.text);
+  const scripts = [];
+  $("script[src]").each((_, el) => {
+    const src = $(el).attr("src");
+    if (!src || !isRspressDataScript(src)) return;
+    try {
+      scripts.push(new URL(src, startPage.url).toString());
+    } catch {
+      /* skip */
+    }
+  });
+  if (!scripts.length) return [];
+
+  const langKey = localeCfg.language === "en" ? "en" : "zh";
+  const hashEntries = [];
+  const jsPages = await mapPool(scripts, FETCH_CONCURRENCY, (src) => fetchText(src));
+  for (const got of jsPages) {
+    if (!got) continue;
+    for (const m of got.text.matchAll(/"([^"]*###(zh|en))":"([a-f0-9]+)"/g)) {
+      const version = m[1].slice(0, m[1].indexOf("###"));
+      hashEntries.push({ version, lang: m[2], hash: m[3] });
+    }
+  }
+  const picked =
+    hashEntries.find((e) => e.lang === langKey && !e.version) ||
+    hashEntries.find((e) => e.lang === langKey && e.version === "latest") ||
+    hashEntries.find((e) => e.lang === langKey);
+  if (!picked) {
+    console.warn(`  rspress: no search_index hash for lang=${langKey}`);
+    return [];
+  }
+
+  const versionSuffix = picked.version ? `.${picked.version.replace(/\./g, "_")}` : "";
+  const indexUrl = `${staticDirFromStartUrl(localeCfg.startUrl)}/search_index${versionSuffix}.${langKey}.${picked.hash}.json`;
+  const got = await fetchText(indexUrl, { accept: "application/json,text/plain,*/*" });
+  if (!got) return [];
+
+  let docs;
+  try {
+    docs = JSON.parse(got.text);
+  } catch (e) {
+    console.warn(`  rspress: invalid search_index JSON (${e.message})`);
+    return [];
+  }
+  if (!Array.isArray(docs)) return [];
+
+  const filtered = docs.filter((doc) => {
+    if (!doc || typeof doc !== "object") return false;
+    if (doc.lang && doc.lang !== langKey) return false;
+    const route = String(doc.routePath || "");
+    if (langKey === "en") return route.includes("/en/");
+    return route && !route.includes("/en/");
+  });
+  const limited = filtered.slice(0, Math.max(MAX_PAGES_PER_LOCALE, 2000));
+  console.log(`  rspress: ${indexUrl} → ${limited.length} docs`);
+  const origin = new URL(localeCfg.startUrl).origin;
+  return limited.map((doc) => ({
+    url: `${origin}${doc.routePath || "/"}`,
+    html: htmlFromRspressDoc(doc),
+  }));
 }
 
 function pickContentRoot($) {
@@ -195,6 +392,10 @@ function pickContentRoot($) {
     "main",
     ".vp-doc",
     "#app .content",
+    "[role='main']",
+    "div.body",
+    ".document",
+    ".rst-content",
     "body",
   ];
   for (const sel of selectors) {
@@ -351,19 +552,29 @@ async function crawlLocale(target, localeCfg) {
   console.log(`\n[${site}] ${localeCfg.language} ← ${localeCfg.startUrl}`);
 
   let pageEntries = [];
-  const fromSm = await discoverFromSitemap(
-    localeCfg.startUrl,
-    localeCfg.pathPrefix,
-  );
-  if (fromSm.length) {
-    const limited = fromSm.slice(0, MAX_PAGES_PER_LOCALE);
-    const fetched = await mapPool(limited, FETCH_CONCURRENCY, async (url) => {
-      const got = await fetchText(url);
-      return got ? { url: normalizeUrl(got.url), html: got.text } : null;
-    });
-    pageEntries = fetched.filter(Boolean);
-    console.log(`  fetched ${pageEntries.length}/${limited.length} sitemap pages`);
-  } else {
+  const startPage = await fetchText(localeCfg.startUrl);
+
+  if (startPage && isSpaShell(startPage.text)) {
+    pageEntries = await loadRspressSearchDocs(startPage, localeCfg);
+  }
+
+  if (!pageEntries.length) {
+    const fromSm = await discoverFromSitemap(
+      localeCfg.startUrl,
+      localeCfg.pathPrefix,
+    );
+    if (fromSm.length) {
+      const limited = fromSm.slice(0, MAX_PAGES_PER_LOCALE);
+      const fetched = await mapPool(limited, FETCH_CONCURRENCY, async (url) => {
+        const got = await fetchText(url);
+        return got ? { url: normalizeUrl(got.url), html: got.text } : null;
+      });
+      pageEntries = fetched.filter(Boolean);
+      console.log(`  fetched ${pageEntries.length}/${limited.length} sitemap pages`);
+    }
+  }
+
+  if (!pageEntries.length) {
     pageEntries = await discoverByBfs(localeCfg.startUrl, localeCfg.pathPrefix);
   }
 

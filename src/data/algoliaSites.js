@@ -52,8 +52,10 @@ function pathPrefixFromHref(href) {
     }
     const parts = u.pathname.split("/").filter(Boolean);
     if (!parts.length) return "";
-    // e.g. /rdk_x_doc/... or /rdk_x_doc/en/...
-    if (parts[1] === "en") return `/${parts[0]}/en`;
+    // e.g. /rdk_x_doc/en/... or Sphinx /oe_x5_doc/cn/...
+    if (parts[1] === "en" || parts[1] === "cn") {
+      return `/${parts[0]}/${parts[1]}`;
+    }
     return `/${parts[0]}`;
   } catch {
     return "";

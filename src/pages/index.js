@@ -58,7 +58,11 @@ function Hero({ searchQuery, onSearchChange }) {
           </a>
           <a
             className={styles.heroActionBtn}
-            href="https://developer.d-robotics.cc/information"
+            href={
+              isEnglish
+                ? "https://developer.d-robotics.cc/en/documentation"
+                : "https://developer.d-robotics.cc/information"
+            }
             target="_blank"
             rel="noopener noreferrer"
           >

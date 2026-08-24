@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.css";
@@ -60,6 +60,192 @@ function PendingReleaseDialog({ open, message, confirmLabel, onClose }) {
   );
 }
 
+function defaultTagText(current) {
+  return current?.label || current?.id || "";
+}
+
+function HintIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v6" />
+      <circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function VersionIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 3 3.5 8 12 13l8.5-5L12 3Z" />
+      <path d="M3.5 12.5 12 17.5l8.5-5" />
+      <path d="M3.5 16.5 12 21.5l8.5-5" />
+    </svg>
+  );
+}
+
+function VersionSelect({
+  versions,
+  isEnglish,
+  open,
+  onOpenChange,
+  onPending,
+  latestOptionHint,
+  newestReleaseHint,
+}) {
+  const rootRef = useRef(null);
+  const current = versions.find((item) => item.default) || versions[0];
+  const triggerKicker = isEnglish ? "Select version" : "选择版本";
+  const liveBadge = isEnglish ? "Live" : "持续更新";
+  const currentBadge = isEnglish ? "Current" : "当前";
+  const pendingBadge = isEnglish ? "Coming soon" : "准备中";
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const handlePointerDown = (event) => {
+      if (rootRef.current && !rootRef.current.contains(event.target)) {
+        onOpenChange(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onOpenChange(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, onOpenChange]);
+
+  return (
+    <div className={styles.versionSelect} ref={rootRef}>
+      <button
+        type="button"
+        className={`${styles.versionTrigger} ${open ? styles.versionTriggerOpen : ""}`}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        aria-label={
+          isEnglish
+            ? `Choose documentation version, current ${current?.label || ""}`
+            : `选择文档版本，当前 ${current?.label || ""}`
+        }
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          onOpenChange(!open);
+        }}
+      >
+        <span className={styles.versionTriggerLead}>
+          <VersionIcon className={styles.versionIcon} />
+          <span className={styles.versionTriggerKicker}>{triggerKicker}</span>
+        </span>
+        <span
+          className={`${styles.versionChevron} ${open ? styles.versionChevronOpen : ""}`}
+          aria-hidden
+        >
+          ▾
+        </span>
+      </button>
+      {open ? (
+        <ul className={styles.versionMenu} role="listbox">
+          {versions.map((version) => {
+            const optionHint = version.channelLatest
+              ? latestOptionHint
+              : version.default
+                ? newestReleaseHint
+                : "";
+            const label = (
+              <>
+                <span className={styles.versionItemMain}>
+                  <span className={styles.versionItemLabel}>{version.label}</span>
+                  {version.channelLatest ? (
+                    <span className={styles.versionItemBadge}>{liveBadge}</span>
+                  ) : null}
+                  {version.default ? (
+                    <span className={styles.versionItemBadge}>{currentBadge}</span>
+                  ) : null}
+                  {version.pendingRelease ? (
+                    <span className={styles.versionItemBadgeMuted}>
+                      {pendingBadge}
+                    </span>
+                  ) : null}
+                </span>
+                {optionHint ? (
+                  <span className={styles.versionItemHint}>{optionHint}</span>
+                ) : null}
+              </>
+            );
+
+            if (version.pendingRelease) {
+              return (
+                <li key={version.id} role="option">
+                  <button
+                    type="button"
+                    className={styles.versionItem}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      onOpenChange(false);
+                      onPending();
+                    }}
+                  >
+                    {label}
+                  </button>
+                </li>
+              );
+            }
+
+            const isExt = /^https?:\/\//.test(version.href);
+            const itemProps = isExt
+              ? {
+                  href: version.href,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                }
+              : { to: version.href };
+            const ItemTag = isExt ? "a" : Link;
+
+            return (
+              <li key={version.id} role="option">
+                <ItemTag
+                  className={styles.versionItem}
+                  {...itemProps}
+                  onClick={() => onOpenChange(false)}
+                >
+                  {label}
+                </ItemTag>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 export default function SiteCard({
   title,
   description,
@@ -69,26 +255,28 @@ export default function SiteCard({
   external,
   accent,
   versions,
+  versionHint,
+  latestOptionHint,
+  newestReleaseHint,
+  descriptionHoverHint,
   pendingRelease,
 }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
   const [noticeOpen, setNoticeOpen] = useState(false);
+  const [versionMenuOpen, setVersionMenuOpen] = useState(false);
   const isExternal = external || /^https?:\/\//.test(href);
   const linkProps = isExternal
     ? { href, target: "_blank", rel: "noopener noreferrer" }
     : { to: href };
 
-  const hasVersions = Array.isArray(versions) && versions.length > 0;
-  const latest = hasVersions ? versions[versions.length - 1] : null;
-  const totalVersions = hasVersions ? versions.length : 0;
+  const versionList = Array.isArray(versions) ? versions : [];
+  const hasVersionSelect = versionList.length > 1;
+  const current = versionList.find((item) => item.default) || versionList[0] || null;
 
   const allTags = [
-    ...(hasVersions
-      ? [{ text: isEnglish ? `Latest ${latest}` : `最新 ${latest}`, kind: "version" }]
-      : []),
-    ...(hasVersions && totalVersions > 1
-      ? [{ text: isEnglish ? `${totalVersions} versions` : `共 ${totalVersions} 个版本`, kind: "count" }]
+    ...(hasVersionSelect
+      ? [{ text: defaultTagText(current), kind: "version" }]
       : []),
     ...((tags ?? []).map((t) => ({ text: t, kind: "plain" }))),
   ];
@@ -106,7 +294,7 @@ export default function SiteCard({
 
   const cardAccentStyle = accent ? { "--card-accent": accent } : undefined;
 
-  const content = (
+  const headerAndDescription = (
     <>
       <div className={styles.cardHeader}>
         <div className={styles.titleWrap}>
@@ -130,15 +318,14 @@ export default function SiteCard({
           </div>
         ) : null}
       </div>
-      <p className={styles.description}>{description}</p>
-      <div className={styles.cardFooter}>
-        {/* <span className={styles.cta}>
-          {pendingRelease
-            ? isEnglish
-              ? "Coming soon →"
-              : "敬请期待 →"
-            : `${isExternal ? (isEnglish ? "Visit external link" : "访问外链") : isEnglish ? "Open documentation" : "进入文档"} →`}
-        </span> */}
+      <div className={styles.descriptionWrap}>
+        <p className={styles.description}>{description}</p>
+        {descriptionHoverHint ? (
+          <p className={styles.descriptionHoverHint}>
+            <HintIcon className={styles.descriptionHoverIcon} />
+            <span>{descriptionHoverHint}</span>
+          </p>
+        ) : null}
       </div>
     </>
   );
@@ -160,7 +347,47 @@ export default function SiteCard({
           }}
           aria-label={isEnglish ? `${title}, ${pendingNotice}` : `${title}，${pendingNotice}`}
         >
-          {content}
+          {headerAndDescription}
+          <div className={styles.cardFooter} />
+        </div>
+        <PendingReleaseDialog
+          open={noticeOpen}
+          message={pendingNotice}
+          confirmLabel={pendingConfirm}
+          onClose={closePendingNotice}
+        />
+      </div>
+    );
+  }
+
+  if (hasVersionSelect) {
+    return (
+      <div
+        className={`${styles.cardWrap} ${styles.cardWrapVersioned} ${
+          versionMenuOpen ? styles.cardWrapMenuOpen : ""
+        }`}
+      >
+        <div
+          className={`${styles.card} ${styles.cardVersioned}`}
+          style={cardAccentStyle}
+        >
+          <Link className={styles.cardBody} {...linkProps}>
+            {headerAndDescription}
+          </Link>
+          <div className={`${styles.cardFooter} ${styles.cardFooterVersioned}`}>
+            {versionHint ? (
+              <p className={styles.versionHint}>{versionHint}</p>
+            ) : null}
+            <VersionSelect
+              versions={versionList}
+              isEnglish={isEnglish}
+              open={versionMenuOpen}
+              onOpenChange={setVersionMenuOpen}
+              onPending={showPendingNotice}
+              latestOptionHint={latestOptionHint}
+              newestReleaseHint={newestReleaseHint}
+            />
+          </div>
         </div>
         <PendingReleaseDialog
           open={noticeOpen}
@@ -178,7 +405,8 @@ export default function SiteCard({
       {...linkProps}
       style={cardAccentStyle}
     >
-      {content}
+      {headerAndDescription}
+      <div className={styles.cardFooter} />
     </Link>
   );
 }

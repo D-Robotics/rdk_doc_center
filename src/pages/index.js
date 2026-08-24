@@ -127,6 +127,10 @@ function GroupSection({ group, items }) {
             href={item.href}
             tags={item.tags}
             versions={item.versions}
+            versionHint={item.versionHint}
+            latestOptionHint={item.latestOptionHint}
+            newestReleaseHint={item.newestReleaseHint}
+            descriptionHoverHint={item.descriptionHoverHint}
             external={item.external}
             pendingRelease={item.pendingRelease}
           />
@@ -217,6 +221,10 @@ function SearchResults({ query, chapterHits, manualHits, total, loading }) {
                     href={item.href}
                     tags={item.tags}
                     versions={item.versions}
+                    versionHint={item.versionHint}
+                    latestOptionHint={item.latestOptionHint}
+                    newestReleaseHint={item.newestReleaseHint}
+                    descriptionHoverHint={item.descriptionHoverHint}
                     external={item.external}
                     pendingRelease={item.pendingRelease}
                     groupLabel={item.groupTitle}

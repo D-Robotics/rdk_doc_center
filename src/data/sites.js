@@ -7,8 +7,14 @@
  * - 首页、分组锚点、卡片数据均由该配置自动派生
  * - pendingRelease: true 时点击卡片仅提示「文档正在准备中，暂未上架。感谢您的关注与耐心等待！」，不跳转
  *   可写在 entry 根级（中英文同时生效），也可写在 zh/en 下单独控制某一语言
+ * - versions: 可选。多版本手册卡片内提供版本选择
+ *   Latest（id/label 为 latest）为持续更新文档，不作为卡片默认入口
+ *   默认展示并跳转到 Latest 之外、版本号最高的已上架版本（如 1.1.2、1.1.3 中默认 1.1.3）
+ *   每个 version 可写 href（中文）、en.href（英文）、pendingRelease、index（是否纳入 Algolia；默认仅 Latest 滚动文档）
+ *   versionHint 可写在 zh/en 下，显示在版本选择器上方作为选用说明
+ *   latestOptionHint / newestReleaseHint 写在选项内：Latest 通道、当前最高已发布版本
+ *   descriptionHoverHint：卡片悬浮时覆盖描述区域的提示，不遮挡标题和版本按钮
  * - 首页全文搜索由 Algolia 联邦索引提供（见 algoliaSites.js / scripts/algolia-index.mjs）
- * - manualChapterIndex*.js 为历史章节摘要索引，已不再用于搜索路径
  */
 export const DOC_CENTER_CONFIG = {
   categories: [
@@ -388,21 +394,46 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "system-software-sdk",
       categoryId: "system-software",
-      // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/x5_sdk_doc/",
+      versions: [
+        {
+          id: "latest",
+          label: "latest",
+          href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
+          en: {
+            href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
+            pendingRelease: true,
+          },
+        },
+        {
+          id: "1.1.2",
+          label: "V1.1.2",
+          href: "https://developer.d-robotics.cc/x5_sdk_doc/",
+          en: {
+            href: "https://developer.d-robotics.cc/x5_sdk_doc/",
+            pendingRelease: true,
+          },
+        },
+      ],
       zh: {
         title: "X5 芯片用户手册",
         description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
-        // tags: ["系统软件"],
-        // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+        latestOptionHint:
+          "latest 版本实时同步 AVL 信息，如需获取最新 AVL 请查看 latest 版本。",
+        newestReleaseHint: "此版本为已发布 SDK 的最新版本。",
+        descriptionHoverHint:
+          "当前默认为已发布 SDK 的最新版本手册，如需获取历史版本或最新 AVL 信息，请点击 [选择版本] 按钮查看对应的手册。",
       },
       en: {
         title: "X5 SDK User Manual",
-        description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on various aspects including development environment setup, solution evaluation, software feature development, etc. The content covers development board usage, hardware design, system customization, application development, algorithm toolchain, and more.",
-        href: "https://developer.d-robotics.cc/sdk_doc/en/intro",
-        // tags: ["System Software"],
         description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
         pendingRelease: true,
+        versionHint:
+          "Match the manual to the SDK version you currently integrate. For the latest AVL parameters, switch to Latest — that document is kept continuously in sync.",
+        latestOptionHint:
+          "The Latest version syncs AVL information in real time. Switch to Latest for the most recent AVL.",
+        newestReleaseHint: "This is the newest released SDK version.",
+        descriptionHoverHint:
+          "For the latest AVL information, click Select version and open the latest manual.",
       },
     },
     {
@@ -437,13 +468,91 @@ function toGroup(category, locale) {
   };
 }
 
+export function isEntryPending(entry, locale) {
+  const i18n = entry[locale] || {};
+  if (typeof i18n.pendingRelease === "boolean") return i18n.pendingRelease;
+  return Boolean(entry.pendingRelease);
+}
+
+export function resolveVersionHref(version, locale) {
+  if (!version) return "";
+  const localized = locale && version[locale]?.href;
+  return localized || version.href || "";
+}
+
+export function isLatestChannel(version) {
+  return (
+    /^latest$/i.test(String(version?.id || "")) ||
+    /^latest$/i.test(String(version?.label || ""))
+  );
+}
+
+export function parseVersionTuple(version) {
+  const source = [version?.id, version?.label].filter(Boolean).join(" ");
+  const match = String(source).match(/(\d+)\.(\d+)(?:\.(\d+))?/);
+  if (!match) return null;
+  return [Number(match[1]), Number(match[2]), Number(match[3] || 0)];
+}
+
+function compareVersionDesc(a, b) {
+  const ta = parseVersionTuple(a);
+  const tb = parseVersionTuple(b);
+  if (ta && tb) {
+    for (let i = 0; i < 3; i += 1) {
+      if (tb[i] !== ta[i]) return tb[i] - ta[i];
+    }
+    return 0;
+  }
+  if (ta) return -1;
+  if (tb) return 1;
+  return 0;
+}
+
+export function pickDefaultVersion(versions) {
+  if (!versions?.length) return null;
+  const numbered = versions.filter(
+    (item) => !item.channelLatest && parseVersionTuple(item),
+  );
+  const released = numbered.filter((item) => !item.pendingRelease);
+  return released[0] || numbered[0] || versions[0] || null;
+}
+
+export function normalizeVersions(entry, locale) {
+  if (!Array.isArray(entry.versions) || entry.versions.length === 0) return [];
+  const mapped = entry.versions.map((version) => {
+    const localized = locale ? version[locale] : undefined;
+    const pendingRelease =
+      typeof localized?.pendingRelease === "boolean"
+        ? localized.pendingRelease
+        : Boolean(version.pendingRelease);
+    return {
+      id: version.id,
+      label: version.label || version.id,
+      channelLatest: isLatestChannel(version),
+      href: resolveVersionHref(version, locale),
+      pendingRelease,
+      index: Boolean(version.index),
+    };
+  });
+
+  mapped.sort((a, b) => {
+    if (a.channelLatest !== b.channelLatest) return a.channelLatest ? -1 : 1;
+    return compareVersionDesc(a, b);
+  });
+
+  const current = pickDefaultVersion(mapped);
+  return mapped.map((item) => ({
+    ...item,
+    default: Boolean(current && item.id === current.id),
+    latest: item.channelLatest,
+  }));
+}
+
 function toSite(entry, locale) {
   const i18n = entry[locale];
-  const href = i18n.href || entry.href;
-  const pendingRelease =
-    typeof i18n.pendingRelease === "boolean"
-      ? i18n.pendingRelease
-      : Boolean(entry.pendingRelease);
+  const versions = normalizeVersions(entry, locale);
+  const current = pickDefaultVersion(versions);
+  const href = current?.href || i18n.href || entry.href || "";
   return {
     id: entry.id,
     group: entry.categoryId,
@@ -451,8 +560,14 @@ function toSite(entry, locale) {
     description: i18n.description,
     href,
     tags: i18n.tags || [],
+    versions,
+    versionHint: i18n.versionHint || entry.versionHint || "",
+    latestOptionHint: i18n.latestOptionHint || entry.latestOptionHint || "",
+    newestReleaseHint: i18n.newestReleaseHint || entry.newestReleaseHint || "",
+    descriptionHoverHint:
+      i18n.descriptionHoverHint || entry.descriptionHoverHint || "",
     external: /^https?:\/\//.test(href),
-    pendingRelease,
+    pendingRelease: isEntryPending(entry, locale),
   };
 }
 

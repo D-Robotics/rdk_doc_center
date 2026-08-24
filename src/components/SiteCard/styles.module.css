@@ -38,6 +38,7 @@
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: 3;
   width: 5px;
   border-radius: 14px 0 0 14px;
   background: var(--card-accent);
@@ -159,23 +160,331 @@
   color: #ffb347;
 }
 
+.descriptionWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  z-index: 1;
+}
+
 .description {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.6;
   color: #57534e;
-  flex: 1;
-  position: relative;
-  z-index: 1;
+}
+
+.descriptionHoverHint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0 0.15rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--card-accent) 8%, #ffffff);
+  color: #44403c;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+}
+
+.descriptionHoverIcon {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--card-accent);
+}
+
+.cardVersioned:hover .descriptionHoverHint,
+.cardWrapVersioned:focus-within .descriptionHoverHint {
+  opacity: 1;
 }
 
 :global(html[data-theme="dark"]) .description {
   color: #a8a29e;
 }
 
+:global(html[data-theme="dark"]) .descriptionHoverHint {
+  background: color-mix(in srgb, var(--card-accent) 14%, #1c1917);
+  color: #e7e5e4;
+}
+
+:global(html[data-theme="dark"]) .descriptionHoverIcon {
+  color: var(--card-accent);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.cardBody:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardVersioned {
+  overflow: visible;
+  contain: none;
+}
+
 .cardFooter {
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.cardFooterVersioned {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  z-index: 4;
+}
+
+.versionHint {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  font-weight: 600;
+  color: #57534e;
+}
+
+.cardWrapVersioned {
+  contain: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.cardWrapMenuOpen {
+  z-index: 12;
+}
+
+.versionSelect {
+  position: relative;
+  align-self: flex-end;
+  width: auto;
+}
+
+.versionTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: auto;
+  padding: 0.62rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--card-accent) 28%, #e7e5e4);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--card-accent) 10%, #ffffff);
+  color: color-mix(in srgb, var(--card-accent) 78%, #1c1917);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.versionTrigger:hover {
+  background: color-mix(in srgb, var(--card-accent) 16%, #ffffff);
+  border-color: color-mix(in srgb, var(--card-accent) 42%, #d6d3d1);
+}
+
+.versionTriggerOpen {
+  background: color-mix(in srgb, var(--card-accent) 16%, #ffffff);
+  border-color: color-mix(in srgb, var(--card-accent) 42%, #d6d3d1);
+}
+
+.versionTrigger:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 3px;
+}
+
+.versionTriggerLead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.versionIcon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+}
+
+.versionTriggerKicker {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.versionChevron {
+  display: inline-block;
+  font-size: 0.78rem;
+  opacity: 0.9;
+  transform: translateY(-1px);
+  transition: transform 0.15s ease;
+}
+
+.versionChevronOpen {
+  transform: translateY(-1px) rotate(180deg);
+}
+
+.versionMenu {
+  position: absolute;
+  right: 0;
+  left: auto;
+  bottom: calc(100% + 0.4rem);
+  z-index: 20;
+  width: min(32rem, calc(100vw - 2rem));
+  min-width: 22rem;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  border: 1px solid color-mix(in srgb, var(--card-accent) 22%, #e7e5e4);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow:
+    0 14px 36px rgba(28, 25, 23, 0.16),
+    0 0 0 1px rgba(255, 81, 37, 0.08);
+}
+
+.versionMenu li + li {
+  margin-top: 0.15rem;
+}
+
+.versionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.28rem;
+  width: 100%;
+  padding: 0.62rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #1c1917;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.versionItem:hover {
+  background: color-mix(in srgb, var(--card-accent) 10%, #ffffff);
+  color: #1c1917;
+  text-decoration: none;
+}
+
+.versionItemMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.versionItemLabel {
+  min-width: 0;
+}
+
+.versionItemHint {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #78716c;
+}
+
+.versionItemBadge,
+.versionItemBadgeMuted {
+  flex-shrink: 0;
+  padding: 0.12rem 0.42rem;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.versionItemBadge {
+  background: rgba(255, 81, 37, 0.12);
+  color: #e0441a;
+}
+
+.versionItemBadgeMuted {
+  background: #f5f5f4;
+  color: #78716c;
+}
+
+:global(html[data-theme="dark"]) .versionHint {
+  color: #d6d3d1;
+}
+
+:global(html[data-theme="dark"]) .versionTrigger {
+  background: color-mix(in srgb, var(--card-accent) 16%, #1c1917);
+  border-color: color-mix(in srgb, var(--card-accent) 32%, #44403c);
+  color: color-mix(in srgb, var(--card-accent) 72%, #fafaf9);
+  box-shadow: none;
+}
+
+:global(html[data-theme="dark"]) .versionTrigger:hover,
+:global(html[data-theme="dark"]) .versionTriggerOpen {
+  background: color-mix(in srgb, var(--card-accent) 24%, #1c1917);
+  border-color: color-mix(in srgb, var(--card-accent) 46%, #57534e);
+}
+
+:global(html[data-theme="dark"]) .versionMenu {
+  background: #1c1917;
+  border-color: #44403c;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 81, 37, 0.12);
+}
+
+:global(html[data-theme="dark"]) .versionItem {
+  color: #fafaf9;
+}
+
+:global(html[data-theme="dark"]) .versionItem:hover {
+  background: color-mix(in srgb, var(--card-accent) 18%, #1c1917);
+  color: #fafaf9;
+}
+
+:global(html[data-theme="dark"]) .versionItemHint {
+  color: #a8a29e;
+}
+
+:global(html[data-theme="dark"]) .versionItemBadge {
+  background: rgba(255, 81, 37, 0.18);
+  color: #ff8566;
+}
+
+:global(html[data-theme="dark"]) .versionItemBadgeMuted {
+  background: #292524;
+  color: #a8a29e;
 }
 
 .cta {
@@ -188,6 +497,16 @@
   position: relative;
   min-height: 148px;
   contain: content;
+}
+
+.cardWrap.cardWrapVersioned {
+  contain: none;
+  overflow: visible;
+}
+
+.card.cardVersioned {
+  overflow: visible;
+  contain: none;
 }
 
 .cardPending {

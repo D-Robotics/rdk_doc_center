@@ -7,7 +7,11 @@
  * https://d-robotics.github.io/rdk_x_doc/en/RDK/
  * → https://developer.d-robotics.cc/rdk_x_doc/en/RDK）。
  */
-import { DOC_CENTER_CONFIG } from "./sites";
+import {
+  DOC_CENTER_CONFIG,
+  isEntryPending,
+  normalizeVersions,
+} from "./sites";
 
 const DEVELOPER_HOST = "developer.d-robotics.cc";
 
@@ -62,10 +66,21 @@ function pathPrefixFromHref(href) {
   }
 }
 
-function isPending(entry, locale) {
-  const i18n = entry[locale] || {};
-  if (typeof i18n.pendingRelease === "boolean") return i18n.pendingRelease;
-  return Boolean(entry.pendingRelease);
+function crawlHrefsForLocale(entry, locale) {
+  if (isEntryPending(entry, locale)) return [];
+  const i18n = entry[locale];
+  if (!i18n) return [];
+
+  const versions = normalizeVersions(entry, locale);
+  if (versions.length) {
+    return versions
+      .filter((version) => !version.pendingRelease && (version.channelLatest || version.index))
+      .map((version) => version.href)
+      .filter((href) => href && /^https?:\/\//.test(href));
+  }
+
+  const rawHref = i18n.href || entry.href;
+  return rawHref && /^https?:\/\//.test(rawHref) ? [rawHref] : [];
 }
 
 /**
@@ -81,34 +96,31 @@ export function getAlgoliaCrawlTargets() {
 
   for (const entry of DOC_CENTER_CONFIG.entries) {
     for (const locale of ["zh", "en"]) {
-      if (isPending(entry, locale)) continue;
-      const i18n = entry[locale];
-      if (!i18n) continue;
-      const rawHref = i18n.href || entry.href;
-      if (!rawHref || !/^https?:\/\//.test(rawHref)) continue;
+      const hrefs = crawlHrefsForLocale(entry, locale);
+      for (const rawHref of hrefs) {
+        const href = rewriteCrawlUrl(rawHref);
+        const site = siteIdFromHref(href);
+        if (!bySite.has(site)) {
+          bySite.set(site, {
+            site,
+            entryId: entry.id,
+            manualTitle: {
+              zh: entry.zh?.title || entry.id,
+              en: entry.en?.title || entry.zh?.title || entry.id,
+            },
+            locales: [],
+          });
+        }
 
-      const href = rewriteCrawlUrl(rawHref);
-      const site = siteIdFromHref(href);
-      if (!bySite.has(site)) {
-        bySite.set(site, {
-          site,
-          entryId: entry.id,
-          manualTitle: {
-            zh: entry.zh?.title || entry.id,
-            en: entry.en?.title || entry.zh?.title || entry.id,
-          },
-          locales: [],
+        const target = bySite.get(site);
+        const language = locale === "en" ? "en" : "zh-Hans";
+        if (target.locales.some((l) => l.language === language)) continue;
+        target.locales.push({
+          language,
+          startUrl: href,
+          pathPrefix: pathPrefixFromHref(href),
         });
       }
-
-      const target = bySite.get(site);
-      const language = locale === "en" ? "en" : "zh-Hans";
-      if (target.locales.some((l) => l.language === language)) continue;
-      target.locales.push({
-        language,
-        startUrl: href,
-        pathPrefix: pathPrefixFromHref(href),
-      });
     }
   }
 

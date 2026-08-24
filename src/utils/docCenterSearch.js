@@ -17,7 +17,14 @@ export function searchManualCards(grouped, query) {
   const matches = [];
   for (const items of Object.values(grouped)) {
     for (const item of items) {
-      const haystack = [item.title, item.description, ...(item.tags || [])]
+      const versionLabels = (item.versions || []).map((v) => v.label || v.id);
+      const haystack = [
+        item.title,
+        item.description,
+        item.versionHint,
+        ...(item.tags || []),
+        ...versionLabels,
+      ]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();

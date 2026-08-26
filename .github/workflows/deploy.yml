@@ -19,6 +19,14 @@ jobs:
         rm -rf node_modules
         npm ci
 
+    # TEMP DEBUG — print secret length only (never values), remove after diagnosis
+    - name: Debug algolia env
+      env:
+        ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
+        ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+      run: echo "appId_len=${#ALGOLIA_APP_ID} searchKey_len=${#ALGOLIA_SEARCH_API_KEY} adminKey_len=${#ALGOLIA_ADMIN_API_KEY}"
+
     # Frontend only: App ID + Search-Only key (never Admin / Write key here)
     - name: Build Docusaurus site
       env:

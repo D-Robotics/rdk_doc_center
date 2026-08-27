@@ -76,11 +76,11 @@ body {
   color: #ff8566;
 }
 
-/* 首页 Hero 内层 + 卡片主区域：加宽内容栏（全局类，避免被 Infima/Docusaurus 合并样式覆盖） */
+/* 首页内容栏：两侧边距随视口缩放，给两列手册卡片留出合适宽度 */
 .home-page-content {
   box-sizing: border-box;
   width: 100%;
-  max-width: min(1760px, calc(100vw - 180px)) !important;
+  max-width: min(1880px, calc(100vw - 2 * clamp(1.25rem, 3.2vw, 3.5rem))) !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }

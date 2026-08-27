@@ -86,17 +86,17 @@ function Hero({ searchQuery, onSearchChange }) {
             aria-label={isEnglish ? "Search documentation" : "搜索文档"}
           />
         </label>
-        <nav
-          className={styles.heroNav}
-          aria-label={isEnglish ? "Quick Navigation" : "快速跳转"}
-        >
-          {currentGroups.map((g) => (
-            <a key={g.id} href={`#${g.anchor}`} className={styles.heroNavItem}>
-              {g.navTitle}
-            </a>
-          ))}
-        </nav>
       </div>
+      <nav
+        className={clsx(styles.heroNav, "home-page-content")}
+        aria-label={isEnglish ? "Quick Navigation" : "快速跳转"}
+      >
+        {currentGroups.map((g) => (
+          <a key={g.id} href={`#${g.anchor}`} className={styles.heroNavItem}>
+            {g.navTitle}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 }
@@ -126,6 +126,8 @@ function GroupSection({ group, items }) {
             description={item.description}
             href={item.href}
             tags={item.tags}
+            image={item.image}
+            cover={item.cover}
             versions={item.versions}
             versionHint={item.versionHint}
             latestOptionHint={item.latestOptionHint}
@@ -220,6 +222,8 @@ function SearchResults({ query, chapterHits, manualHits, total, loading }) {
                     description={item.description}
                     href={item.href}
                     tags={item.tags}
+                    image={item.image}
+                    cover={item.cover}
                     versions={item.versions}
                     versionHint={item.versionHint}
                     latestOptionHint={item.latestOptionHint}

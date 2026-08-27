@@ -14,8 +14,26 @@
  *   versionHint 可写在 zh/en 下，显示在版本选择器上方作为选用说明
  *   latestOptionHint / newestReleaseHint 写在选项内：Latest 通道、当前最高已发布版本
  *   descriptionHoverHint：卡片悬浮时覆盖描述区域的提示，不遮挡标题和版本按钮
+ * - image: 可选。卡片左侧产品图，支持：
+ *   1) OSS/CDN 完整地址（https://xxx.oss-cn-xxx.aliyuncs.com/...）
+ *   2) 相对 static 的站内路径（如 "/img/products/rdk-x.png"）
+ *   3) 数组：同一卡片展示多张产品图，元素可为路径字符串或 { src, label }
+ *   未配置或加载失败时，使用 cover 对应的产品示意插画
+ * - cover: 卡片产品图示意键名（rdk-x / rdk-s / tros / studio 等），与手册一一对应
  * - 首页全文搜索由 Algolia 联邦索引提供（见 algoliaSites.js / scripts/algolia-index.mjs）
  */
+
+/** 卡片产品图 OSS/CDN 根路径，不要末尾斜杠。填好后下面各条目的 image 即生效。 */
+const PRODUCT_IMAGE_BASE = "";
+
+function productImage(file) {
+  if (!file) return "";
+  if (/^https?:\/\//.test(file)) return file;
+  const base = String(PRODUCT_IMAGE_BASE || "").replace(/\/$/, "");
+  if (!base) return "";
+  return `${base}/${String(file).replace(/^\//, "")}`;
+}
+
 export const DOC_CENTER_CONFIG = {
   categories: [
     {
@@ -165,6 +183,13 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "product-rdk-manual",
       categoryId: "products",
+      cover: "rdk-x",
+      image: [
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x3-module.png", label: "X3 Module" },
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x3.png", label: "X3" },
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x5.png", label: "X5" },
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x5-module.png", label: "X5 Module" },
+      ],
       href: "https://developer.d-robotics.cc/rdk_x_doc/RDK",
       zh: {
         title: "RDK X 系列用户手册",
@@ -182,6 +207,11 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "product-rdk-manual",
       categoryId: "products",
+      cover: "rdk-s",
+      image: [
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-s100.png", label: "S100" },
+        { src: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-s600.png", label: "S600" },
+      ],
       href: "https://developer.d-robotics.cc/rdk_s_doc/RDK",
       zh: {
         title: "RDK S 系列用户手册",
@@ -199,6 +229,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "tros",
       categoryId: "robot-app",
+      cover: "tros",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/tros.png",
       href: "https://developer.d-robotics.cc/tros_doc/tros",
       zh: {
         title: "TogetheROS.Bot 用户手册",
@@ -215,6 +247,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "model-zoo-hub",
       categoryId: "model-zoo",
+      cover: "model-zoo",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/model-zoo.png",
       href: "https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro",
       zh: {
         title: "Model Zoo 用户手册",
@@ -229,6 +263,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "examples",
       categoryId: "examples",
+      cover: "s600-cases",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-s600-cases-card.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/case_doc/case",
       zh: {
@@ -244,9 +280,30 @@ export const DOC_CENTER_CONFIG = {
         href: "https://d-robotics.github.io/case_doc/en/case/",
       },
     },
+    // {
+    //   id: "examples",
+    //   categoryId: "examples",
+    //   cover: "x5-cases",
+    //   image: "/img/products/rdk-x5-cases.png",
+    //   // pendingRelease: true,
+    //   href: "https://developer.d-robotics.cc/x5_cases_doc/case/",
+    //   zh: {
+    //     title: "RDK X5 应用案例用户手册",
+    //     description: "本文档汇总 RDK X5 平台典型应用案例，从基础外设接口到端侧 AI 推理，再到交互游戏与多模态聊天机器人，按难度递进组织，便于快速上手并逐层深入。",
+    //     // description: "文档正在准备中，暂未上架。感谢您的关注与耐心等待！",
+
+    //   },
+    //   en: {
+    //     title: "RDK X5 Application Cases User Manual",
+    //     // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
+    //     description: "This documentation collects typical application cases for the RDK X5 platform, organized by difficulty from basic peripheral interface to on-device AI inference, multimodal interaction, and embodied intelligence—helping you get started quickly and dive deeper step by step.",
+    //   },
+    // },
     {
       id: "magicbox",
       categoryId: "accessories",
+      cover: "magicbox",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/magicbox.png",
       zh: {
         title: "RDK Magicbox 用户手册",
         description: "本文档作为 RDK X5 Magicbox 多模态智能平台的用户手册，为开发者提供产品的使用说明和开发指南。",
@@ -261,6 +318,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "accessories-stereo-camera",
       categoryId: "accessories",
+      cover: "stereo-camera",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/stereo-camera.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/accessories_stereo_camera_doc/overview",
       zh: {
@@ -276,6 +335,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "accessories_bmi088",
       categoryId: "accessories",
+      cover: "bmi088",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/bmi088.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/accessories_bmi088_doc/introduction",
       zh: {
@@ -291,6 +352,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "software-rdk-studio",
       categoryId: "software",
+      cover: "studio",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/studio.png",
       zh: {
         title: "RDK Studio 用户手册",
         description: "RDK Studio 是面向机器人开发的 AI 原生桌面工作台。它把 Moss 对话、项目工作区、设备连接、远程开发、烧录、本地模型和板端 Agent 放在同一个原生窗口里。",
@@ -305,6 +368,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "software-xburn",
       categoryId: "software",
+      cover: "xburn",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/xburn.png",
       href: "https://developer.d-robotics.cc/xburn_doc/overview",
       zh: {
         title: "XBurn 用户手册",
@@ -319,14 +384,16 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
+      cover: "oe-s",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-s.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
       zh: {
-        title: "S 系列计算平台 OE 用户手册",
+        title: "S 系列算法工具链用户手册",
         description: "本文档适用于使用地瓜 S100、S100P、S600 计算平台的所有开发者，为开发者提供关于 OE 的使用说明和开发指南。",
       },
       en: {
-        title: "S Series Calculation Platform OE User Manual",
+        title: "S Series Algorithm Toolchain User Manual",
         description: "This document is applicable to all developers using the D-Robotics S100, S100P, and S600 computing platforms, providing comprehensive development process guidance to help you fully understand the entire usage process.",
         href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
       },
@@ -334,14 +401,16 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
+      cover: "oe-llm-s100",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s100.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/index.html",
       zh: {
-        title: "S100 OE LLM 用户手册",
+        title: "S100 LLM 工具链用户手册",
         description: "本文档适用于使用地瓜 S100 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
       },
       en: {
-        title: "S100 OE LLM User Manual",
+        title: "S100 LLM Toolchain User Manual",
         description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
         href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/index.html",
       },
@@ -349,14 +418,16 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
+      cover: "oe-llm-s600",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_llm_s600_doc/index.html",
       zh: {
-        title: "S600 OE LLM 用户手册",
+        title: "S600 LLM 工具链用户手册",
         description: "本文档适用于使用地瓜 S600 LLM 工具链的所有开发者，通过进行地瓜 LLM 工具链发布物内容介绍，为您带来地瓜 LLM 工具链整体开发流程，提供全方位的开发过程指导。",
       },
       en: {
-        title: "S600 OE LLM User Manual",
+        title: "S600 LLM Toolchain User Manual",
         description: "This document is intended for all developers using D-Robotics-LLM. It provides comprehensive guidance throughout your development process, including the introduction of D-Robotics-LLM release materials and the overall development process of D-Robotics-LLM.",
         href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/index.html",
       },
@@ -364,14 +435,16 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
+      cover: "oe-x5",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-x5.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_x5_doc/cn/index.html",
       zh: {
-        title: "X5 OE 用户手册",
+        title: "X5 算法工具链用户手册",
         description: "本文档旨在为您详细介绍 X5 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
       },
       en: {
-        title: "X5 OE User Manual",
+        title: "X5 Algorithm Toolchain User Manual",
         description: "This document aims to provide detailed information on the X5 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
         href: "https://developer.d-robotics.cc/oe_x5_doc/en/index.html",
       },
@@ -379,14 +452,16 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
+      cover: "oe-x3",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-x3.png",
       // pendingRelease: true,
       href: "https://developer.d-robotics.cc/oe_x3_doc/cn/index.html",
       zh: {
-        title: "X3 OE 用户手册",
+        title: "X3 算法工具链用户手册",
         description: "本文档旨在为您详细介绍 X3 算法工具链相关内容，让开发者快速上手体验模型训练/转换、部署、验证、推理等关键步骤，为您提供全方位的开发过程指导。",
       },
       en: {
-        title: "X3 OE User Manual",
+        title: "X3 Algorithm Toolchain User Manual",
         description: "This document aims to provide detailed information on the X3 algorithm toolchain, helping developers quickly get started with model training/conversion, deployment, verification, and inference to provide comprehensive development process guidance.",
         href: "https://developer.d-robotics.cc/oe_x3_doc/en/index.html",
       },
@@ -394,6 +469,8 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "system-software-sdk",
       categoryId: "system-software",
+      cover: "x5-sdk",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/x5-sdk.png",
       versions: [
         {
           id: "latest",
@@ -418,10 +495,10 @@ export const DOC_CENTER_CONFIG = {
         title: "X5 芯片用户手册",
         description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
         latestOptionHint:
-          "latest 版本实时同步 AVL 信息，如需获取最新 AVL 请查看 latest 版本。",
-        newestReleaseHint: "此版本为已发布 SDK 的最新版本。",
+          "latest 版本实时同步 AVL 信息，如需获取最新 AVL 请查看此版本。",
+        newestReleaseHint: "此版本为已发布 SDK 的最新版本，AVL 不会实时更新。",
         descriptionHoverHint:
-          "当前默认为已发布 SDK 的最新版本手册，如需获取历史版本或最新 AVL 信息，请点击 [选择版本] 按钮查看对应的手册。",
+          "当前为已发布 SDK 的最新稳定版本，所包含的 AVL 信息于发布时固化，不具备实时更新能力。为确保获取最准确的 AVL 数据，请点击 [选择版本] 控件，参考 latest 版本手册。",
       },
       en: {
         title: "X5 SDK User Manual",
@@ -433,12 +510,14 @@ export const DOC_CENTER_CONFIG = {
           "The Latest version syncs AVL information in real time. Switch to Latest for the most recent AVL.",
         newestReleaseHint: "This is the newest released SDK version.",
         descriptionHoverHint:
-          "For the latest AVL information, click Select version and open the latest manual.",
+          "The current version is the latest stable version of the released SDK, and the AVL information included in it is fixed at the time of release, which does not have the ability to update in real time. To ensure the most accurate AVL data is obtained, please click the [Select version] control and refer to the latest version manual.",
       },
     },
     {
       id: "product-notice-archive",
       categoryId: "notifications",
+      cover: "notices",
+      image: productImage("notices.png"),
       // 占位态：待正式上线。pendingRelease 时 SiteCard 不跳转，弹「准备中」对话框。
       // href 保留站内路由，正式上线时去掉 pendingRelease 即恢复跳转到 /notifications。
       pendingRelease: true,
@@ -568,6 +647,8 @@ function toSite(entry, locale) {
       i18n.descriptionHoverHint || entry.descriptionHoverHint || "",
     external: /^https?:\/\//.test(href),
     pendingRelease: isEntryPending(entry, locale),
+    image: i18n.image || entry.image || "",
+    cover: entry.cover || "",
   };
 }
 

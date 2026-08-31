@@ -19,14 +19,6 @@ jobs:
         rm -rf node_modules
         npm ci
 
-    # TEMP DEBUG — print secret length only (never values), remove after diagnosis
-    - name: Debug algolia env
-      env:
-        ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-        ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-        ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-      run: echo "appId_len=${#ALGOLIA_APP_ID} searchKey_len=${#ALGOLIA_SEARCH_API_KEY} adminKey_len=${#ALGOLIA_ADMIN_API_KEY}"
-
     # Frontend only: App ID + Search-Only key (never Admin / Write key here)
     - name: Build Docusaurus site
       env:
@@ -56,5 +48,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+    # --skip-build：docusaurus deploy 默认会再 build 一次，而本步骤不带 ALGOLIA env，
+    # 会重建出空 appId/apiKey 的产物覆盖掉上一步的正确 build/。跳过重建、直接推上一步的产物。
     - name: Deploy to GitHub Pages
-      run: USE_SSH=true npm run deploy
+      run: USE_SSH=true npm run deploy -- --skip-build

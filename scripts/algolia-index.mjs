@@ -76,17 +76,33 @@ function hasFileExtension(pathname) {
   return /\.[a-z0-9]{1,8}$/i.test(lastPathSegment(pathname));
 }
 
+// OE/Sphinx 站用目录式 URL（/en/ /cn/），去掉尾部斜杠会 301 到 http:// 端口 80 或 404；
+// Docusaurus 站 trailingSlash:false，规范 URL 不带斜杠，带斜杠反而命中 OSS 空目录占位（触发下载）。
+function isSphinxHost(url) {
+  try {
+    const u = new URL(toHttps(url));
+    if (u.hostname === "toolchain.d-robotics.cc") return true;
+    const first = u.pathname.split("/").filter(Boolean)[0] || "";
+    return /^oe_/i.test(first);
+  } catch {
+    return false;
+  }
+}
+
 function normalizeUrl(url) {
   try {
     const u = new URL(toHttps(url));
     u.hash = "";
     let path = u.pathname || "/";
-    // Collapse index.html to a directory URL, keep the trailing slash.
-    // Stripping both /index.html and "/" makes OE/Sphinx hosts 301 to http://
-    // (port 80 times out) or 404 on extensionless paths like /en and /cn.
-    path = path.replace(/\/index\.html?$/i, "/");
-    if (path !== "/" && !hasFileExtension(path) && !path.endsWith("/")) {
-      path += "/";
+    if (isSphinxHost(url)) {
+      // Sphinx/OE：目录式 URL，保留尾部斜杠
+      path = path.replace(/\/index\.html?$/i, "/");
+      if (path !== "/" && !hasFileExtension(path) && !path.endsWith("/")) {
+        path += "/";
+      }
+    } else {
+      // Docusaurus：trailingSlash:false，规范 URL 不带斜杠，只去掉 index.html
+      path = path.replace(/\/index\.html?$/i, "");
     }
     u.pathname = path || "/";
     return u.toString();

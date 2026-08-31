@@ -11,6 +11,16 @@ import styles from "./index.module.css";
 
 const EMPTY_SEARCH = { chapterHits: [], manualHits: [], total: 0 };
 
+function trackSearchMiss(query) {
+  if (
+    typeof window !== "undefined" &&
+    window.umami &&
+    typeof window.umami.track === "function"
+  ) {
+    window.umami.track("search-miss", { query, scope: "portal" });
+  }
+}
+
 function SearchIcon({ className }) {
   return (
     <svg
@@ -297,7 +307,12 @@ export default function Home() {
         algoliaConfig,
       })
         .then((result) => {
-          if (!cancelled) setDocSearch(result);
+          if (!cancelled) {
+            setDocSearch(result);
+            if (result && result.total === 0) {
+              trackSearchMiss(q);
+            }
+          }
         })
         .catch((err) => {
           console.error("[doc-center] search failed", err);

@@ -13,6 +13,8 @@ const copyrightYearLabel =
     ? `${COPYRIGHT_START_YEAR}-${currentYear}`
     : `${COPYRIGHT_START_YEAR}`;
 
+const localePrefix = process.env.DOCUSAURUS_CURRENT_LOCALE === "en" ? "/en" : "";
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "RDK 资料中心",
@@ -81,7 +83,7 @@ const config = {
     // - 将语言切换链接从 /en/ 统一改为 /en
     // - 若落到 /en/ 或 /en/index.html 则跳转到 /en
     { src: "/rdk_doc_center/js/locale-slash-fix.js", defer: true },
-    { src: "/rdk_doc_center/js/umami-events.js", defer: true },
+    { src: `/rdk_doc_center${localePrefix}/js/umami-events.js`, defer: true },
     // {
     //   src: "/rdk_doc_manager/js/dify-config.js",
     // },

@@ -284,9 +284,9 @@ export const DOC_CENTER_CONFIG = {
     //   id: "examples",
     //   categoryId: "examples",
     //   cover: "x5-cases",
-    //   image: "/img/products/rdk-x5-cases.png",
+    //   image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/x5_cases.png",
     //   // pendingRelease: true,
-    //   href: "https://developer.d-robotics.cc/x5_cases_doc/case/",
+    //   href: "https://developer.d-robotics.cc/x5_cases_doc/case",
     //   zh: {
     //     title: "RDK X5 应用案例用户手册",
     //     description: "本文档汇总 RDK X5 平台典型应用案例，从基础外设接口到端侧 AI 推理，再到交互游戏与多模态聊天机器人，按难度递进组织，便于快速上手并逐层深入。",
@@ -297,6 +297,7 @@ export const DOC_CENTER_CONFIG = {
     //     title: "RDK X5 Application Cases User Manual",
     //     // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
     //     description: "This documentation collects typical application cases for the RDK X5 platform, organized by difficulty from basic peripheral interface to on-device AI inference, multimodal interaction, and embodied intelligence—helping you get started quickly and dive deeper step by step.",
+    //     href: "https://d-robotics.github.io/x5_cases_doc/en/case",
     //   },
     // },
     {
@@ -347,6 +348,23 @@ export const DOC_CENTER_CONFIG = {
         title: "RDK BMI088 IMU Module User Manual",
         description: "This document serves as the user manual for the BMI088 IMU module, providing developers with usage instructions and development guidelines on various aspects of the product.",
         href: "https://d-robotics.github.io/accessories_bmi088_doc/en/introduction",
+      },
+    },
+    {
+      id: "accessories_audio_kit",
+      categoryId: "accessories",
+      cover: "audio_kit",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/audio_kit.png",
+      // pendingRelease: true,
+      href: "https://developer.d-robotics.cc/accessories_audio_kit_doc/overview",
+      zh: {
+        title: "RDK 音频套件用户手册",
+        description: "本文档作为音频套件的用户手册，为开发者提供产品的使用说明和开发指南。",
+      },
+      en: {
+        title: "RDK Audio Kit User Manual",
+        description: "This document serves as the user manual for the audio kit, providing developers with usage instructions and development guidelines on various aspects of the product.",
+        href: "https://developer.d-robotics.cc/accessories_audio_kit_doc/en/overview",
       },
     },
     {

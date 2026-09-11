@@ -70,9 +70,9 @@ def cut_board(rgb: np.ndarray) -> np.ndarray:
 
 def detect_boards(rgb: np.ndarray):
     h, w = rgb.shape[:2]
-    # Ignore caption row under the boards.
-    band = rgb[: int(h * 0.82)]
-    dist = np.linalg.norm(band.astype(np.float32) - 255, axis=2)
+    # Detect on the full image, then drop the caption rows by height:
+    # boards are hundreds of px tall while the caption text under them is ~15px.
+    dist = np.linalg.norm(rgb.astype(np.float32) - 255, axis=2)
     mask = (dist > 20).astype(np.uint8) * 255
     mask = cv2.morphologyEx(
         mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
@@ -81,7 +81,7 @@ def detect_boards(rgb: np.ndarray):
     boxes = []
     for i in range(1, num):
         x, y, bw, bh, area = stats[i]
-        if area > 400:
+        if area > 400 and bh > 80:
             boxes.append((int(x), int(y), int(bw), int(bh)))
     boxes.sort(key=lambda b: b[0])
     return boxes
@@ -98,7 +98,7 @@ def main() -> None:
     pad = 22
     for (x, y, bw, bh), (filename, label) in zip(boxes, NAMES):
         x0, y0 = max(0, x - pad), max(0, y - pad)
-        x1, y1 = min(w, x + bw + pad), min(int(h * 0.84), y + bh + pad)
+        x1, y1 = min(w, x + bw + pad), min(h, y + bh + pad)
         crop = rgb[y0:y1, x0:x1]
         cut = cut_board(crop)
         dst = OUT_DIR / filename

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -38,13 +38,29 @@ function SearchIcon({ className }) {
   );
 }
 
-function Hero({ searchQuery, onSearchChange }) {
+function Hero({ searchQuery, onSearchChange, activeTab, onTabChange }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
   const currentGroups = isEnglish ? groupsEn : groups;
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const update = () => {
+      if (heroRef.current) {
+        root.style.setProperty(
+          "--home-hero-height",
+          `${heroRef.current.offsetHeight}px`,
+        );
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   return (
-    <header className={styles.hero}>
+    <header ref={heroRef} data-home-hero="" className={styles.hero}>
       <div className={clsx(styles.heroInner, "home-page-content")}>
         <h1 className={styles.heroTitle}>
           D-Robotics{" "}
@@ -98,14 +114,22 @@ function Hero({ searchQuery, onSearchChange }) {
         </label>
       </div>
       <nav
-        className={clsx(styles.heroNav, "home-page-content")}
-        aria-label={isEnglish ? "Quick Navigation" : "快速跳转"}
+        className={clsx(styles.categoryTabs, "home-page-content")}
+        aria-label={isEnglish ? "Category navigation" : "分类导航"}
       >
-        {currentGroups.map((g) => (
-          <a key={g.id} href={`#${g.anchor}`} className={styles.heroNavItem}>
-            {g.navTitle}
-          </a>
-        ))}
+        {currentGroups.map((g) => {
+          const isActive = activeTab === g.id;
+          return (
+            <button
+              key={g.id}
+              type="button"
+              className={clsx(styles.categoryTab, isActive && styles.categoryTabActive)}
+              onClick={() => onTabChange(g.id)}
+            >
+              {g.navTitle}
+            </button>
+          );
+        })}
       </nav>
     </header>
   );
@@ -265,6 +289,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [docSearch, setDocSearch] = useState(EMPTY_SEARCH);
   const [searchLoading, setSearchLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState(groups[0]?.id);
   const isEnglish = i18n.currentLocale === "en";
   const currentGroups = isEnglish ? groupsEn : groups;
   const algoliaConfig = siteConfig.customFields?.algolia;
@@ -287,6 +312,17 @@ export default function Home() {
     [grouped, searchQuery],
   );
   const isSearching = Boolean(searchQuery.trim());
+
+  const handleTabChange = (id) => {
+    setActiveTab(id);
+    const group = currentGroups.find((g) => g.id === id);
+    if (group) {
+      document.getElementById(group.anchor)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   useEffect(() => {
     const q = searchQuery.trim();
@@ -331,6 +367,44 @@ export default function Home() {
     };
   }, [searchQuery, isEnglish, grouped, groupsMap, algoliaConfig, algoliaAppId, algoliaApiKey, algoliaIndexKey]);
 
+  useEffect(() => {
+    if (isSearching) return undefined;
+
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const hero = document.querySelector("[data-home-hero]");
+      const navbar = document.querySelector(".navbar");
+      const navbarHeight = navbar?.offsetHeight ?? 60;
+      const heroHeight = hero?.offsetHeight ?? 0;
+      const activeLine = window.scrollY + navbarHeight + heroHeight + 16;
+
+      let currentId = currentGroups[0]?.id;
+      for (const group of currentGroups) {
+        const el = document.getElementById(group.anchor);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= activeLine) {
+          currentId = group.id;
+        } else {
+          break;
+        }
+      }
+      setActiveTab(currentId);
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isSearching, currentGroups]);
+
   return (
     <Layout
       title={isEnglish ? "RDK Resource Center" : "RDK 资料中心"}
@@ -340,7 +414,12 @@ export default function Home() {
           : "D-Robotics 开发者文档总入口 —— 聚合 RDK 、SDK、机器人应用、算法工具链等所有子站"
       }
     >
-      <Hero searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <Hero
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
       <main className={clsx(styles.main, "home-page-content")}>
         <SearchResults
           query={searchQuery}

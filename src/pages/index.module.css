@@ -103,9 +103,9 @@
   align-items: center;
   padding: 0.35rem 0.95rem;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 140, 60, 0.38);
-  color: #ffb347;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -119,10 +119,10 @@
 }
 
 .heroActionBtn:hover {
-  border-color: rgba(255, 140, 60, 0.55);
-  color: #ffc266;
-  background: rgba(255, 81, 37, 0.14);
-  box-shadow: 0 0 18px rgba(255, 81, 37, 0.16);
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.14);
   text-decoration: none;
 }
 
@@ -514,18 +514,6 @@
 :global(html[data-theme="dark"]) .hero {
   background:
     linear-gradient(180deg, #020204 0%, #06050b 48%, #100818 78%, #060408 100%);
-}
-
-:global(html[data-theme="dark"]) .heroActionBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 140, 60, 0.32);
-  color: #ffb347;
-}
-
-:global(html[data-theme="dark"]) .heroActionBtn:hover {
-  background: rgba(255, 81, 37, 0.14);
-  border-color: rgba(255, 140, 60, 0.42);
-  color: #ffc266;
 }
 
 :global(html[data-theme="dark"]) .categoryTabActive,

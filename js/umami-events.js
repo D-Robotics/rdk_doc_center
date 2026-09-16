@@ -25,6 +25,7 @@
     { key: "magicbox", path: "magicbox_doc" },
     { key: "rdk_studio", path: "rdk_studio_doc" },
     { key: "robogo", path: "robogo_doc" },
+    { key: "accessories_audio_kit", path: "accessories_audio_kit_doc" },
   ];
 
   function productOf(pathname) {

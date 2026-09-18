@@ -302,16 +302,27 @@ export default function Home() {
     [grouped, searchQuery],
   );
   const isSearching = Boolean(searchQuery.trim());
+  const scrollingRef = useRef(false);
+  const scrollTimerRef = useRef(0);
 
   const handleTabChange = (id) => {
     setActiveTab(id);
     const group = currentGroups.find((g) => g.id === id);
-    if (group) {
-      document.getElementById(group.anchor)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    const target = group && document.getElementById(group.anchor);
+    if (!target) return;
+
+    scrollingRef.current = true;
+    const stop = () => {
+      scrollingRef.current = false;
+      window.clearTimeout(scrollTimerRef.current);
+      window.removeEventListener("scrollend", stop);
+    };
+    window.addEventListener("scrollend", stop);
+    window.clearTimeout(scrollTimerRef.current);
+    // Fallback for browsers without the `scrollend` event
+    scrollTimerRef.current = window.setTimeout(stop, 1500);
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   useEffect(() => {
@@ -358,6 +369,7 @@ export default function Home() {
     let raf = 0;
     const update = () => {
       raf = 0;
+      if (scrollingRef.current) return;
       const hero = document.querySelector("[data-home-hero]");
       const navbar = document.querySelector(".navbar");
       const navbarHeight = navbar?.offsetHeight ?? 60;

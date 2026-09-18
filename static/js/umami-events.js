@@ -26,6 +26,20 @@
     { key: "rdk_studio", path: "rdk_studio_doc" },
     { key: "robogo", path: "robogo_doc" },
     { key: "accessories_audio_kit", path: "accessories_audio_kit_doc" },
+    // 补全首页其余卡片对应仓（应用案例 / OE 算法工具链 / 芯片 SDK / 配件 BMI088+双目）。
+    // 否则首页点这些卡片 cross-product 的 to 匹配不到 → 点击量记 0（假数据，误导首页卡片排序）。
+    { key: "accessories_bmi088", path: "accessories_bmi088_doc" },
+    { key: "accessories_stereo_camera", path: "accessories_stereo_camera_doc" },
+    { key: "case", path: "case_doc" },
+    { key: "x5_cases", path: "x5_cases_doc" },
+    { key: "oe_s", path: "oe_s_doc" },
+    { key: "oe_x3", path: "oe_x3_doc" },
+    { key: "oe_x5", path: "oe_x5_doc" },
+    { key: "oe_llm_s600", path: "oe_llm_s600_doc" },
+    { key: "oe_llm_s100p", path: "oe_llm_s100p_doc" },
+    // x5_sdk 两个版本路径同 key（to=x5_sdk 不分版本，首页排序到卡片级够用）
+    { key: "x5_sdk", path: "x5_sdk_doc_latest" },
+    { key: "x5_sdk", path: "x5_sdk_doc" },
   ];
 
   function productOf(pathname) {

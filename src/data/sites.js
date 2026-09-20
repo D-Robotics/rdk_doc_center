@@ -604,7 +604,7 @@ export const DOC_CENTER_CONFIG = {
           label: "latest",
           href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
           en: {
-            href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
+            href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/en/index.html",
             // pendingRelease: true,
           },
         },

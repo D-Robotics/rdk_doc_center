@@ -11,6 +11,8 @@
  *   Latest（id/label 为 latest）为持续更新文档，不作为卡片默认入口
  *   默认展示并跳转到 Latest 之外、版本号最高的已上架版本（如 1.1.2、1.1.3 中默认 1.1.3）
  *   每个 version 可写 href（中文）、en.href（英文）、pendingRelease、index（是否纳入 Algolia；默认仅 Latest 滚动文档）
+ *   hidden: true 时该版本不出现在版本选择器中（区别于 pendingRelease：后者仍展示为「准备中」占位）
+ *   可写在 version 根级（中英文同时隐藏），也可写在 zh/en 下（仅该语言隐藏，适合某版本尚无对应语言文档的场景）
  *   versionHint 可写在 zh/en 下，显示在版本选择器上方作为选用说明
  *   latestOptionHint / newestReleaseHint 写在选项内：Latest 通道、当前最高已发布版本
  *   descriptionHoverHint：卡片悬浮时覆盖描述区域的提示，不遮挡标题和版本按钮
@@ -603,16 +605,25 @@ export const DOC_CENTER_CONFIG = {
           href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
           en: {
             href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
-            pendingRelease: true,
+            // pendingRelease: true,
+          },
+        },
+        {
+          id: "2.0.0",
+          label: "V2.0.0",
+          href: "https://developer.d-robotics.cc/x5_sdk_doc_v2.0.0/index.html",
+          en: {
+            href: "https://developer.d-robotics.cc/x5_sdk_doc_v2.0.0/en/index.html",
+            // pendingRelease: true,
           },
         },
         {
           id: "1.1.2",
           label: "V1.1.2",
           href: "https://developer.d-robotics.cc/x5_sdk_doc/",
+          // 该版本英文手册不存在，英文选择器内不展示（发布后删掉 hidden 并补 en.href 即可恢复）
           en: {
-            href: "https://developer.d-robotics.cc/x5_sdk_doc/",
-            pendingRelease: true,
+            hidden: true,
           },
         },
       ],
@@ -627,10 +638,7 @@ export const DOC_CENTER_CONFIG = {
       },
       en: {
         title: "X5 SDK User Manual",
-        description: "The document is being prepared and is not yet available. Thank you for your attention and patience!",
-        pendingRelease: true,
-        versionHint:
-          "Match the manual to the SDK version you currently integrate. For the latest AVL parameters, switch to Latest — that document is kept continuously in sync.",
+        description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on development environment setup, solution evaluation, software feature development, and more.",
         latestOptionHint:
           "The Latest version syncs AVL information in real time. Switch to Latest for the most recent AVL.",
         newestReleaseHint: "This is the newest released SDK version.",
@@ -678,6 +686,13 @@ export function isEntryPending(entry, locale) {
   return Boolean(entry.pendingRelease);
 }
 
+/** 该语言下是否隐藏此版本（zh/en 下的 hidden 优先于 version 根级）。 */
+export function isVersionHidden(version, locale) {
+  const localized = locale ? version?.[locale] : undefined;
+  if (typeof localized?.hidden === "boolean") return localized.hidden;
+  return Boolean(version?.hidden);
+}
+
 export function resolveVersionHref(version, locale) {
   if (!version) return "";
   const localized = locale && version[locale]?.href;
@@ -723,7 +738,11 @@ export function pickDefaultVersion(versions) {
 
 export function normalizeVersions(entry, locale) {
   if (!Array.isArray(entry.versions) || entry.versions.length === 0) return [];
-  const mapped = entry.versions.map((version) => {
+  const visible = entry.versions.filter(
+    (version) => !isVersionHidden(version, locale),
+  );
+  if (visible.length === 0) return [];
+  const mapped = visible.map((version) => {
     const localized = locale ? version[locale] : undefined;
     const pendingRelease =
       typeof localized?.pendingRelease === "boolean"

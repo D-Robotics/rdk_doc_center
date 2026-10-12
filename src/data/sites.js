@@ -72,8 +72,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#2e8555",
       icon: "manual",
       zh: {
-        title: "开发套件",
-        navTitle: "开发套件",
+        title: "开发套件 RDK",
+        navTitle: "开发套件 RDK",
         // subtitle: "Hardware / 系统烧录 / 配件清单 / 下载资源 / 附录 / FAQ",
       },
       en: {
@@ -88,8 +88,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#14b8a6",
       icon: "accessories",
       zh: {
-        title: "产品与配件",
-        navTitle: "产品与配件",
+        title: "产品与配件 Accessories",
+        navTitle: "产品与配件 Accessories",
         // subtitle: "整机 / IMU / Stereo Camera 系列",
       },
       en: {
@@ -104,8 +104,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#9333ea",
       icon: "robot",
       zh: {
-        title: "机器人操作系统",
-        navTitle: "机器人操作系统",
+        title: "机器人操作系统 TROS",
+        navTitle: "机器人操作系统 TROS",
         // subtitle: "TROS · 各平台同步发版",
       },
       en: {
@@ -120,8 +120,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#f97316",
       icon: "model",
       zh: {
-        title: "模型库",
-        navTitle: "模型库",
+        title: "模型库 Model Zoo",
+        navTitle: "模型库 Model Zoo",
         // subtitle: "官方模型仓库入口（外链）",
       },
       en: {
@@ -136,8 +136,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#0ea5e9",
       icon: "examples",
       zh: {
-        title: "应用案例",
-        navTitle: "应用案例",
+        title: "应用案例 Cases",
+        navTitle: "应用案例 Cases",
         // subtitle: "覆盖 X3 / X5 / S100 / S600",
       },
       en: {
@@ -152,8 +152,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#db2777",
       icon: "software",
       zh: {
-        title: "开发工具",
-        navTitle: "开发工具",
+        title: "开发工具 Tools",
+        navTitle: "开发工具 Tools",
         // subtitle: "开发 / 烧录工具",
       },
       en: {
@@ -168,8 +168,8 @@ export const DOC_CENTER_CONFIG = {
       accent: "#dc2626",
       icon: "toolchain",
       zh: {
-        title: "算法工具链",
-        navTitle: "算法工具链",
+        title: "算法工具链 OE/LLM",
+        navTitle: "算法工具链 OE/LLM",
         // subtitle: "模型转换 / 量化 / 部署",
       },
       en: {

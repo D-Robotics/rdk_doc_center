@@ -133,6 +133,7 @@ const config = {
         logo: {
           alt: "地瓜机器人社区 logo",
           src: "img/logo.png",
+          srcDark: "img/logo-1.png",
           href: "https://d-robotics.cc/",
         },
         items: [
@@ -141,7 +142,10 @@ const config = {
               process.env.DOCUSAURUS_CURRENT_LOCALE === "en"
                 ? "https://developer.d-robotics.cc/en"
                 : "https://developer.d-robotics.cc/",
-            label: "Community",
+            label:
+              process.env.DOCUSAURUS_CURRENT_LOCALE === "en"
+                ? "Community"
+                : "地瓜开发者社区",
             position: "left",
           },
 

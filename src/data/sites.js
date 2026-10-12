@@ -78,7 +78,7 @@ export const DOC_CENTER_CONFIG = {
       },
       en: {
         title: "Development Kits",
-        navTitle: "Dev Kits",
+        navTitle: "Development Kits",
         // subtitle: "Hardware / System Installation / Accessories / Download Resources / Appendix / FAQ",
       },
     },
@@ -109,9 +109,9 @@ export const DOC_CENTER_CONFIG = {
         // subtitle: "TROS · 各平台同步发版",
       },
       en: {
-        title: "Robot Operating System",
+        title: "TogetheROS",
         // subtitle: "TROS · Synchronous release across platforms",
-        navTitle: "Robot OS",
+        navTitle: "TogetheROS",
       },
     },
     {
@@ -125,9 +125,9 @@ export const DOC_CENTER_CONFIG = {
         // subtitle: "官方模型仓库入口（外链）",
       },
       en: {
-        title: "Model Library",
+        title: "Model Zoo",
         // subtitle: "Official model repository entrance (external link)",
-        navTitle: "Model Library",
+        navTitle: "Model Zoo",
       },
     },
     {
@@ -141,9 +141,9 @@ export const DOC_CENTER_CONFIG = {
         // subtitle: "覆盖 X3 / X5 / S100 / S600",
       },
       en: {
-        title: "Application Cases",
+        title: "Use Cases",
         // subtitle: "Covering X3 / X5 / S100 / S600",
-        navTitle: "Cases",
+        navTitle: "Use Cases",
       },
     },
     {
@@ -159,7 +159,7 @@ export const DOC_CENTER_CONFIG = {
       en: {
         title: "Development Tools",
         // subtitle: "Development / Burning Tools",
-        navTitle: "Dev Tools",
+        navTitle: "Development Tools",
       },
     },
     {
@@ -189,9 +189,9 @@ export const DOC_CENTER_CONFIG = {
         // subtitle: "SDK 开发 / 部署 / 模型转换",
       },
       en: {
-        title: "Chip SDK",
+        title: "SoC SDK",
         // subtitle: "SDK Development / Deployment / Model Conversion",
-        navTitle: "Chip SDK",
+        navTitle: "SoC SDK",
       },
     },
     // 通知文件：呈现层不设一级 section（spec ④已定 2026-09-17）。
@@ -371,7 +371,7 @@ export const DOC_CENTER_CONFIG = {
 
       },
       en: {
-        title: "RDK S600 Application Cases",
+        title: "RDK S600 Use Cases",
         // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
         description: "This documentation collects typical application cases for the RDK S600 platform, helping you get started quickly and dive deeper step by step.",
         href: "https://d-robotics.github.io/case_doc/en/case/",
@@ -391,7 +391,7 @@ export const DOC_CENTER_CONFIG = {
 
       },
       en: {
-        title: "RDK X5 Application Cases",
+        title: "RDK X5 Use Cases",
         // description: "This document serves as an application development example collection for the RDK, providing developers with multiple development practice directions.",
         description: "This documentation collects typical application cases for the RDK X5 platform, helping you get started quickly and dive deeper step by step.",
         href: "https://d-robotics.github.io/x5_cases_doc/en/case",

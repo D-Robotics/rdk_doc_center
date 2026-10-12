@@ -4,10 +4,10 @@ import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { groups, sitesByGroup, groupsEn, sites, sitesEn } from "@site/src/data/sites";
 import SiteCard from "@site/src/components/SiteCard";
-import SectionIcon from "@site/src/components/SectionIcon";
 import ChapterSearchHit from "@site/src/components/ChapterSearchHit";
 import { searchDocCenter } from "@site/src/utils/docCenterSearch";
 import styles from "./index.module.css";
+import heroBanner from "@site/static/img/hero-banner.png";
 
 const EMPTY_SEARCH = { chapterHits: [], manualHits: [], total: 0 };
 
@@ -38,10 +38,9 @@ function SearchIcon({ className }) {
   );
 }
 
-function Hero({ searchQuery, onSearchChange, activeTab, onTabChange }) {
+function Hero({ searchQuery, onSearchChange }) {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
-  const currentGroups = isEnglish ? groupsEn : groups;
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -61,6 +60,7 @@ function Hero({ searchQuery, onSearchChange, activeTab, onTabChange }) {
 
   return (
     <header ref={heroRef} data-home-hero="" className={styles.hero}>
+      <img className={styles.heroBg} src={heroBanner} alt="" aria-hidden />
       <div className={clsx(styles.heroInner, "home-page-content")}>
         <h1 className={styles.heroTitle}>
           D-Robotics{" "}
@@ -73,28 +73,6 @@ function Hero({ searchQuery, onSearchChange, activeTab, onTabChange }) {
             ? "Complete technical documentation for robot development kits, algorithm models, SDK, application development, and deployment."
             : "提供机器人开发套件、算法模型、SDK、应用开发与部署相关的完整技术文档。"}
         </p>
-        <div className={styles.heroActions}>
-          <a
-            className={styles.heroActionBtn}
-            href="https://github.com/D-Robotics"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            className={styles.heroActionBtn}
-            href={
-              isEnglish
-                ? "https://developer.d-robotics.cc/en/documentation"
-                : "https://developer.d-robotics.cc/information"
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {isEnglish ? "Legacy Docs" : "旧版资料"}
-          </a>
-        </div>
         <label className={styles.heroSearch}>
           <SearchIcon className={styles.heroSearchIcon} />
           <input
@@ -106,31 +84,13 @@ function Hero({ searchQuery, onSearchChange, activeTab, onTabChange }) {
             onChange={(event) => onSearchChange(event.target.value)}
             placeholder={
               isEnglish
-                ? "Search docs..."
-                : "搜索文档..."
+                ? "Search docs"
+                : "搜索文档"
             }
             aria-label={isEnglish ? "Search documentation" : "搜索文档"}
           />
         </label>
       </div>
-      <nav
-        className={clsx(styles.categoryTabs, "home-page-content")}
-        aria-label={isEnglish ? "Category navigation" : "分类导航"}
-      >
-        {currentGroups.map((g) => {
-          const isActive = activeTab === g.id;
-          return (
-            <button
-              key={g.id}
-              type="button"
-              className={clsx(styles.categoryTab, isActive && styles.categoryTabActive)}
-              onClick={() => onTabChange(g.id)}
-            >
-              {g.navTitle}
-            </button>
-          );
-        })}
-      </nav>
     </header>
   );
 }
@@ -142,9 +102,6 @@ function GroupSection({ group, items }) {
       <div className={styles.sectionHeader}>
         <div>
           <h2 className={styles.sectionTitle}>
-            <span className={styles.sectionIcon} aria-hidden>
-              <SectionIcon name={group.icon} className={styles.sectionIconSvg} />
-            </span>
             {group.title}
           </h2>
           {group.subtitle ? (
@@ -266,7 +223,6 @@ function SearchResults({ query, chapterHits, manualHits, total, loading }) {
                     external={item.external}
                     pendingRelease={item.pendingRelease}
                     groupLabel={item.groupTitle}
-                    accent={item.accent}
                   />
                 ))}
               </div>
@@ -312,27 +268,9 @@ export default function Home() {
     [grouped, searchQuery],
   );
   const isSearching = Boolean(searchQuery.trim());
-  const scrollingRef = useRef(false);
-  const scrollTimerRef = useRef(0);
-
-  const handleTabChange = (id) => {
-    setActiveTab(id);
-    const group = currentGroups.find((g) => g.id === id);
-    const target = group && document.getElementById(group.anchor);
-    if (!target) return;
-
-    scrollingRef.current = true;
-    const stop = () => {
-      scrollingRef.current = false;
-      window.clearTimeout(scrollTimerRef.current);
-      window.removeEventListener("scrollend", stop);
-    };
-    window.addEventListener("scrollend", stop);
-    window.clearTimeout(scrollTimerRef.current);
-    // Fallback for browsers without the `scrollend` event
-    scrollTimerRef.current = window.setTimeout(stop, 1500);
-
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleNavClick = (anchor) => {
+    const el = document.getElementById(anchor);
+    if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
   };
 
   useEffect(() => {
@@ -378,44 +316,37 @@ export default function Home() {
     };
   }, [searchQuery, isEnglish, grouped, groupsMap, algoliaConfig, algoliaAppId, algoliaApiKey, algoliaIndexKey]);
 
+  // scrollspy：一页展示全部品类，滚动时高亮当前品类
   useEffect(() => {
-    if (isSearching) return undefined;
-
+    if (typeof window === "undefined") return undefined;
+    const sectionIds = currentGroups.map((g) => g.anchor).filter(Boolean);
+    if (!sectionIds.length) return undefined;
     let raf = 0;
-    const update = () => {
+    const compute = () => {
       raf = 0;
-      if (scrollingRef.current) return;
-      const hero = document.querySelector("[data-home-hero]");
-      const navbar = document.querySelector(".navbar");
-      const navbarHeight = navbar?.offsetHeight ?? 60;
-      const heroHeight = hero?.offsetHeight ?? 0;
-      const activeLine = window.scrollY + navbarHeight + heroHeight + 16;
-
-      let currentId = currentGroups[0]?.id;
-      for (const group of currentGroups) {
-        const el = document.getElementById(group.anchor);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        if (top <= activeLine) {
-          currentId = group.id;
-        } else {
-          break;
-        }
+      const line = Math.max(120, window.innerHeight * 0.25);
+      let active = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) active = id;
       }
-      setActiveTab(currentId);
+      // 滚动到底部时强制高亮最后一个品类，避免最后一项停留在倒数第二项
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) {
+        active = sectionIds[sectionIds.length - 1];
+      }
+      setActiveTab(active);
     };
-
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!raf) raf = requestAnimationFrame(compute);
     };
-
-    update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    compute();
     return () => {
-      if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
-  }, [isSearching, currentGroups]);
+  }, [currentGroups]);
 
   return (
     <Layout
@@ -429,27 +360,47 @@ export default function Home() {
       <Hero
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
       />
-      <main className={clsx(styles.main, "home-page-content")}>
-        <SearchResults
-          query={searchQuery}
-          chapterHits={docSearch.chapterHits}
-          manualHits={docSearch.manualHits}
-          total={docSearch.total}
-          loading={searchLoading}
-        />
-        {!isSearching
-          ? currentGroups.map((g) => (
-              <GroupSection
-                key={g.id}
-                group={g}
-                items={filteredGrouped[g.id] || []}
-              />
-            ))
-          : null}
-      </main>
+      <div className={clsx(styles.layout, "home-page-content")}>
+        {!isSearching ? (
+          <aside className={styles.sidebar}>
+            {currentGroups.map((g) => {
+              const isActive = activeTab === g.id;
+              return (
+                <button
+                  key={g.id}
+                  type="button"
+                  className={clsx(
+                    styles.sidebarItem,
+                    isActive && styles.sidebarItemActive,
+                  )}
+                  onClick={() => handleNavClick(g.anchor)}
+                >
+                  {g.navTitle}
+                </button>
+              );
+            })}
+          </aside>
+        ) : null}
+        <main className={styles.main}>
+          <SearchResults
+            query={searchQuery}
+            chapterHits={docSearch.chapterHits}
+            manualHits={docSearch.manualHits}
+            total={docSearch.total}
+            loading={searchLoading}
+          />
+          {!isSearching
+            ? currentGroups.map((g) => (
+                <GroupSection
+                  key={g.id}
+                  group={g}
+                  items={filteredGrouped[g.id] || []}
+                />
+              ))
+            : null}
+        </main>
+      </div>
     </Layout>
   );
 }

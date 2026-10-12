@@ -202,7 +202,7 @@ function VersionSelect({
       className={`${styles.versionMenu} ${styles.versionMenuPortal}`}
       role="listbox"
       data-version-menu="true"
-      style={{ "--card-accent": accent || "#ff5125" }}
+      style={{ "--card-accent": accent || "#fe6702" }}
     >
       {versions.map((version) => {
         const optionHint = version.channelLatest

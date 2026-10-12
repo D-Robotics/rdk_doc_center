@@ -167,11 +167,6 @@ body.plugin-id-os-rdk-s600        .navbar-version-dropdown--os-rdk-s600 {
   display: block;
 }
 
-/* 确保 ThemedImage 正确显示 */
-[data-theme="dark"] .navbar__logo img {
-  filter: brightness(0.9);
-}
-
 /* ------------------------------------------------------------------ */
 /* 文档版本和产品选择器样式 */
 .doc-scope-selectors {
@@ -463,4 +458,4 @@ main article table {
 
 [data-theme='dark'] .markdown a:hover {
   color: #79b8ff;
-} 
+}

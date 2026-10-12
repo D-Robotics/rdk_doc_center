@@ -173,9 +173,9 @@ export const DOC_CENTER_CONFIG = {
         // subtitle: "模型转换 / 量化 / 部署",
       },
       en: {
-        title: "Algorithm Toolchain",
+        title: "OpenExplorer/LLM",
         // subtitle: "Model Conversion / Quantization / Deployment",
-        navTitle: "Algorithm Toolchain",
+        navTitle: "OpenExplorer/LLM",
       },
     },
     {

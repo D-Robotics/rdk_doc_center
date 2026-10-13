@@ -16,7 +16,8 @@ export default function NavbarMobilePrimaryMenu() {
   const { i18n } = useDocusaurusContext();
   const isEnglish = i18n.currentLocale === "en";
   const categories = isEnglish ? groupsEn : groups;
-  const items = useNavbarItems();
+  // 配置里标了 hideInMobileDrawer 的条目（如 GitHub，页脚已有入口）不进抽屉
+  const items = useNavbarItems().filter((item) => !item.hideInMobileDrawer);
 
   const jumpToCategory = (anchor) => {
     mobileSidebar.toggle();

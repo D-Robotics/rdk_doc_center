@@ -38,10 +38,27 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 导航栏：品牌色点缀 */
+/* 导航栏：品牌色点缀。
+   注意：毛玻璃不能直接加在 .navbar 上。backdrop-filter（以及 filter / perspective / contain）
+   会让元素成为 position:fixed 后代的包含块，而移动端抽屉面板 .navbar-sidebar 与遮罩
+   .navbar-sidebar__backdrop 恰好是 <nav class="navbar"> 的子元素。一旦 .navbar 成为包含块，
+   抽屉就会被压进导航条那 60px 高度里，.navbar-sidebar__items 的
+   calc(100% - var(--ifm-navbar-height)) 算成 0，条目再被 .menu 的 overflow 裁掉 ——
+   表现就是移动端点开三条线后一个分类都看不到。改由 ::before 承担，伪元素没有后代，无此副作用。 */
 .navbar {
-  backdrop-filter: blur(12px);
+  background: transparent;
   border-bottom: 1px solid color-mix(in srgb, var(--portal-accent) 10%, transparent);
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ifm-navbar-background-color);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
 }
 
 .navbar__title {

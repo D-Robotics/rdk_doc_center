@@ -452,26 +452,14 @@
   .layout {
     flex-direction: column;
     gap: 1.25rem;
+    align-items: stretch;
   }
 
   .sidebar {
     flex: 0 0 auto;
+    max-width: 100%;
     position: static;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 0.25rem;
-  }
-
-  .sidebar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .sidebarItem {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    flex-direction: column;
   }
 }
 

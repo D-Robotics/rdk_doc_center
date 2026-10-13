@@ -153,6 +153,9 @@ const config = {
             href: "https://github.com/D-Robotics",
             label: "GitHub",
             position: "right",
+            // 页脚已有 GitHub 入口，移动端抽屉里不必重复。
+            // 由 src/theme/Navbar/MobileSidebar/PrimaryMenu/index.js 读取此标记并过滤。
+            hideInMobileDrawer: true,
           },
 
           {

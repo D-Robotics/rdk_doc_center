@@ -499,18 +499,18 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
-      cover: "oe-s",
-      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-s.png",
+      cover: "oe-llm-s600",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
+      href: "https://developer.d-robotics.cc/oe_llm_s600_doc/guide/sdk_introduction.html",
       zh: {
-        title: "S 系列算法工具链",
-        description: "OE 是 Open Explorer 的缩写简称，中文名为天工开物，它是基于自研计算平台打造的全生命周期开发平台。",
+        title: "S 系列 LLM 工具链用户手册",
+        description: "地瓜 S100/600 LLM 工具链，是工具链产品面向大模型业务的特性化拓展，可以在 S600 及衍生平台进行大语言模型的部署。",
       },
       en: {
-        title: "S Series Algorithm Toolchain",
-        description: "OE is the abbreviation of OpenExplorer, which is an full lifecycle development platform based on D-Robotics' computing platform.",
-        href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
+        title: "S Series LLM Toolchain User Manual",
+        description: "D-Robotics-LLM Toolchain enables the deployment of large language models on the S600 series platforms and derivative platforms.",
+        href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/guide/sdk_introduction.html",
       },
     },
     {
@@ -533,18 +533,18 @@ export const DOC_CENTER_CONFIG = {
     {
       id: "algorithm-toolchain",
       categoryId: "toolchain",
-      cover: "oe-llm-s600",
-      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
+      cover: "oe-s",
+      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-s.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_llm_s600_doc/index.html",
+      href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
       zh: {
-        title: "S600 LLM 工具链",
-        description: "地瓜 S600 LLM 工具链，是工具链产品面向大模型业务的特性化拓展，可以在 S600 及衍生平台进行大语言模型的部署。",
+        title: "S 系列算法工具链用户手册",
+        description: "OE 是 Open Explorer 的缩写简称，中文名为天工开物，它是基于自研计算平台打造的全生命周期开发平台。",
       },
       en: {
-        title: "S600 LLM Toolchain",
-        description: "D-Robotics-LLM Toolchain enables the deployment of large language models on the S600 series platforms and derivative platforms.",
-        href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/index.html",
+        title: "S Series Algorithm Toolchain User Manual",
+        description: "OE is the abbreviation of OpenExplorer, which is an full lifecycle development platform based on D-Robotics' computing platform.",
+        href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
       },
     },
     {

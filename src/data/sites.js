@@ -337,7 +337,8 @@ export const DOC_CENTER_CONFIG = {
       },
       en: {
         title: "TogetheROS.Bot",
-        description: "TogetheROS.Bot is a robot operating system designed for robot manufacturers and ecosystem developers. "
+        description: "TogetheROS.Bot is a robot operating system designed for robot manufacturers and ecosystem developers. ",
+        href: "https://d-robotics.github.io/tros_doc/en/tros",
         // tags: ["Multi-platform"],
       },
     },
@@ -354,7 +355,7 @@ export const DOC_CENTER_CONFIG = {
       en: {
         title: "Model Zoo",
         description: "RDK Model Zoo is a collection of BPU model examples and tools.",
-        href: "https://d-robotics.github.io/model_zoo_doc/en/model_zoo_intro/",
+        href: "https://d-robotics.github.io/model_zoo_doc/en/model_zoo_intro",
       },
     },
     {
@@ -461,7 +462,7 @@ export const DOC_CENTER_CONFIG = {
       en: {
         title: "RDK Audio Kit",
         description: "RDK™ Audio Kit is an audio development kit that supports full-duplex multi-channel recording and playback.",
-        href: "https://developer.d-robotics.cc/accessories_audio_kit_doc/en/overview",
+        href: "https://d-robotics.github.io/accessories_audio_kit_doc/en/overview",
       },
     },
     {
@@ -493,7 +494,7 @@ export const DOC_CENTER_CONFIG = {
       en: {
         title: "XBurn",
         description: "XBurn is a D-Robotics board-level flashing tool that runs on a PC (Windows/Linux/macOS) for firmware flashing and backup.",
-        href: "https://developer.d-robotics.cc/xburn_doc/en/overview",
+        href: "https://d-robotics.github.io/xburn_doc/en/overview",
       },
     },
     {
@@ -502,15 +503,15 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-llm-s600",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_llm_s600_doc/guide/sdk_introduction.html",
+      href: "https://developer.d-robotics.cc/oe_llm_doc/index.html",
       zh: {
         title: "S 系列 LLM 工具链用户手册",
-        description: "地瓜 S100/600 LLM 工具链，是工具链产品面向大模型业务的特性化拓展，可以在 S600 及衍生平台进行大语言模型的部署。",
+        description: "地瓜 S100/600 LLM 工具链，是工具链产品面向大模型业务的特性化拓展，可以在 S600/S100 及衍生平台进行大语言模型的部署。",
       },
       en: {
         title: "S Series LLM Toolchain User Manual",
-        description: "D-Robotics-LLM Toolchain enables the deployment of large language models on the S600 series platforms and derivative platforms.",
-        href: "https://developer.d-robotics.cc/oe_llm_s600_doc/en/guide/sdk_introduction.html",
+        description: "D-Robotics-LLM Toolchain enables the deployment of large language models on the S600/S100 series platforms and derivative platforms.",
+        href: "https://developer.d-robotics.cc/oe_llm_doc/en/index.html",
       },
     },
     {

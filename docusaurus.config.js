@@ -13,11 +13,14 @@ const copyrightYearLabel =
     ? `${COPYRIGHT_START_YEAR}-${currentYear}`
     : `${COPYRIGHT_START_YEAR}`;
 
-const localePrefix = process.env.DOCUSAURUS_CURRENT_LOCALE === "en" ? "/en" : "";
+const isEnglishLocale = process.env.DOCUSAURUS_CURRENT_LOCALE === "en";
+const localePrefix = isEnglishLocale ? "/en" : "";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RDK 资料中心",
+  // 站点标题会拼进每个页面的 <title> / og:title，必须随语言切换，
+  // 否则英文页的 <title> 会带上中文（html lang 却是 en）。
+  title: isEnglishLocale ? "RDK Resource Center" : "RDK 资料中心",
   favicon: "img/logo.png",
   url: "https://developer.d-robotics.cc",
   // 必须与仓库名一致：GitHub Pages 项目站点路径为 /<repo>/

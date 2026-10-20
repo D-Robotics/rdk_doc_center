@@ -503,15 +503,15 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-llm-s600",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_llm_doc/index.html",
+      href: "https://developer.d-robotics.cc/oe_llm_doc/guide/sdk_introduction.html",
       zh: {
-        title: "S 系列 LLM 工具链用户手册",
+        title: "S 系列 LLM 工具链",
         description: "地瓜 S100/600 LLM 工具链，是工具链产品面向大模型业务的特性化拓展，可以在 S600/S100 及衍生平台进行大语言模型的部署。",
       },
       en: {
-        title: "S Series LLM Toolchain User Manual",
+        title: "S Series LLM Toolchain",
         description: "D-Robotics-LLM Toolchain enables the deployment of large language models on the S600/S100 series platforms and derivative platforms.",
-        href: "https://developer.d-robotics.cc/oe_llm_doc/en/index.html",
+        href: "https://developer.d-robotics.cc/oe_llm_doc/en/guide/sdk_introduction.html",
       },
     },
     {
@@ -520,7 +520,7 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-llm-s100",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s100.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/index.html",
+      href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/guide/doc_introduction.html",
       zh: {
         title: "S100 LLM 工具链",
         description: "地瓜 S100 LLM 工具链，是工具链产品面向大模型业务的拓展， 实现在 S100 系列及衍生平台上进行大语言模型的开发、转换和部署。",
@@ -528,7 +528,7 @@ export const DOC_CENTER_CONFIG = {
       en: {
         title: "S100 LLM Toolchain",
         description: "D-Robotics-LLM Toolchain enables the development, conversion, and deployment of large language models on the S100 series platforms and derivative platforms.",
-        href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/index.html",
+        href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/guide/doc_introduction.html",
       },
     },
     {
@@ -537,15 +537,15 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-s",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-s.png",
       // pendingRelease: true,
-      href: "https://developer.d-robotics.cc/oe_s_doc/index.html",
+      href: "https://developer.d-robotics.cc/oe_s_doc/guide/doc_introduction.html",
       zh: {
-        title: "S 系列算法工具链用户手册",
+        title: "S 系列算法工具链",
         description: "OE 是 Open Explorer 的缩写简称，中文名为天工开物，它是基于自研计算平台打造的全生命周期开发平台。",
       },
       en: {
-        title: "S Series Algorithm Toolchain User Manual",
+        title: "S Series Algorithm Toolchain",
         description: "OE is the abbreviation of OpenExplorer, which is an full lifecycle development platform based on D-Robotics' computing platform.",
-        href: "https://developer.d-robotics.cc/oe_s_doc/en/index.html",
+        href: "https://developer.d-robotics.cc/oe_s_doc/en/guide/doc_introduction.html",
       },
     },
     {
@@ -587,52 +587,15 @@ export const DOC_CENTER_CONFIG = {
       categoryId: "system-software",
       cover: "x5-sdk",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/x5-sdk.png",
-      versions: [
-        {
-          id: "latest",
-          label: "latest",
-          href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/",
-          en: {
-            href: "https://developer.d-robotics.cc/x5_sdk_doc_latest/en/index.html",
-            // pendingRelease: true,
-          },
-        },
-        {
-          id: "2.0.0",
-          label: "V2.0.0",
-          href: "https://developer.d-robotics.cc/x5_sdk_doc_v2.0.0/index.html",
-          en: {
-            href: "https://developer.d-robotics.cc/x5_sdk_doc_v2.0.0/en/index.html",
-            // pendingRelease: true,
-          },
-        },
-        {
-          id: "1.1.2",
-          label: "V1.1.2",
-          href: "https://developer.d-robotics.cc/x5_sdk_doc/",
-          // 该版本英文手册不存在，英文选择器内不展示（发布后删掉 hidden 并补 en.href 即可恢复）
-          en: {
-            hidden: true,
-          },
-        },
-      ],
+      href: "https://developer.d-robotics.cc/sdk_doc/versions/latest/index.html",
       zh: {
         title: "X5 芯片",
         description: "本文档作为 X5 芯片方案的用户手册，为开发者提供关于开发环境搭建、方案评测、软件功能开发等多方面的使用说明和开发指南。",
-        latestOptionHint:
-          "latest 版本实时同步 AVL 信息，如需获取最新 AVL 请查看此版本。",
-        newestReleaseHint: "此版本为已发布 SDK 的最新版本，AVL 不会实时更新。",
-        descriptionHoverHint:
-          "当前为已发布 SDK 的最新稳定版本，所包含的 AVL 信息于发布时固化，不具备实时更新能力。为确保获取最准确的 AVL 数据，请点击 [选择版本] 控件，参考 latest 版本手册。",
       },
       en: {
         title: "X5 SDK",
         description: "This document serves as the user manual for the X5 chip solution, providing developers with usage instructions and development guidelines on development environment setup, solution evaluation, software feature development, and more.",
-        latestOptionHint:
-          "The Latest version syncs AVL information in real time. Switch to Latest for the most recent AVL.",
-        newestReleaseHint: "This is the newest released SDK version.",
-        descriptionHoverHint:
-          "The current version is the latest stable version of the released SDK, and the AVL information included in it is fixed at the time of release, which does not have the ability to update in real time. To ensure the most accurate AVL data is obtained, please click the [Select version] control and refer to the latest version manual.",
+        href: "https://developer.d-robotics.cc/sdk_doc/versions/latest/en/index.html",
       },
     },
     {

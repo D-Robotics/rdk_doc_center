@@ -48,7 +48,7 @@ function productImage(file) {
  * 避免文档站因缺少版本号而回退到 localStorage（用户上次切换的版本）。
  */
 const PRODUCT_LATEST_VERSION = {
-  "RDK S600": { site: "s", version: "5.1.0" },
+  "RDK S600": { site: "s", version: "5.1.1" },
   "RDK S100": { site: "s", version: "4.0.5" },
   "RDK X5": { site: "x", version: "3.5.0" },
   "RDK X5 Module": { site: "x", version: "3.5.0" },

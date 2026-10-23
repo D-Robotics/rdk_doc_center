@@ -78,6 +78,16 @@ function defaultTagText(current) {
   return current?.label || current?.id || "";
 }
 
+function renderDescription(text) {
+  if (!text || !text.includes("**")) return text;
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 function HintIcon({ className }) {
   return (
     <svg
@@ -423,6 +433,7 @@ export default function SiteCard({
   image,
   cover,
   versions,
+  versionLabel,
   versionHint,
   latestOptionHint,
   newestReleaseHint,
@@ -441,11 +452,13 @@ export default function SiteCard({
   const versionList = Array.isArray(versions) ? versions : [];
   const hasVersionSelect = versionList.length > 1;
   const current = versionList.find((item) => item.default) || versionList[0] || null;
+  const versionTag = hasVersionSelect
+    ? defaultTagText(current)
+    : versionLabel ||
+      (versionList.length === 1 ? defaultTagText(versionList[0]) : "");
 
   const allTags = [
-    ...(hasVersionSelect
-      ? [{ text: defaultTagText(current), kind: "version" }]
-      : []),
+    ...(versionTag ? [{ text: versionTag, kind: "version" }] : []),
     ...((tags ?? []).map((t) => ({ text: t, kind: "plain" }))),
   ];
 
@@ -492,7 +505,7 @@ export default function SiteCard({
           descriptionHoverHint ? styles.descriptionWrapHinted : ""
         }`}
       >
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{renderDescription(description)}</p>
         {descriptionHoverHint ? (
           <p className={styles.descriptionHoverHint}>
             <HintIcon className={styles.descriptionHoverIcon} />

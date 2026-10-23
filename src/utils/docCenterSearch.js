@@ -21,6 +21,7 @@ export function searchManualCards(grouped, query) {
       const haystack = [
         item.title,
         item.description,
+        item.versionLabel,
         item.versionHint,
         ...(item.tags || []),
         ...versionLabels,

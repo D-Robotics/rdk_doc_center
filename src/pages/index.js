@@ -120,6 +120,7 @@ function GroupSection({ group, items }) {
             image={item.image}
             cover={item.cover}
             versions={item.versions}
+            versionLabel={item.versionLabel}
             versionHint={item.versionHint}
             latestOptionHint={item.latestOptionHint}
             newestReleaseHint={item.newestReleaseHint}
@@ -216,6 +217,7 @@ function SearchResults({ query, chapterHits, manualHits, total, loading }) {
                     image={item.image}
                     cover={item.cover}
                     versions={item.versions}
+                    versionLabel={item.versionLabel}
                     versionHint={item.versionHint}
                     latestOptionHint={item.latestOptionHint}
                     newestReleaseHint={item.newestReleaseHint}

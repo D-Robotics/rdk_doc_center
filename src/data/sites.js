@@ -16,6 +16,9 @@
  *   versionHint 可写在 zh/en 下，显示在版本选择器上方作为选用说明
  *   latestOptionHint / newestReleaseHint 写在选项内：Latest 通道、当前最高已发布版本
  *   descriptionHoverHint：卡片悬浮时覆盖描述区域的提示，不遮挡标题和版本按钮
+ * - description 中用 **文字** 包裹的片段会在卡片上加粗显示
+ * - versionLabel: 可选。不做版本下拉时，在卡片标题旁显示单个版本标签（如 V3.7.0）
+ *   已配置 versions 时以当前选中版本的标签为准，此字段不生效
  * - RDK 用户手册（products）按产品拆分：S100/S600、X3/X5 在文档站（rdk_s_doc / rdk_x_doc）
  *   各自对应独立版本。卡片 href 由 rdkManualHref 生成，始终携带显式 ?v=<版本>&p=<产品>，
  *   版本号统一维护在下方 PRODUCT_LATEST_VERSION 表中（发版时只改这一处，勿用 ?v=latest 或仅 ?p=）
@@ -503,6 +506,7 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-llm-s600",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s600.png",
       // pendingRelease: true,
+      versionLabel: "v2.0.0",
       href: "https://developer.d-robotics.cc/oe_llm_doc/guide/sdk_introduction.html",
       zh: {
         title: "S 系列 LLM 工具链",
@@ -520,14 +524,15 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-llm-s100",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-llm-s100.png",
       // pendingRelease: true,
+      versionLabel: "V1.0.0",
       href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/guide/doc_introduction.html",
       zh: {
         title: "S100 LLM 工具链",
-        description: "地瓜 S100 LLM 工具链，是工具链产品面向大模型业务的拓展， 实现在 S100 系列及衍生平台上进行大语言模型的开发、转换和部署。",
+        description: "LLM 工具链用于在 S100 平台部署大语言模型。**此版本 V1.0.0 为历史发布版本，后续将停止维护并下架，建议选用最新的 S 系列 LLM 工具链 v2.0.0。**",
       },
       en: {
         title: "S100 LLM Toolchain",
-        description: "D-Robotics-LLM Toolchain enables the development, conversion, and deployment of large language models on the S100 series platforms and derivative platforms.",
+        description: "Deploys large language models on the S100 platform. **This version V1.0.0 is a historical release; maintenance will stop and this version will be taken down. Use the latest S Series LLM Toolchain v2.0.0.**",
         href: "https://developer.d-robotics.cc/oe_llm_s100p_doc/en/guide/doc_introduction.html",
       },
     },
@@ -537,6 +542,7 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-s",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-s.png",
       // pendingRelease: true,
+      versionLabel: "V3.7.0",
       href: "https://developer.d-robotics.cc/oe_s_doc/guide/doc_introduction.html",
       zh: {
         title: "S 系列算法工具链",
@@ -554,6 +560,7 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-x5",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-x5.png",
       // pendingRelease: true,
+      versionLabel: "V1.2.8",
       href: "https://developer.d-robotics.cc/oe_x5_doc/cn/index.html",
       zh: {
         title: "X5 算法工具链",
@@ -571,6 +578,7 @@ export const DOC_CENTER_CONFIG = {
       cover: "oe-x3",
       image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/oe-x3.png",
       // pendingRelease: true,
+      versionLabel: "v2.6.6",
       href: "https://developer.d-robotics.cc/oe_x3_doc/cn/index.html",
       zh: {
         title: "X3 算法工具链",
@@ -736,6 +744,7 @@ function toSite(entry, locale) {
     href,
     tags: i18n.tags || [],
     versions,
+    versionLabel: i18n.versionLabel || entry.versionLabel || "",
     versionHint: i18n.versionHint || entry.versionHint || "",
     latestOptionHint: i18n.latestOptionHint || entry.latestOptionHint || "",
     newestReleaseHint: i18n.newestReleaseHint || entry.newestReleaseHint || "",

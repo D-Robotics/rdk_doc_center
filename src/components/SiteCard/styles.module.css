@@ -432,6 +432,11 @@
   transition: opacity 0.16s ease;
 }
 
+.description strong {
+  font-weight: 700;
+  color: #1c1917;
+}
+
 .descriptionHoverHint {
   grid-area: 1 / 1;
   z-index: 1;
@@ -511,6 +516,10 @@
 
 :global(html[data-theme="dark"]) .description {
   color: #a8a29e;
+}
+
+:global(html[data-theme="dark"]) .description strong {
+  color: #f5f5f4;
 }
 
 :global(html[data-theme="dark"]) .descriptionHoverHint {

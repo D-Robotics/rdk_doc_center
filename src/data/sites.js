@@ -22,6 +22,8 @@
  * - RDK 用户手册（products）按产品拆分：S100/S600、X3/X5 在文档站（rdk_s_doc / rdk_x_doc）
  *   各自对应独立版本。卡片 href 由 rdkManualHref 生成，始终携带显式 ?v=<版本>&p=<产品>，
  *   版本号统一维护在下方 PRODUCT_LATEST_VERSION 表中（发版时只改这一处，勿用 ?v=latest 或仅 ?p=）
+ * - TROS、Model Zoo 同样按产品拆分，链到各自手册首页（tros / model_zoo_intro）。
+ *   这两站没有 Module 产品。版本号维护在 SCOPED_MANUAL_VERSION，与 RDK 用户手册版本相互独立。
  * - image: 可选。卡片左侧产品图，支持：
  *   1) OSS/CDN 完整地址（https://xxx.oss-cn-xxx.aliyuncs.com/...）
  *   2) 相对 static 的站内路径（如 "/img/products/rdk-x.png"）
@@ -65,6 +67,53 @@ function rdkManualHref(product, locale) {
       ? `https://d-robotics.github.io/rdk_${info.site}_doc/en/RDK`
       : `https://developer.d-robotics.cc/rdk_${info.site}_doc/RDK`;
   return `${base}?v=${info.version}&p=${p}`;
+}
+
+/** TROS / Model Zoo 文档范围矩阵中的当前版本（与 RDK 用户手册版本独立维护）。 */
+const SCOPED_MANUAL_VERSION = {
+  "RDK S600": "5.1.0",
+  "RDK S100": "4.0.5",
+  "RDK X5": "3.5.0",
+  "RDK X3": "3.0.0",
+};
+
+const SCOPED_MANUAL_PRODUCTS = ["RDK S600", "RDK S100", "RDK X5", "RDK X3"];
+
+const SCOPED_MANUAL_IMAGE = {
+  "RDK S600": "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-s600.png",
+  "RDK S100": "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-s100.png",
+  "RDK X5": "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x5.png",
+  "RDK X3": "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/rdk-x3.png",
+};
+
+function scopedManualHref(site, home, product, locale) {
+  const version = SCOPED_MANUAL_VERSION[product];
+  if (!version) return "";
+  const p = product.replace(/ /g, "+");
+  const base =
+    locale === "en"
+      ? `https://d-robotics.github.io/${site}/en/${home}`
+      : `https://developer.d-robotics.cc/${site}/${home}`;
+  return `${base}?v=${version}&p=${p}`;
+}
+
+function scopedManualEntries({ id, categoryId, site, home, zhDescription, enDescription }) {
+  return SCOPED_MANUAL_PRODUCTS.map((product) => ({
+    id,
+    categoryId,
+    cover: product.includes("S100") || product.includes("S600") ? "rdk-s" : "rdk-x",
+    image: [{ src: SCOPED_MANUAL_IMAGE[product] }],
+    href: scopedManualHref(site, home, product),
+    zh: {
+      title: product,
+      description: zhDescription(product),
+    },
+    en: {
+      title: product,
+      description: enDescription(product),
+      href: scopedManualHref(site, home, product, "en"),
+    },
+  }));
 }
 
 export const DOC_CENTER_CONFIG = {
@@ -327,40 +376,26 @@ export const DOC_CENTER_CONFIG = {
         // tags: ["User Manual"],
       },
     },
-    {
+    ...scopedManualEntries({
       id: "tros",
       categoryId: "robot-app",
-      cover: "tros",
-      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/tros.png",
-      href: "https://developer.d-robotics.cc/tros_doc/tros",
-      zh: {
-        title: "TogetheROS.Bot",
-        description: "TogetheROS.Bot 是面向机器人厂商和生态开发者推出的机器人操作系统，助力用户打造具有竞争力的智能机器人产品。",
-        // tags: ["多平台"],
-      },
-      en: {
-        title: "TogetheROS.Bot",
-        description: "TogetheROS.Bot is a robot operating system designed for robot manufacturers and ecosystem developers. ",
-        href: "https://d-robotics.github.io/tros_doc/en/tros",
-        // tags: ["Multi-platform"],
-      },
-    },
-    {
+      site: "tros_doc",
+      home: "tros",
+      zhDescription: (product) =>
+        `TogetheROS.Bot 在 ${product} 上的用户手册，覆盖通信组件、算法仓库与应用示例。`,
+      enDescription: (product) =>
+        `TogetheROS.Bot user manual for ${product}, covering communication components, algorithm packages, and application examples.`,
+    }),
+    ...scopedManualEntries({
       id: "model-zoo-hub",
       categoryId: "model-zoo",
-      cover: "model-zoo",
-      image: "https://rdk-doc.oss-cn-beijing.aliyuncs.com/doc/img/doc_center/model-zoo.png",
-      href: "https://developer.d-robotics.cc/model_zoo_doc/model_zoo_intro",
-      zh: {
-        title: "Model Zoo",
-        description: "RDK Model Zoo 是面向 RDK 系列开发板提供的 BPU 模型示例与工具集合，用于帮助开发者快速上手 BPU、跑通模型推理流程。",
-      },
-      en: {
-        title: "Model Zoo",
-        description: "RDK Model Zoo is a collection of BPU model examples and tools.",
-        href: "https://d-robotics.github.io/model_zoo_doc/en/model_zoo_intro",
-      },
-    },
+      site: "model_zoo_doc",
+      home: "model_zoo_intro",
+      zhDescription: (product) =>
+        `面向 ${product} 的 BPU 模型示例与工具集合，帮助开发者快速上手 BPU 并跑通模型推理。`,
+      enDescription: (product) =>
+        `BPU model examples and tools for ${product}, to help developers get started with BPU inference.`,
+    }),
     {
       id: "examples",
       categoryId: "examples",

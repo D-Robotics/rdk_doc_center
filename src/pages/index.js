@@ -63,8 +63,7 @@ function Hero({ searchQuery, onSearchChange }) {
       <img className={styles.heroBg} src={heroBanner} alt="" aria-hidden />
       <div className={clsx(styles.heroInner, "home-page-content")}>
         <h1 className={styles.heroTitle}>
-          D-Robotics{" "}
-          <span className={styles.heroTitleAccent}>
+          {isEnglish ? "D-Robotics " : "地瓜"}<span className={styles.heroTitleAccent}>
             {isEnglish ? "Resource Center" : "资料中心"}
           </span>
         </h1>
@@ -352,7 +351,7 @@ export default function Home() {
 
   return (
     <Layout
-      title={isEnglish ? "RDK Resource Center" : "RDK 资料中心"}
+      title={isEnglish ? "D-Robotics Resource Center" : "地瓜资料中心"}
       description={
         isEnglish
           ? "D-Robotics Developer Documentation Hub —— Aggregating RDK, SDK, Robot Applications, Algorithm Toolchain and other sub-sites"

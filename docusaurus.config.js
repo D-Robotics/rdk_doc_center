@@ -20,7 +20,7 @@ const localePrefix = isEnglishLocale ? "/en" : "";
 const config = {
   // 站点标题会拼进每个页面的 <title> / og:title，必须随语言切换，
   // 否则英文页的 <title> 会带上中文（html lang 却是 en）。
-  title: isEnglishLocale ? "RDK Resource Center" : "RDK 资料中心",
+  title: isEnglishLocale ? "D-Robotics Resource Center" : "地瓜资料中心",
   favicon: "img/logo.png",
   url: "https://developer.d-robotics.cc",
   // 必须与仓库名一致：GitHub Pages 项目站点路径为 /<repo>/
@@ -44,8 +44,8 @@ const config = {
     // NEVER set ALGOLIA_ADMIN_API_KEY here or in any client bundle.
     // Local: .env (gitignored). CI: GitHub Secrets → build job env only.
     algolia: {
-      appId: process.env.ALGOLIA_APP_ID || "",
-      apiKey: process.env.ALGOLIA_SEARCH_API_KEY || "",
+      appId: process.env.ALGOLIA_APP_ID || "1VU781LYTV",
+      apiKey: process.env.ALGOLIA_SEARCH_API_KEY || "fb65c6e54a52ce6fba0645bd2630e79b",
       // Not confidential; phase-2: multi-index via searchIndexes / ALGOLIA_SEARCH_INDEXES
       indexName: process.env.ALGOLIA_INDEX_NAME || "rdk_doc_center",
       searchIndexes: (
@@ -134,7 +134,7 @@ const config = {
       navbar: {
         title: "RDK 文档中心",
         logo: {
-          alt: "地瓜机器人社区 logo",
+          alt: "地瓜 logo",
           src: "img/logo.png",
           srcDark: "img/logo-1.png",
           href: "https://d-robotics.cc/",

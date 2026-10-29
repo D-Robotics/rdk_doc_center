@@ -328,14 +328,38 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;");
 }
 
+/**
+ * Rspress search_index 的 content 用「行尾 #」标标题：
+ *   \n\n\n术语名#\n\n释义\n\n\n下一个术语#\n…
+ * 整页拍成 <p> 会让一页只剩一条 content 记录，关键词被稀释，
+ * 术语表这类页面排不进结果。这里按标题切成 <h2 id>，每个小节各自成条；
+ * 锚点优先取 toc 里的 id（与页面实际 id 一致），取不到再 slugify。
+ */
 function htmlFromRspressDoc(doc) {
-  const paras = String(doc.content || "")
-    .split(/\n{2,}/)
-    .map((p) => p.replace(/\s+/g, " ").trim())
-    .filter(Boolean)
-    .map((p) => `<p>${escapeHtml(p)}</p>`)
-    .join("\n");
-  return `<article class="theme-doc-markdown"><h1>${escapeHtml(doc.title || "")}</h1>${paras}</article>`;
+  const content = String(doc.content || "");
+  const idByText = new Map();
+  for (const entry of Array.isArray(doc.toc) ? doc.toc : []) {
+    const text = String(entry?.text || "").replace(/\s+/g, " ").trim();
+    const id = String(entry?.id || "").trim();
+    if (text && id) idByText.set(text, id);
+  }
+
+  const parts = [];
+  for (const block of content.split(/\n{2,}/)) {
+    const text = block.replace(/\s+/g, " ").trim();
+    if (!text || text === "#") continue;
+    if (text.length > 1 && text.endsWith("#")) {
+      const heading = text.slice(0, -1).trim();
+      if (!heading) continue;
+      const id = idByText.get(heading) || slugify(heading);
+      parts.push(
+        `<h2${id ? ` id="${escapeHtml(id)}"` : ""}>${escapeHtml(heading)}</h2>`,
+      );
+      continue;
+    }
+    parts.push(`<p>${escapeHtml(text)}</p>`);
+  }
+  return `<article class="theme-doc-markdown"><h1>${escapeHtml(doc.title || "")}</h1>${parts.join("\n")}</article>`;
 }
 
 function staticDirFromStartUrl(startUrl) {

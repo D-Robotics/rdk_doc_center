@@ -1,4 +1,5 @@
 import { algoliasearch } from "algoliasearch";
+import { toRspressPublicUrl } from "./rspressDocUrl.mjs";
 
 /** 搜索结果展示用：去掉「1.2 」「3.7.1 」等章节序号前缀 */
 export function stripChapterPrefix(title) {
@@ -77,15 +78,18 @@ function mapHitToChapter(hit) {
     hit.content ||
     "";
 
+  const href = toRspressPublicUrl(hit.url);
+  const manualHref = toRspressPublicUrl(hit.url_without_anchor || hit.url);
+
   return {
     type: "chapter",
     id: hit.objectID || hit.url,
     manualTitle: hit.manualTitle || hierarchy.lvl0 || hit.site || "",
-    manualHref: hit.url_without_anchor || hit.url,
+    manualHref,
     chapterTitle,
     parentChapter,
     summary,
-    href: hit.url,
+    href,
     external: true,
     site: hit.site,
   };

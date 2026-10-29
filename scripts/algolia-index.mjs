@@ -20,6 +20,11 @@ import {
   getAlgoliaCrawlTargets,
 } from "./algolia-sites.mjs";
 import { DOCSEARCH_INDEX_SETTINGS } from "./algolia-settings.mjs";
+import {
+  isRspressOeRoot,
+  isSphinxOeRoot,
+  rspressPublicPath,
+} from "../src/utils/rspressDocUrl.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TMP_DIR = join(ROOT, "scripts", "_algolia_tmp");
@@ -76,14 +81,15 @@ function hasFileExtension(pathname) {
   return /\.[a-z0-9]{1,8}$/i.test(lastPathSegment(pathname));
 }
 
-// OE/Sphinx 站用目录式 URL（/en/ /cn/），去掉尾部斜杠会 301 到 http:// 端口 80 或 404；
-// Docusaurus 站 trailingSlash:false，规范 URL 不带斜杠，带斜杠反而命中 OSS 空目录占位（触发下载）。
+// Sphinx（toolchain、oe_x3_doc、oe_x5_doc）是目录式 URL，必须保留尾斜杠，
+// 否则会 301 到 http:// 端口 80 或 404。
+// Rspress OE（oe_s_doc、oe_llm_*）发布的是 route.html；补尾斜杠会去取 route/index.html 并 404。
+// Docusaurus 站 trailingSlash:false，规范 URL 不带斜杠。
 function isSphinxHost(url) {
   try {
     const u = new URL(toHttps(url));
     if (u.hostname === "toolchain.d-robotics.cc") return true;
-    const first = u.pathname.split("/").filter(Boolean)[0] || "";
-    return /^oe_/i.test(first);
+    return isSphinxOeRoot(u.pathname);
   } catch {
     return false;
   }
@@ -95,11 +101,14 @@ function normalizeUrl(url) {
     u.hash = "";
     let path = u.pathname || "/";
     if (isSphinxHost(url)) {
-      // Sphinx/OE：目录式 URL，保留尾部斜杠
+      // Sphinx：目录式 URL，保留尾部斜杠
       path = path.replace(/\/index\.html?$/i, "/");
       if (path !== "/" && !hasFileExtension(path) && !path.endsWith("/")) {
         path += "/";
       }
+    } else if (isRspressOeRoot(path)) {
+      // Rspress：对象是 route.html。尾斜杠和带点号的 route（qwen2.5）都会 404。
+      path = rspressPublicPath(path);
     } else {
       // Docusaurus：trailingSlash:false，规范 URL 不带斜杠，只去掉 index.html
       path = path.replace(/\/index\.html?$/i, "");

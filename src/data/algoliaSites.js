@@ -1,6 +1,8 @@
 /**
  * Algolia 联邦索引抓取源（由 DOC_CENTER_CONFIG 派生）。
  * site 稳定 id 用于 facet，二期可映射为各站独立 indexName。
+ * S100/S600、X3/X5 共用同一个文档站路径，必须按手册卡片拆开抓取，
+ * 不能收成第一个产品的标题。
  *
  * 抓取时将 d-robotics.github.io 英文站改写为 developer.d-robotics.cc
  *（CI / 内网常无法访问 github.io；路径结构一致，例如
@@ -66,6 +68,18 @@ function pathPrefixFromHref(href) {
   }
 }
 
+function scopeFromHref(href) {
+  try {
+    const u = new URL(href);
+    return {
+      product: u.searchParams.get("p") || "",
+      version: u.searchParams.get("v") || "",
+    };
+  } catch {
+    return { product: "", version: "" };
+  }
+}
+
 function crawlHrefsForLocale(entry, locale) {
   if (isEntryPending(entry, locale)) return [];
   const i18n = entry[locale];
@@ -88,11 +102,13 @@ function crawlHrefsForLocale(entry, locale) {
  *   site: string,
  *   entryId: string,
  *   manualTitle: { zh: string, en: string },
- *   locales: Array<{ language: string, startUrl: string, pathPrefix: string }>
+ *   product: string,
+ *   version: string,
+ *   locales: Array<{ language: string, startUrl: string, pathPrefix: string, product: string, version: string }>
  * }>}
  */
 export function getAlgoliaCrawlTargets() {
-  const bySite = new Map();
+  const byManual = new Map();
 
   for (const entry of DOC_CENTER_CONFIG.entries) {
     for (const locale of ["zh", "en"]) {
@@ -100,31 +116,38 @@ export function getAlgoliaCrawlTargets() {
       for (const rawHref of hrefs) {
         const href = rewriteCrawlUrl(rawHref);
         const site = siteIdFromHref(href);
-        if (!bySite.has(site)) {
-          bySite.set(site, {
+        const { product, version } = scopeFromHref(href);
+        const manualTitle = {
+          zh: entry.zh?.title || entry.id,
+          en: entry.en?.title || entry.zh?.title || entry.id,
+        };
+        const key = `${site}::${manualTitle.zh}::${product}::${version}`;
+        if (!byManual.has(key)) {
+          byManual.set(key, {
             site,
             entryId: entry.id,
-            manualTitle: {
-              zh: entry.zh?.title || entry.id,
-              en: entry.en?.title || entry.zh?.title || entry.id,
-            },
+            manualTitle,
+            product,
+            version,
             locales: [],
           });
         }
 
-        const target = bySite.get(site);
+        const target = byManual.get(key);
         const language = locale === "en" ? "en" : "zh-Hans";
         if (target.locales.some((l) => l.language === language)) continue;
         target.locales.push({
           language,
           startUrl: href,
           pathPrefix: pathPrefixFromHref(href),
+          product,
+          version,
         });
       }
     }
   }
 
-  return [...bySite.values()];
+  return [...byManual.values()];
 }
 
 export const ALGOLIA_INDEX_NAME_DEFAULT = "rdk_doc_center";

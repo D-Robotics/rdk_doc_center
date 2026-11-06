@@ -25,6 +25,11 @@ import {
   isSphinxOeRoot,
   rspressPublicPath,
 } from "../src/utils/rspressDocUrl.mjs";
+import {
+  pathAllowsProduct,
+  removeOutOfScope,
+  stampScopeUrl,
+} from "./doc-scope-index.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TMP_DIR = join(ROOT, "scripts", "_algolia_tmp");
@@ -204,7 +209,10 @@ async function fetchOnce(url, accept) {
   return { ok: false, status: 0, url: current, res: null };
 }
 
+const fetchCache = new Map();
+
 async function fetchText(url, { accept = "text/html,application/xhtml+xml,application/xml,application/json,text/xml,*/*", warn = true } = {}) {
+  if (fetchCache.has(url)) return fetchCache.get(url);
   const prevTls = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
   if (isToolchain(url)) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -224,7 +232,9 @@ async function fetchText(url, { accept = "text/html,application/xhtml+xml,applic
           lastError = `content-type ${ct} ${candidate}`;
           continue;
         }
-        return { url: got.url || candidate, text: await got.res.text() };
+        const result = { url: got.url || candidate, text: await got.res.text() };
+        fetchCache.set(url, result);
+        return result;
       } catch (e) {
         lastError = `${e.message} ${candidate}`;
       }
@@ -232,7 +242,9 @@ async function fetchText(url, { accept = "text/html,application/xhtml+xml,applic
     if (warn) {
       console.warn(`  fetch fail: ${url} (${lastError || "no candidate succeeded"})`);
     }
-    return null;
+    const missed = null;
+    fetchCache.set(url, missed);
+    return missed;
   } finally {
     if (isToolchain(url)) {
       if (prevTls === undefined) delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
@@ -438,11 +450,21 @@ function readMeta($, name) {
   );
 }
 
-function extractRecords(html, pageUrl, { site, manualTitle, language }) {
+function extractRecords(html, pageUrl, { site, manualTitle, language, product = "", version = "" }) {
+  let pathname = "";
+  try {
+    pathname = new URL(pageUrl).pathname;
+  } catch {
+    pathname = "";
+  }
+  if (!pathAllowsProduct(pathname, product)) return [];
+
   const $ = cheerio.load(html);
   // Prefer markdown article only — avoids sidebar/toc list explosion
   const root = pickContentRoot($);
   root.find("nav, .theme-doc-toc-desktop, .theme-doc-toc-mobile, .pagination-nav, .hash-link").remove();
+  // Shared sites publish every product/version block in one HTML document.
+  removeOutOfScope($, root, product, version);
 
   const pageTitle =
     root.find("h1").first().text().trim() ||
@@ -467,7 +489,7 @@ function extractRecords(html, pageUrl, { site, manualTitle, language }) {
     lvl6: null,
   };
 
-  const urlWithoutAnchor = normalizeUrl(pageUrl);
+  const urlWithoutAnchor = stampScopeUrl(normalizeUrl(pageUrl), product, version);
   const records = [];
   let position = 0;
   let currentAnchor =
@@ -574,7 +596,12 @@ async function crawlLocale(target, localeCfg) {
   const { site, manualTitle } = target;
   const title =
     localeCfg.language === "en" ? manualTitle.en : manualTitle.zh;
-  console.log(`\n[${site}] ${localeCfg.language} ← ${localeCfg.startUrl}`);
+  const product = localeCfg.product || target.product || "";
+  const version = localeCfg.version || target.version || "";
+  const scopeLabel = [product, version].filter(Boolean).join(" ");
+  console.log(
+    `\n[${site}] ${localeCfg.language}${scopeLabel ? ` ${scopeLabel}` : ""} ← ${localeCfg.startUrl}`,
+  );
 
   let pageEntries = [];
   const startPage = await fetchText(localeCfg.startUrl);
@@ -611,6 +638,8 @@ async function crawlLocale(target, localeCfg) {
           site,
           manualTitle: title,
           language: localeCfg.language,
+          product,
+          version,
         }),
       );
     } catch (e) {

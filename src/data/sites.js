@@ -49,7 +49,7 @@ function productImage(file) {
  * 卡片 href 由 rdkManualHref 生成，始终携带显式 ?v=<版本>&p=<产品>，
  * 避免文档站因缺少版本号而回退到 localStorage（用户上次切换的版本）。
  */
-const PRODUCT_LATEST_VERSION = {
+export const PRODUCT_LATEST_VERSION = {
   "RDK S600": { site: "s", version: "5.1.1" },
   "RDK S100": { site: "s", version: "4.0.5" },
   "RDK X5": { site: "x", version: "3.5.0" },

@@ -1,5 +1,15 @@
 import { algoliasearch } from "algoliasearch";
+import { PRODUCT_LATEST_VERSION } from "../data/sites";
 import { toRspressPublicUrl } from "./rspressDocUrl.mjs";
+import {
+  S_SERIES_INDEX,
+  dedupeHits,
+  mergeSSeriesHits,
+  sSeriesFilter,
+  sSeriesPins,
+  tagSSeriesHit,
+  zipByTitleMatch,
+} from "./sSeriesSearch.mjs";
 
 /** 搜索结果展示用：去掉「1.2 」「3.7.1 」等章节序号前缀 */
 export function stripChapterPrefix(title) {
@@ -123,41 +133,66 @@ export async function searchAlgoliaChapters(query, { language, algoliaConfig }) 
 
   const client = algoliasearch(appId, apiKey);
   const lang = language === "en" ? "en" : "zh-Hans";
-  const requests = indexes.map((indexName) => ({
-    indexName,
-    query: q,
-    hitsPerPage: 40,
-    filters: `language:${lang}`,
-    attributesToRetrieve: [
-      "hierarchy",
-      "content",
-      "anchor",
-      "url",
-      "url_without_anchor",
-      "type",
-      "site",
-      "manualTitle",
-      "language",
-    ],
-    attributesToSnippet: ["content:20"],
-    distinct: true,
-  }));
+  const retrieve = [
+    "hierarchy",
+    "content",
+    "anchor",
+    "url",
+    "url_without_anchor",
+    "type",
+    "site",
+    "manualTitle",
+    "language",
+    "product",
+    "rdk_version",
+  ];
+  // The manual index already separates S100 and S600. Don't also query the
+  // federated copy of the same site, which collapses both products onto S600.
+  const genericIndexes = indexes.filter((name) => name !== S_SERIES_INDEX);
+  const pins = sSeriesPins(PRODUCT_LATEST_VERSION);
+  const requests = [
+    ...genericIndexes.map((indexName) => ({
+      indexName,
+      query: q,
+      hitsPerPage: 40,
+      filters: `language:${lang}`,
+      attributesToRetrieve: retrieve,
+      attributesToSnippet: ["content:20"],
+      distinct: true,
+    })),
+    ...pins.map((pin) => ({
+      indexName: S_SERIES_INDEX,
+      query: q,
+      hitsPerPage: 20,
+      filters: sSeriesFilter(lang, pin),
+      attributesToRetrieve: retrieve,
+      attributesToSnippet: ["content:20"],
+      distinct: true,
+    })),
+  ];
 
   const { results } = await client.search({ requests });
-  const rawHits = [];
-  for (const result of results || []) {
-    if (result.hits) rawHits.push(...result.hits);
+  const genericCount = genericIndexes.length;
+  const federated = [];
+  for (let i = 0; i < genericCount; i += 1) {
+    const result = results?.[i];
+    if (result?.hits) federated.push(...result.hits);
   }
 
-  // Dedupe by url, keep first (higher ranked)
-  const seen = new Set();
-  const chapterHits = [];
-  for (const hit of rawHits) {
-    const key = hit.url || hit.objectID;
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    chapterHits.push(mapHitToChapter(hit));
+  const scopedLists = [];
+  let scopedOk = true;
+  for (let i = 0; i < pins.length; i += 1) {
+    const result = results?.[genericCount + i];
+    if (!result || result.message) {
+      scopedOk = false;
+      break;
+    }
+    scopedLists.push((result.hits || []).map(tagSSeriesHit));
   }
+  const scopedHits = scopedOk ? zipByTitleMatch(scopedLists, q) : [];
+  const rawHits = mergeSSeriesHits(federated, scopedHits);
+
+  const chapterHits = dedupeHits(rawHits).map(mapHitToChapter);
 
   return { chapterHits, rawHits };
 }

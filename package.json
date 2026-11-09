@@ -20,6 +20,7 @@
     "algolia:index": "node scripts/algolia-index.mjs"
   },
   "dependencies": {
+    "@d-robotics/docusaurus-plugin-guaji": "0.1.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/plugin-sitemap": "^3.8.1",
     "@docusaurus/preset-classic": "^3.7.0",

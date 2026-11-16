@@ -18,6 +18,7 @@ const localePrefix = isEnglishLocale ? "/en" : "";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  plugins: ['@d-robotics/docusaurus-plugin-guaji'],
   // 站点标题会拼进每个页面的 <title> / og:title，必须随语言切换，
   // 否则英文页的 <title> 会带上中文（html lang 却是 en）。
   title: isEnglishLocale ? "D-Robotics Resource Center" : "地瓜资料中心",
@@ -58,7 +59,7 @@ const config = {
         .filter(Boolean),
     },
     feedbackFloat: {
-      enabled: true,
+      enabled: false,
       questionnaireUrl: "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",
       questionnaireUrlByLocale: {
         "zh-Hans": "https://horizonrobotics.feishu.cn/share/base/form/shrcnLQ9OfYQO03cebdkNfOmkCh",
